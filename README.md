@@ -17,7 +17,7 @@ This is an e-commerace online store.
  #### For Frontend
     
 ```bash
-  npm install my-project
+  npm install npm react router dom
 
 ```
 
