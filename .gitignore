@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Environment variables
+.env
+
+# Production build
+/build
+
+# IDE files
+.vscode/
+.idea/
+
+# Dependency directories
+pnp/
+.pnp.js
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Windows folder configuration file
+desktop.ini
