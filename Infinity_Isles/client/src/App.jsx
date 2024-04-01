@@ -1,8 +1,13 @@
+import Navbar from "./components/Navbar"
+import Page404 from "./screens/pages/404Page"
 
 function App() {
 
   return (
-    <h1 className="text-4xl font-semibold flex justify-center items-center h-screen">Hello this is Testing</h1>
+    <>
+      <Navbar />
+      <Page404 />
+    </>
   )
 }
 
