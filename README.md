@@ -48,7 +48,7 @@ Choose what you want!!
 ### For Styling
 
 ```bash
- npm install @mui/material @emotion/react @emotion/styled
+ npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 ```
 
 
