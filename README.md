@@ -47,11 +47,9 @@ Choose what you want!!
 
 ### For Styling
 
+ - Tailwind (library)
+ - Material Ui  (Framework)
+
 ```bash
  npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 ```
-## Demo
-
-#### Resposive Header
-
-https://github.com/alisulman/serious_projects/issues/1#issue-2219961072
