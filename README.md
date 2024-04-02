@@ -37,7 +37,7 @@ I use vite you choose other framework for react.
 After enter above command it asked your project name and framework name and last language.
 Choose what you want!!
 
-- Berfore start your server first enter inside your project then start
+- Berfore start your server, first enter inside your project then start
 
 ```bash
  cd <projectname>
