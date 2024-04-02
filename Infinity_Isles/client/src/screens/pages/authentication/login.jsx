@@ -1,28 +1,17 @@
-// import React from 'react'
 import { FcGoogle } from "react-icons/fc";
 import { TiSocialFacebook } from "react-icons/ti";
 import RegistrationWrap from "../../../components/wrapper/RegistrationWrap";
 import { Link } from 'react-router-dom'
 
-const Signup = () => {
+const Login = () => {
     return (
         <RegistrationWrap>
             <div className="container flex flex-col justify-center items-center mx-auto">
-                <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Signup</h1 >
-                <h1 className="flex text-sm my-3 sm:text-base md:text-lg lg:text-xl xl:text-2xl">Already have an account?<Link to='/authentication/login' className='flex items-center text-xs text-blue-600 sm:text-sm md:text-base lg:text-lg xl:text-xl'>Login</Link></h1>
+                <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Login</h1 >
+                <h1 className="flex text-sm my-3 sm:text-base md:text-lg lg:text-xl xl:text-2xl">Already have an account?<Link to='/authentication/signup' className='flex items-center text-xs text-blue-600 sm:text-sm md:text-base lg:text-lg xl:text-xl'>Signup</Link></h1>
             </div>
             <div className="flex flex-col justify-center items-center sm:flex-row sm:gap-5 md:gap-10 lg:gap-20">
                 <form className="w-80 sm:w-[290px] md:min-w-[300px] lg:min-w-[400px]">
-                    <div className="relative h-11  my-5">
-                        <input placeholder="Username"
-                            type="text"
-                            name="username"
-                            className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100" />
-                        <label
-                            className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                            Username
-                        </label>
-                    </div>
                     <div className="relative h-11 my-5">
                         <input placeholder="Email"
                             type="text"
@@ -76,4 +65,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Login
