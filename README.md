@@ -50,6 +50,7 @@ Choose what you want!!
 ```bash
  npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 ```
+## Demo
 
-
+Watch the demo video [here](https://github.com/alisulman/serious_projects/issues/1#issue-2219961072).
 
