@@ -52,5 +52,5 @@ Choose what you want!!
 ```
 ## Demo
 
-Watch the demo video [here](https://github.com/alisulman/serious_projects/issues/1#issue-2219961072).
+https://github.com/alisulman/serious_projects/issues/1#issue-2219961072
 
