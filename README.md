@@ -53,6 +53,4 @@ Choose what you want!!
 ## Demo
 
 Resposive Header
-
 https://github.com/alisulman/serious_projects/issues/1#issue-2219961072
-
