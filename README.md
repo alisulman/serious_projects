@@ -40,21 +40,16 @@ Choose what you want!!
 - Berfore start your server first enter inside your project then start
 
 ```bash
-  cd <projectname>
-  npm install
-  npm run dev
+ cd <projectname>
+ npm install
+ npm run dev
 ```
 
+### For Styling
 
-
-
-
-
-
-
-
-
-
+```bash
+ npm install @mui/material @emotion/react @emotion/styled
+```
 
 
 
