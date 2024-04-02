@@ -11,7 +11,7 @@ const Navbar = () => {
         <>
             <div className="bg-gray-800 text-amber-50 pb-1 cursor-pointer">
                 <div className="flex justify-between items-center py-1 tracking-widest mx-6 sm:mx-8 md:mx-10 lg:mx-12 xl:mx-14">
-                    <Link to='/' className="flex items-center text-sm font-semibold uppercase  sm:text-base md:text-lg lg:text-2xl xl:text-3xl"><Logo /><div className='mx-4'>Infinity Isles</div></Link>
+                    <Link to='/' className="flex items-center text-sm font-semibold uppercase  sm:text-base md:text-lg lg:text-2xl xl:text-3xl"><Logo color='white' /><div className='mx-4'>Infinity Isles</div></Link>
                     <ul className="hidden text-gray-300 font-normal uppercase  sm:text-xs md:flex md:text-xs lg:text-sm xl:text-xl">
                         <NavLink to='/' className="md:mx-1.5 lg:mx-3 xl:mx-5 hover:text-amber-50">home</NavLink>
                         <li id="bouton" className="group/bouton md:mx-1.5 lg:mx-3 xl:mx-5 hover:text-amber-50"> Collection
