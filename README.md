@@ -17,7 +17,7 @@ This is an e-commerace online store.
  #### For Frontend
     
 ```bash
-  npm install npm react-router-dom react-icons
+  npm install npm react-router-dom react-icons react-icons-kit
 
 ```
 
