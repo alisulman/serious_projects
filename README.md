@@ -50,6 +50,34 @@ Choose what you want!!
  - Tailwind (library)
  - Material Ui  (Framework)
 
+Terminal
+```bash
+ npm install -D tailwindcss postcss autoprefixer
+ npx tailwindcss init -p
+```
+
+tailwind.config.js
+```bash
+ /** @type {import('tailwindcss').Config} */
+ export default {
+   content: [
+     "./index.html",
+     "./src/**/*.{js,ts,jsx,tsx}",
+   ],
+   theme: {
+     extend: {},
+   },
+   plugins: [],
+ }
+```
+
+index.css
+```bash
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+```
+
 ```bash
  npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
 ```
