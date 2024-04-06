@@ -2,6 +2,7 @@ import { validate } from "email-validator"
 import User from "../models/authModel.js"
 import EncryptPassword from "../helpers/encrptpassword.js"
 import ComparePassword from "../helpers/dcryptpassword.js"
+import GenerateToken from "../helpers/generteToken.js"
 
 // sign up
 export const signup = async (req, res) => {
@@ -29,10 +30,12 @@ export const signup = async (req, res) => {
             } else {
                 const securePassword = await EncryptPassword(password)
                 const newUser = await User.create({ username, email, password: securePassword })
+                const token = GenerateToken(newUser)
                 res.status(201).json({
                     success: true,
                     mesage: "Registoration is successfully",
-                    data: newUser
+                    data: newUser,
+                    token: token
                 })
             }
         }
@@ -63,11 +66,13 @@ export const signin = async (req, res) => {
                 })
             } else {
                 const securePassword = await ComparePassword(password, user.password)
+                const token = GenerateToken(user)
                 if (securePassword && user) {
                     res.status(200).json({
                         success: true,
                         message: `Welcome ${user.username}`,
-                        data: user
+                        data: user,
+                        token: token
                     })
                 } else {
                     res.status(404).json({
