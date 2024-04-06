@@ -1,5 +1,7 @@
 import { validate } from "email-validator"
 import User from "../models/authModel.js"
+import EncryptPassword from "../helpers/encrptpassword.js"
+import ComparePassword from "../helpers/dcryptpassword.js"
 
 // sign up
 export const signup = async (req, res) => {
@@ -18,18 +20,21 @@ export const signup = async (req, res) => {
                     mesage: "email is not correct!"
                 })
             }
-            if (!password) {
+            if (!password && !email) {
                 res.status(404).json({
                     success: false,
-                    mesage: "password is required"
+                    error: error.message,
+                    mesage: "password & email is required!"
+                })
+            } else {
+                const securePassword = await EncryptPassword(password)
+                const newUser = await User.create({ username, email, password: securePassword })
+                res.status(201).json({
+                    success: true,
+                    mesage: "Registoration is successfully",
+                    data: newUser
                 })
             }
-            const newUser = await User.create({ username, email, password })
-            res.status(201).json({
-                success: true,
-                mesage: "Registoration is successfully",
-                data: newUser
-            })
         }
     } catch (error) {
         res.status(500).json({
@@ -48,14 +53,29 @@ export const signin = async (req, res) => {
         if (!user) {
             res.status(404).json({
                 success: false,
-                mesage: "email or password is incorrect"
+                message: "email or password is incorrect"
             })
         } else {
-            res.status(200).json({
-                success: true,
-                mesage: `Welcome ${user.username}`,
-                data: user
-            })
+            if (!password && !email) {
+                res.status(404).json({
+                    success: false,
+                    message: "password & email is required!"
+                })
+            } else {
+                const securePassword = await ComparePassword(password, user.password)
+                if (securePassword && user) {
+                    res.status(200).json({
+                        success: true,
+                        message: `Welcome ${user.username}`,
+                        data: user
+                    })
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        message: "password & email is incorrect"
+                    })
+                }
+            }
         }
     } catch (error) {
         res.status(500).json({
