@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import authRouter from './routers/authRouter.js'
 import dbConfig from './configs/dbConfig.js'
+import productRouter from './routers/prodRouter.js'
 
 // define packages...
 const app = express()
@@ -17,6 +18,7 @@ app.use(cors())
 
 // routes 
 app.use("/api/auth", authRouter)
+app.use("/api/products", productRouter)
 
 // port 
 const port = process.env.PORT || 5000
