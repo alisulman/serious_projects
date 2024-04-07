@@ -3,16 +3,31 @@ import Product from "../models/productModel.js"
 export const fetchallProducts = async (req, res) => {
     try {
         const products = await Product.find({})
-        if (products) {
-            res.status(200).json({
-                success: true,
-                data: products
-            })
-        } else {
-            res.status(404).json({
-                success: false,
-                message: "products not found"
-            })
+
+        // pagination
+        const page = parseInt(req.params.page)
+        const perpage = parseInt(req.params.perpage)
+        if (page && perpage){
+            const totalPages = Math.ceil(products.length / perpage)
+            const startIndex = (page - 1) * perpage
+            const endIndex = startIndex + perpage
+            const productPage = products.slice(startIndex, endIndex)
+            if (products) {
+                res.status(200).json({
+                    success: true,
+                    pagination: {
+                        currentPage: page,
+                        totalPages: totalPages,
+                    },
+                    totalProductsAtCurrentPage: productPage.length,
+                    products: productPage
+                })
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: "products not found"
+                })
+            }
         }
     } catch (error) {
         res.status(500).json({

@@ -3,7 +3,7 @@ import * as products from '../controllers/prodController.js';
 const productRouter = express.Router();
 
 // fetch all Products 
-productRouter.route('/').get(products.fetchallProducts)
+productRouter.route('/page-:page/products-:perpage').get(products.fetchallProducts)
 
 // fetch single Product
 productRouter.route('/:id').get(products.fetchSingleProducts)
