@@ -102,7 +102,7 @@ const Signup = () => {
                             onChange={e => handleChange(e.target.value)}
                             className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                             required
-                            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&]{8,}$"
+                            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$"
                         />
                         {type === "password" ? (
                             <span className='absolute text-gray-600 inset-y-0 end-0 flex items-center pe-3' onClick={() => setType("text")}><Icon icon={eye} /></span>

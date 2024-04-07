@@ -12,7 +12,7 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         setLoading: (state) => {
-            state.isLoading = false;
+            state.isLoading = true;
         },
         setError: (state, action) => {
             state.isLoading = false,
