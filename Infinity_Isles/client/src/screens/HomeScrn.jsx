@@ -5,12 +5,15 @@ import { useSelector } from 'react-redux'
 
 const HomeScrn = () => {
   const state = useSelector(state => state.user)
+  const data = state.auth
+  console.log(state)
+
 
   return (
     <HeaderWrap>
-      {state.isUser !== null &&
+      {data &&
         <pre className="text-wrap break-all">
-          {JSON.stringify(state.isUser)}
+          {JSON.stringify(data)}
         </pre>
       }
     </HeaderWrap>

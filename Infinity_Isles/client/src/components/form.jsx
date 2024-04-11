@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import registory from '../../app/actions/authAction'
 import toast from 'react-hot-toast';
-import Alert from './alert'
+import { AlertBottomRight } from './alert'
 
 
 const credInitial = {
@@ -69,24 +69,30 @@ const Form = ({ page }) => {
         e.preventDefault()
         dispatch(registory(cred.username, cred.email, cred.password, navigate, page))
     }
-    
+
     const handleonChange = (e) => {
         setCred(pre => ({
             ...pre, [e.target.name]: e.target.value
         }))
     }
-    
+
     React.useEffect(() => {
-        data && toast.success(data.message)
-    }, [data])
+        if(!state.isError){
+            data && toast.success(data.message)
+        }
+        state.isError && toast.error(state.isError)
+    }, [data, state.isError])
 
     React.useEffect(() => {
         setCred(credInitial)
+        setPass(passInitial)
     }, [page])
+
+    // console.log(state)
 
     return (
         <>
-            <Alert />
+            <AlertBottomRight />
             <form className="w-80 sm:w-[290px] md:min-w-[300px] lg:min-w-[400px]" noValidate>
 
                 {page === 'Signup' && (
@@ -156,7 +162,7 @@ const Form = ({ page }) => {
                     </label>
 
                     {page === "Signup" && (
-                        <div className='peer-focus:block hidden absolute bg-white border border-gray-800 rounded-lg w-full p-2 my-3'>
+                        <div className='peer-focus:block hidden absolute bg-white border border-gray-800 rounded-lg w-full p-2 my-3 z-50'>
                             <div className={`flex ${pass.lowercase ? 'text-gray-400' : "text-gray-800"}`}>
                                 {pass.lowercase ? (
                                     <div className='mr-2 text-green-600'><Icon icon={check} /></div>
@@ -206,7 +212,7 @@ const Form = ({ page }) => {
                     <button
                         type="submit"
                         id="submitBtn"
-                        className="text-sm text-blue-800 font-medium bg-white  border border-blue-800 rounded-full w-full px-9 py-1.5 mt-3 focus:ring-1 focus:ring-blue-300 focus:outline-none hover:bg-blue-800 hover:text-white sm:text-[10px] md:text-xs lg:text-sm sm:px-5 md:px-7 lg:px-9 sm:py-0.5 md:py-1 lg:py-1.5 sm:my-1 md:my-2 lg:my-3"
+                        className={`text-sm text-blue-800 font-medium bg-white  border border-blue-800 rounded-full w-full px-9 py-1.5 mt-3 focus:ring-1 focus:ring-blue-300 focus:outline-none hover:bg-blue-800 hover:text-white sm:text-[10px] md:text-xs lg:text-sm sm:px-5 md:px-7 lg:px-9 sm:py-0.5 md:py-1 lg:py-1.5 sm:my-1 md:my-2 lg:my-3 ${cred.email !== '' && cred.password !== '' ?  '' : 'cursor-not-allowed opacity-50'}`}
                         onClick={handleSubmit}
                     >
                         {page}

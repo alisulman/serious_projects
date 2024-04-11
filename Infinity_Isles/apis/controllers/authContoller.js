@@ -10,7 +10,7 @@ export const signup = async (req, res) => {
         const { username, email, password } = req.body
         const userExists = await User.findOne({ email })
         if (userExists) {
-            res.status(403).json({
+            res.status(409).json({
                 success: false,
                 message: "email or password is incorrect"
             })
@@ -27,17 +27,16 @@ export const signup = async (req, res) => {
                     error: error.message,
                     message: "password & email is required!"
                 })
-            } else {
-                const securePassword = await EncryptPassword(password)
-                const newUser = await User.create({ username, email, password: securePassword })
-                const token = GenerateToken(newUser)
-                res.status(201).json({
-                    success: true,
-                    message: "Signup successfully",
-                    data: newUser,
-                    token: token
-                })
             }
+            const securePassword = await EncryptPassword(password)
+            const newUser = await User.create({ username, email, password: securePassword })
+            const token = GenerateToken(newUser)
+            res.status(201).json({
+                success: true,
+                message: "Signup successfully",
+                data: newUser,
+                token: token
+            })
         }
     } catch (error) {
         res.status(500).json({
