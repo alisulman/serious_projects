@@ -1,204 +1,27 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import * as React from 'react'
-import Icon from 'react-icons-kit'
 import { FcGoogle } from "react-icons/fc";
 import { TiSocialFacebook } from "react-icons/ti";
 import RegistrationWrap from "../../../components/wrapper/RegistrationWrap";
 import { Link } from 'react-router-dom'
-import { eye } from 'react-icons-kit/icomoon/eye'
-import { eyeBlocked } from 'react-icons-kit/icomoon/eyeBlocked'
-import { blank } from 'react-icons-kit/metrize/blank'
-import { check } from 'react-icons-kit/metrize/check'
-import { useDispatch, useSelector } from 'react-redux'
-import { signup } from '../../../../app/actions/authAction';
-import toast, { Toaster } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom'
+import Form from '../../../components/form';
 
 const Signup = () => {
-    const [type, setType] = React.useState('password')
-    const [lowercase, setLowercase] = React.useState(false)
-    const [uppercase, setUppercase] = React.useState(false)
-    const [number, setNumber] = React.useState(false)
-    const [specialcase, setSpecialcase] = React.useState(false)
-    const [characters, setCharacters] = React.useState(false)
-    const [username, setUsername] = React.useState('')
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    const state = useSelector(state => state.user)
-
-    const handleChange = (value) => {
-        let lower = new RegExp('(?=.*[a-z])');
-        let upper = new RegExp('(?=.*[A-Z])');
-        let number = new RegExp('(?=.*[0-9])');
-        let special = new RegExp('(?=.*[!@#\$%\*])');
-        let length = new RegExp('(?=.{8,})');
-
-        if (lower.test(value)) {
-            setLowercase(true)
-        } else {
-            setLowercase(false)
-        }
-        if (upper.test(value)) {
-            setUppercase(true)
-        } else {
-            setUppercase(false)
-        }
-        if (number.test(value)) {
-            setNumber(true)
-        } else {
-            setNumber(false)
-        }
-        if (special.test(value)) {
-            setSpecialcase(true)
-        } else {
-            setSpecialcase(false)
-        }
-        if (length.test(value)) {
-            setCharacters(true)
-        } else {
-            setCharacters(false)
-        }
-
-        setPassword(value)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        dispatch(signup(username, email, password, navigate))
-        toast.success(state.isMessage)
-    }
     return (
         <RegistrationWrap>
-            <Toaster
-                position='bottom-right'
-                reverseOrder={false}
-            />
             <div className="container flex flex-col justify-center items-center mx-auto">
                 <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Signup</h1 >
                 <h1 className="flex text-sm my-3 sm:text-base md:text-lg lg:text-xl xl:text-2xl">Already have an account?<Link to='/authentication/login' className='flex items-center text-xs text-blue-600 sm:text-sm md:text-base lg:text-lg xl:text-xl'>Login</Link></h1>
             </div>
             <div className="flex flex-col justify-center items-center sm:flex-row sm:gap-5 md:gap-10 lg:gap-20">
-                <form className="w-80 sm:w-[290px] md:min-w-[300px] lg:min-w-[400px]" noValidate>
-                    <div className="relative h-11  mb-8">
-                        <input
-                            placeholder="Username"
-                            id="username"
-                            type="text"
-                            name="username"
-                            value={username}
-                            onChange={e => setUsername(e.target.value)}
-                            className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
-                            required
-                        />
-                        <label
-                            className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                            Username
-                        </label>
-                    </div>
-                    <div className="relative h-11 my-8">
-                        <input
-                            placeholder="Email"
-                            id="email"
-                            type="text"
-                            name="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
-                            required
-                            pattern="[^\s@]+@[^\s@]+\.[^\s@]+$"
-                        />
-                        <div className="hidden text-xs text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block  my-1">Please enter a valid email</div>
-                        <div></div>
-
-                        <label
-                            className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                            Email
-                        </label>
-                    </div>
-                    <div className="relative h-11 my-8">
-                        <input
-                            placeholder="Password"
-                            id="password"
-                            type={type}
-                            name="password"
-                            value={password}
-                            onChange={e => handleChange(e.target.value)}
-                            className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
-                            required
-                            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$"
-                        />
-                        {type === "password" ? (
-                            <span className='absolute text-gray-600 inset-y-0 end-0 flex items-center pe-3' onClick={() => setType("text")}><Icon icon={eye} /></span>
-                        ) : (
-                            <span className='absolute text-gray-600 inset-y-0 end-0 flex items-center pe-3' onClick={() => setType("password")}><Icon icon={eyeBlocked} /></span>
-                        )}
-                        <div className="hidden text-xs text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block  my-1">Please enter a valid password</div>
-                        <div className='peer-focus:block hidden absolute bg-white border border-gray-800 rounded-lg w-full p-2 my-3'>
-                            <div className={`flex ${lowercase ? 'text-gray-400' : "text-gray-800"}`}>
-                                {lowercase ? (
-                                    <div className='mr-2 text-green-600'><Icon icon={check} /></div>
-                                ) : (
-                                    <div className='mr-2'><Icon icon={blank} /></div>
-                                )}
-                                At least one lowercase letter
-                            </div>
-                            <div className={`flex ${uppercase ? 'text-gray-400' : "text-gray-800"}`}>
-                                {uppercase ? (
-                                    <div className='mr-2 text-green-600'><Icon icon={check} /></div>
-                                ) : (
-                                    <div className='mr-2'><Icon icon={blank} /></div>
-                                )}
-                                At least one uppercase letter
-                            </div>
-                            <div className={`flex ${number ? 'text-gray-400' : "text-gray-800"}`}>
-                                {number ? (
-                                    <div className='mr-2 text-green-600'><Icon icon={check} /></div>
-                                ) : (
-                                    <div className='mr-2'><Icon icon={blank} /></div>
-                                )}
-                                At least one number
-                            </div>
-                            <div className={`flex ${specialcase ? 'text-gray-400' : "text-gray-800"}`}>
-                                {specialcase ? (
-                                    <div className='mr-2 text-green-600'><Icon icon={check} /></div>
-                                ) : (
-                                    <div className='mr-2'><Icon icon={blank} /></div>
-                                )}
-                                At least one special character
-                            </div>
-                            <div className={`flex ${characters ? 'text-gray-400' : "text-gray-800"}`}>
-                                {characters ? (
-                                    <div className='mr-2 text-green-600'><Icon icon={check} /></div>
-                                ) : (
-                                    <div className='mr-2'><Icon icon={blank} /></div>
-                                )}
-                                At least 8 characters
-                            </div>
-                        </div>
-                        <label
-                            className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-                            Password
-                        </label>
-                    </div>
-                    <div className="flex justify-end">
-                        <button
-                            type="submit"
-                            id="submitBtn"
-                            className="text-sm text-blue-800 font-medium bg-white  border border-blue-800 rounded-full w-full px-9 py-1.5 mt-3 focus:ring-1 focus:ring-blue-300 focus:outline-none hover:bg-blue-800 hover:text-white sm:text-[10px] md:text-xs lg:text-sm sm:px-5 md:px-7 lg:px-9 sm:py-0.5 md:py-1 lg:py-1.5 sm:my-1 md:my-2 lg:my-3"
-                            onClick={handleSubmit}
-                        >
-                            Signup
-                        </button>
-                    </div>
-                </form>
+                <Form />
                 <div className="flex flex-row items-center justify-center sm:flex-col">
                     <div className="h-0.5 w-40 bg-gray-200 sm:w-0.5 sm:min-h-40"></div>
-                    <span className="bg-white px-2 pb-0.5 my-8 sm:bg-none sm:px-0 sm:pb-0">or</span>
+                    <span className="bg-white px-2 pb-0.5 my-8 sm:bg-none sm:px-0 sm:pb-0 sm:my-2">or</span>
                     <div className="h-0.5 w-40 bg-gray-200 sm:w-0.5 sm:min-h-40"></div>
                 </div>
                 <div className="max-w-lg flex flex-col gap-4 cursor-pointer">
