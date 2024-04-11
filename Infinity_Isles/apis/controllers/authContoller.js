@@ -33,7 +33,7 @@ export const signup = async (req, res) => {
                 const token = GenerateToken(newUser)
                 res.status(201).json({
                     success: true,
-                    message: "Registoration is successfully",
+                    message: "Signup successfully",
                     data: newUser,
                     token: token
                 })
@@ -70,14 +70,14 @@ export const signin = async (req, res) => {
                 if (securePassword && user) {
                     res.status(200).json({
                         success: true,
-                        message: `Welcome ${user.username}`,
+                        message: `Login Successfully`,
                         data: user,
                         token: token
                     })
                 } else {
                     res.status(404).json({
                         success: false,
-                        message: "password & email is incorrect"
+                        message: "password or email is incorrect"
                     })
                 }
             }

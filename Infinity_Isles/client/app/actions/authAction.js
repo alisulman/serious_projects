@@ -1,30 +1,27 @@
-import { loginFailure, loginSuccess, setauth, signupFailure, signupSuccess } from '../slices/authSlice'
+/* eslint-disable no-const-assign */
+import { registorySuccess } from '../slices/authSlice'
 import axios from 'axios'
 
-export const signup = (username, email, password, navigate) => async (dispatch) => {
+const registory = (username, email, password, navigate, page) => async (dispatch) => {
     try {
-        const response = await axios.post('http://localhost:4000/api/auth/signup', { username, email, password })
+        let url = ''
+        let data = {}
+        if(page === 'Signup'){
+            url = "http://localhost:4000/api/auth/signup"
+            data = {username, email, password}
+        }else if(page === 'Login'){
+            url = "http://localhost:4000/api/auth/signin"
+            data = {email, password}
+        }
+        const response = await axios.post(url, data)
         const user = response.data
-        dispatch(signupSuccess(user))
-        setTimeout(() => {
-            navigate('/')
-        }, 1500);
+        dispatch(registorySuccess(user))
+        // setTimeout(() => {
+        //     navigate('/')
+        // }, 1500);
     } catch (error) {
-        dispatch(signupFailure())
+        console.log(error.message)
     }
 }
 
-export const login = (email, password, navigate) => async (dispatch) => {
-    try {
-        const response = await axios.post('http://localhost:4000/api/auth/signin', { email, password })
-        const user = response.data
-        const data = JSON.parse(localStorage.getItem('auth'))
-        dispatch(loginSuccess(user))
-        dispatch(setauth(data))
-        setTimeout(() => {
-            navigate('/')
-        }, 1500);
-    } catch (error) {
-        dispatch(loginFailure())
-    }
-}
+export default registory

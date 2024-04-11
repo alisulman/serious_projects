@@ -9,8 +9,11 @@ import { eyeBlocked } from 'react-icons-kit/icomoon/eyeBlocked'
 import { blank } from 'react-icons-kit/metrize/blank'
 import { check } from 'react-icons-kit/metrize/check'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { signup } from '../../app/actions/authAction'
+import { useDispatch, useSelector } from 'react-redux'
+import registory from '../../app/actions/authAction'
+import toast from 'react-hot-toast';
+import Alert from './alert'
+
 
 const credInitial = {
     username: '',
@@ -35,7 +38,8 @@ const Form = ({ page }) => {
     // variables
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    // const state = useSelector(state => state.user)
+    const state = useSelector(state => state.user)
+    const data = state.isUser
 
     // password setup
     const handleChange = (value) => {
@@ -63,16 +67,26 @@ const Form = ({ page }) => {
     // submittions 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(signup(cred.username, cred.email, cred.password, navigate))
+        dispatch(registory(cred.username, cred.email, cred.password, navigate, page))
     }
-
+    
     const handleonChange = (e) => {
         setCred(pre => ({
             ...pre, [e.target.name]: e.target.value
         }))
     }
+    
+    React.useEffect(() => {
+        data && toast.success(data.message)
+    }, [data])
+
+    React.useEffect(() => {
+        setCred(credInitial)
+    }, [page])
+
     return (
         <>
+            <Alert />
             <form className="w-80 sm:w-[290px] md:min-w-[300px] lg:min-w-[400px]" noValidate>
 
                 {page === 'Signup' && (

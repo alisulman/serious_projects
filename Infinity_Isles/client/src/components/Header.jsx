@@ -24,7 +24,7 @@ const Header = () => {
                     </div>
                 </form>
                 <div className="sm:flex items-center cursor-pointer">
-                    <Link to='/authentication/signup' className="flex flex-col items-end -mr-5 sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4"><span className="text-[9px] font-medium md:text-[11px] lg:text-xs xl:text-sm">Hello Guest</span><span className="text-xs font-bold leading-5 md:text-sm lg:text-base xl:text-lg">Signup</span></Link>
+                    <Link to='/pre-authentication' className="flex flex-col items-end -mr-5 sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4"><span className="text-[9px] font-medium md:text-[11px] lg:text-xs xl:text-sm">Hello Guest</span><span className="text-xs font-bold leading-5 md:text-sm lg:text-base xl:text-lg">Signup</span></Link>
                     <div className="hidden sm:block font-mono border-x border-gray-800 hover:bg-gray-50 sm:text-xs md:text-sm lg:text-base xl:text-lg sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4 sm:px-1 md:px-1.5 lg:px-2 xl:px-3">Free Shipping</div>
                     <div className="hidden sm:block sm:mx-0 md:mx-1 lg:mx-2 xl:mx-3">
                         <span className="absolute inline-flex items-center justify-center text-red-800 font-semibold bg-red-200 rounded-full w-1 h-1 sm:p-1.5 md:p-2 lg:p-2.5 xl:p-3 sm:text-[9px] md:text-[10px] lg:text-sm xl:text-lg sm:top-2 md:top-2.5 lg:top-1 sm:right-[22px] md:right-6 lg:right-[26px] xl:right-7">2</span>

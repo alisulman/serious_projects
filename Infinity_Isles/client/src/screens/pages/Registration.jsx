@@ -19,9 +19,6 @@ const RegistrationScreens = () => {
             setPage("Signup")
             setLink('Login')
         }
-        document.querySelector('#wrapper').classList.toggle('animate')
-
-
     }
 
     return (
