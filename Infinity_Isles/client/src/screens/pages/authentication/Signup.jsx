@@ -11,14 +11,25 @@ import { eye } from 'react-icons-kit/icomoon/eye'
 import { eyeBlocked } from 'react-icons-kit/icomoon/eyeBlocked'
 import { blank } from 'react-icons-kit/metrize/blank'
 import { check } from 'react-icons-kit/metrize/check'
+import { useDispatch, useSelector } from 'react-redux'
+import { signup } from '../../../../app/actions/authAction';
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
-    let [type, setType] = React.useState('password')
-    let [lowercase, setLowercase] = React.useState(false)
-    let [uppercase, setUppercase] = React.useState(false)
-    let [number, setNumber] = React.useState(false)
-    let [specialcase, setSpecialcase] = React.useState(false)
-    let [characters, setCharacters] = React.useState(false)
+    const [type, setType] = React.useState('password')
+    const [lowercase, setLowercase] = React.useState(false)
+    const [uppercase, setUppercase] = React.useState(false)
+    const [number, setNumber] = React.useState(false)
+    const [specialcase, setSpecialcase] = React.useState(false)
+    const [characters, setCharacters] = React.useState(false)
+    const [username, setUsername] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [password, setPassword] = React.useState('')
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const state = useSelector(state => state.user)
 
     const handleChange = (value) => {
         let lower = new RegExp('(?=.*[a-z])');
@@ -52,9 +63,21 @@ const Signup = () => {
         } else {
             setCharacters(false)
         }
+
+        setPassword(value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        dispatch(signup(username, email, password, navigate))
+        toast.success(state.isMessage)
     }
     return (
         <RegistrationWrap>
+            <Toaster
+                position='bottom-right'
+                reverseOrder={false}
+            />
             <div className="container flex flex-col justify-center items-center mx-auto">
                 <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">Signup</h1 >
                 <h1 className="flex text-sm my-3 sm:text-base md:text-lg lg:text-xl xl:text-2xl">Already have an account?<Link to='/authentication/login' className='flex items-center text-xs text-blue-600 sm:text-sm md:text-base lg:text-lg xl:text-xl'>Login</Link></h1>
@@ -67,6 +90,8 @@ const Signup = () => {
                             id="username"
                             type="text"
                             name="username"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)}
                             className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 peer"
                             required
                         />
@@ -81,6 +106,8 @@ const Signup = () => {
                             id="email"
                             type="text"
                             name="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                             required
                             pattern="[^\s@]+@[^\s@]+\.[^\s@]+$"
@@ -99,6 +126,7 @@ const Signup = () => {
                             id="password"
                             type={type}
                             name="password"
+                            value={password}
                             onChange={e => handleChange(e.target.value)}
                             className="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100 invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                             required
@@ -162,6 +190,7 @@ const Signup = () => {
                             type="submit"
                             id="submitBtn"
                             className="text-sm text-blue-800 font-medium bg-white  border border-blue-800 rounded-full w-full px-9 py-1.5 mt-3 focus:ring-1 focus:ring-blue-300 focus:outline-none hover:bg-blue-800 hover:text-white sm:text-[10px] md:text-xs lg:text-sm sm:px-5 md:px-7 lg:px-9 sm:py-0.5 md:py-1 lg:py-1.5 sm:my-1 md:my-2 lg:my-3"
+                            onClick={handleSubmit}
                         >
                             Signup
                         </button>

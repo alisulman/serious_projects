@@ -12,20 +12,20 @@ export const signup = async (req, res) => {
         if (userExists) {
             res.status(403).json({
                 success: false,
-                mesage: "email or password is incorrect"
+                message: "email or password is incorrect"
             })
         } else {
             if (!validate(email)) {
                 res.status(403).json({
                     success: false,
-                    mesage: "email is not correct!"
+                    message: "email is not correct!"
                 })
             }
             if (!password && !email) {
                 res.status(404).json({
                     success: false,
                     error: error.message,
-                    mesage: "password & email is required!"
+                    message: "password & email is required!"
                 })
             } else {
                 const securePassword = await EncryptPassword(password)
@@ -33,7 +33,7 @@ export const signup = async (req, res) => {
                 const token = GenerateToken(newUser)
                 res.status(201).json({
                     success: true,
-                    mesage: "Registoration is successfully",
+                    message: "Registoration is successfully",
                     data: newUser,
                     token: token
                 })
