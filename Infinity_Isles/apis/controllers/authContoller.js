@@ -33,7 +33,7 @@ export const signup = async (req, res) => {
             const token = GenerateToken(newUser)
             res.status(201).json({
                 success: true,
-                message: "Signup successfully",
+                message: "Account is created successfully",
                 data: newUser,
                 token: token
             })

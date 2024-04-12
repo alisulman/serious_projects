@@ -4,7 +4,7 @@ const initialState = {
     isLoading: false,
     isError: false,
     isUser: '',
-    auth: JSON.parse(localStorage.getItem('auth')) ?? []    
+    auth: JSON.parse(localStorage.getItem('auth')) ?? [],
 }
 
 export const authSlice = createSlice({

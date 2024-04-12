@@ -77,8 +77,8 @@ const Form = ({ page }) => {
     }
 
     React.useEffect(() => {
-        if(!state.isError){
-            data && toast.success(data.message)
+        if(!state.isError && data){
+            toast.success(data.message)
         }
         state.isError && toast.error(state.isError)
     }, [data, state.isError])

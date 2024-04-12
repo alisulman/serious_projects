@@ -9,15 +9,12 @@ import { TiSocialFacebook } from "react-icons/ti";
 
 const RegistrationScreens = () => {
     const [page, setPage] = React.useState('Signup')
-    const [link, setLink] = React.useState('Login')
 
     const handleClick = () => {
         if (page === "Signup") {
             setPage("Login")
-            setLink('Signup')
         } else {
             setPage("Signup")
-            setLink('Login')
         }
     }
 
@@ -29,7 +26,7 @@ const RegistrationScreens = () => {
 
                 <div className="container flex flex-col justify-center items-center mx-auto">
                     <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">{page}</h1 >
-                    <h1 className="flex text-sm my-3 sm:text-base md:text-lg lg:text-xl xl:text-2xl">{page === 'Signup' ? "Already" : "Don't"} have an account?<span className='flex items-center text-xs text-blue-600 sm:text-sm md:text-base lg:text-lg xl:text-xl cursor-pointer px-1' onClick={handleClick}>{link}</span></h1>
+                    <h1 className="flex text-sm my-3 sm:text-base md:text-lg lg:text-xl xl:text-2xl">{page === 'Signup' ? "Already" : "Don't"} have an account?<span className='flex items-center text-xs text-blue-600 sm:text-sm md:text-base lg:text-lg xl:text-xl cursor-pointer px-1' onClick={handleClick}>{page === 'Signup' ? 'Login' : 'Signup'}</span></h1>
                 </div>
 
                 <div className="flex flex-col justify-center items-center sm:flex-row sm:gap-5 md:gap-10 lg:gap-20">
