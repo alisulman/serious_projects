@@ -64,7 +64,12 @@ const Header = () => {
                                         <FaRegUserCircle className='w-6 h-6' />
                                         <div className='text-base font-bold mx-1'>Hi {data.data.username}</div>
                                     </div>
-                                    <Link to='/' className="md:mx-1.5 lg:mx-5 hover:text-amber-50 hover:bg-gray-400 hover:w-32 hover:flex hover:justify-center hover:rounded-lg py-1 px-4 ">Profile</Link>
+                                    <Link
+                                        to='/dashboard'
+                                        className="md:mx-1.5 lg:mx-5 hover:text-amber-50 hover:bg-gray-400 hover:w-32 hover:flex hover:justify-center hover:rounded-lg py-1 px-4 "
+                                    >
+                                        Profile
+                                    </Link>
                                     <li id="bouton" className="group/bouton md:mx-1.5 lg:mx-5 hover:text-amber-50 hover:bg-gray-400 hover:w-32 hover:flex hover:justify-center hover:rounded-lg py-1 px-4">Settings</li>
                                     <div to='/lookbook' className="flex justify-center items-center text-red-600 md:mx-1.5 lg:mx-5 hover:text-amber-50 hover:bg-gray-400 hover:w-32 hover:rounded-lg py-1 px-4" onClick={handleLogout}><span>Logout</span><LuLogOut className='mx-1' /> </div>
                                 </ul>

@@ -21,6 +21,7 @@ const registory = (username, email, password, navigate, page) => async (dispatch
         }, 1500);
         dispatch(setAuth(user))
         localStorage.setItem('auth', JSON.stringify(user))
+        axios.defaults.headers.common['Authenticate'] = user?.token
     } catch (error) {
         dispatch(registoryFailure(
             error.response.data && error.response.data.message

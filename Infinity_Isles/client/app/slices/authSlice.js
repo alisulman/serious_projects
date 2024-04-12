@@ -22,7 +22,7 @@ export const authSlice = createSlice({
         },
         setAuth: (state, action) => {
             state.auth = action.payload
-        }
+        },
     }
 })
 
