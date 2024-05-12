@@ -3,9 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
   isError: false,
-  products: [],
+  products: JSON.parse(localStorage.getItem("products")) || [],
   userProducts: [],
   product: [],
+  basket: JSON.parse(localStorage.getItem("basket")) || [],
+  quantity: 0,
 };
 
 const authSlice = createSlice({
@@ -25,13 +27,37 @@ const authSlice = createSlice({
       state.userProducts = action.payload;
     },
     setProduct: (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.products = action.payload;
-    }
+      state.isLoading = false;
+      state.isError = false;
+      state.product = action.payload;
+    },
+    resetProduct: (state) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.product = [];
+    },
+    setProducts: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.products = action.payload;
+    },
+    addToCart: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.basket = action.payload;
+      const basketId = state.basket.
+    },
   },
 });
 
-export const { setLoading, setError, setUserProducts, setProduct } = authSlice.actions;
+export const {
+  setLoading,
+  setError,
+  setUserProducts,
+  setProduct,
+  resetProduct,
+  setProducts,
+  addToCart,
+} = authSlice.actions;
 
 export default authSlice.reducer;

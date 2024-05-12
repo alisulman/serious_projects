@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react'
-import { CardOne } from '../component/card'
+import { useEffect } from 'react'
+import { CardOne, CardTwo } from '../component/card'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchUserProducts } from '../../apps/action/prodAction'
 
@@ -31,5 +31,19 @@ const CardLayout = () => {
         </>
     )
 }
-
 export default CardLayout
+
+export const CardAllLayout = ({ products }) => {
+
+    return (
+        <>
+            <div className='flex justify-center my-10'>
+                <div className='grid grid-cols-4 gap-10'>
+                    {products && products.map(product => (
+                        <CardTwo key={product._id} product={product} />
+                    ))}
+                </div>
+            </div>
+        </>
+    )
+}

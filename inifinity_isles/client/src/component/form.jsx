@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-escape */
 /* eslint-disable react/prop-types */
 
@@ -9,8 +10,8 @@ import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux'
 import { registory } from '../../apps/action/authAction'
-import { useNavigate, useParams } from 'react-router-dom'
-import { createProduct, fetchSingleProduct } from '../../apps/action/prodAction';
+import { useNavigate } from 'react-router-dom'
+import { cancelProduct, createProduct, updateProduct } from '../../apps/action/prodAction';
 
 const credInitial = {
     username: '',
@@ -361,22 +362,21 @@ export const AddnewProduct = () => {
         </>
     )
 }
-export const UpdateProduct = ({id}) => {
-    const [text, setText] = React.useState("");
+export const UpdateProduct = ({ id, item }) => {
 
+
+    const [text, setText] = React.useState(item?.description || '');
     const [fields, setFields] = React.useState({
-        title: '',
-        description: '',
-        price: '',
-        category: '',
-        stock: '',
-        image: ''
+        title: item?.title,
+        description: text,
+        price: item?.price,
+        category: item?.category,
+        stock: item?.stock,
+        image: item?.images
     })
 
-
-    const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log(id)
+    const dispatch = useDispatch()
 
     const autoExpand = (event) => {
         const textarea = event.target;
@@ -392,10 +392,13 @@ export const UpdateProduct = ({id}) => {
         setFields(pre => ({ ...pre, [e.target.name]: e.target.value }))
     }
     const handleClick = () => {
+        dispatch(cancelProduct())
         navigate(-1)
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(updateProduct(id, fields.title, fields.description, fields.stock, fields.price, fields.category, fields.image))
+
     };
     const emptyField = () => {
         for (const field in fields) {
@@ -406,13 +409,9 @@ export const UpdateProduct = ({id}) => {
         return false;
     }
 
-    React.useEffect(() => {
-        dispatch(fetchSingleProduct(id))
-    }, [dispatch, id])
-
     return (
         <>
-            <form action="" className="inline-flex flex-col justify-center items-center my-3 mx-72" onSubmit={handleSubmit}>
+            <form action="" className="inline-flex flex-col justify-center items-center my-3" onSubmit={handleSubmit}>
                 <div className="flex justify-center my-1.5">
                     <div className="relative mx-1">
                         <input
@@ -506,9 +505,11 @@ export const UpdateProduct = ({id}) => {
                 </div>
                 <div className="flex justify-between w-full px-1">
                     <button type="submit" className={`text-white bg-blue-600 ${emptyField() !== true ? "cursor-pointer" : "cursor-not-allowed opacity-25"} rounded-md py-1 px-5`} >Add Product</button>
-                    <button className="block text-blue-600 font-medium border-2 border-blue-600 rounded-md px-5" onClick={handleClick}>Cancel</button>
                 </div>
             </form>
+            <div className='flex items-end -ml-[310px] mb-4'>
+                <button className="block text-blue-600 font-medium border-2 border-blue-600 rounded-md px-5" onClick={handleClick}>Cancel</button>
+            </div>
         </>
     )
 }

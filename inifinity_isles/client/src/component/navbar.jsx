@@ -37,7 +37,7 @@ const Navbar = () => {
                     <ul className="items-center hidden text-gray-300 font-normal uppercase  sm:text-xs md:flex md:text-xs lg:text-sm xl:text-xl">
                         <NavLink to='/' className="md:mx-1.5 lg:mx-3 xl:mx-5 hover:text-amber-50">home</NavLink>
                         <li id="bouton" className="group/bouton md:mx-1.5 lg:mx-3 xl:mx-5 hover:text-amber-50"> Collection
-                            <ul className="absolute flex-col text-gray-700 bg-white rounded-md border border-gray-900 hidden group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all px-4 py-3">
+                            <ul className="absolute flex-col text-gray-700 bg-white rounded-md border z-50 border-gray-900 hidden group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all px-4 py-3">
                                 <Link to='/' className="py-2 px-12 border-b border-gray-300 hover:text-black">men</Link>
                                 <Link to='/women' className="py-2 px-12 border-b border-gray-300 hover:text-black">women</Link>
                                 <Link to='/kids' className="py-2 px-12 hover:text-black">kids</Link>
