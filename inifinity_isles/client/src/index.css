@@ -4,6 +4,7 @@
 
 body {
   user-select: none;
+  overflow-x: hidden;
   background: #F5F5F5;
 }
 
@@ -129,4 +130,8 @@ body {
 
 .active {
   color: #fff;
+}
+
+.hoverGroup:hover{
+  opacity: 100;
 }

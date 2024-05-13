@@ -33,8 +33,8 @@ const Navbar = () => {
         <>
             <div className="bg-gray-800 text-amber-50 pb-1 cursor-pointer">
                 <div className="flex justify-between items-center py-1 tracking-widest mx-6 sm:mx-8 md:mx-10 lg:mx-12 xl:mx-14">
-                    <Link to='/' className="flex items-center text-sm font-semibold uppercase  sm:text-base md:text-lg lg:text-2xl xl:text-3xl"><Logo color='white' /><div className='mx-4'>Infinity Isles</div></Link>
-                    <ul className="items-center hidden text-gray-300 font-normal uppercase  sm:text-xs md:flex md:text-xs lg:text-sm xl:text-xl">
+                    <Link to='/' className="flex items-center text-xs font-semibold uppercase sm:text-xs md:text-base lg:text-xl"><Logo color='white' width='w-8 sm:w-10 md:w-12 lg:w-14 xl:w-16' height='h-6 sm:h-7 md:h-8 lg:h-9 xl:h-10' style='mt-1' /><div className='mx-1 mt-0.5 sm:mt-0'>Infinity Isles</div></Link>
+                    <ul className="items-center hidden text-gray-300 font-medium uppercase sm:text-xs md:flex md:text-xs lg:text-base xl:text-lg">
                         <NavLink to='/' className="md:mx-1.5 lg:mx-3 xl:mx-5 hover:text-amber-50">home</NavLink>
                         <li id="bouton" className="group/bouton md:mx-1.5 lg:mx-3 xl:mx-5 hover:text-amber-50"> Collection
                             <ul className="absolute flex-col text-gray-700 bg-white rounded-md border z-50 border-gray-900 hidden group-hover/bouton:flex group-hover/bouton:opacity-100 transition-all px-4 py-3">
@@ -48,11 +48,11 @@ const Navbar = () => {
                         <NavLink to='/visit-us' className="md:ml-1.5 lg:ml-3 xl:ml-5 hover:text-amber-50">visit us</NavLink>
                         {user.length !== 0 && (
                             <div className='ml-5'>
-                                <FaCircleUser className='w-8 h-8 ' onClick={handleClickOpen} />
+                                <FaCircleUser className='w-8 h-8' onClick={handleClickOpen} />
                                 <div id='menuBar' className='hidden transition ease-linear duration-500'>
                                     <ul className="absolute right-1 top-[107px] flex flex-col justify-end items-center text-lg text-gray-800 font-medium uppercase bg-white border border-gray-400 rounded-lg py-2 pr-5 pl-2">
                                         <div className='flex items-center border-b-2 pb-2 mb-1 '>
-                                            <FaCircleUser className='w-6 h-6' />
+                                            <FaCircleUser />
                                             <div className='text-base font-bold mx-1'>Hi { }</div>
                                         </div>
                                         <Link
