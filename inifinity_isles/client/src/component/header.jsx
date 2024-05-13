@@ -8,8 +8,10 @@ import Logo from '../../public/assets/logo';
 
 const Header = () => {
 
-    const state = useSelector(state => state.User)
-    const user = state.isAuth
+    const stateOne = useSelector(state => state.User)
+    const stateTwo = useSelector(state => state.Product)
+    const user = stateOne.isAuth
+    const quantity = stateTwo.quantity
     const role = user?.data?.role
     const { cName } = useParams()
     return (
@@ -54,7 +56,7 @@ const Header = () => {
                     <div className="hidden sm:block font-mono border-x border-gray-800 hover:bg-gray-50 sm:text-xs md:text-sm lg:text-base xl:text-lg sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4 sm:px-1 md:px-1.5 lg:px-2 xl:px-3">Free Shipping</div>
                     <Link to='/checkout/cart'>
                         <div className="hidden sm:block sm:mx-0 md:mx-1 lg:mx-2 xl:mx-3">
-                            <span className="absolute inline-flex items-center justify-center text-red-800 font-semibold bg-red-200 rounded-full w-1 h-1 sm:p-1.5 md:p-2 lg:p-2.5 xl:p-3 sm:text-[9px] md:text-[10px] lg:text-sm xl:text-lg sm:top-2 md:top-2.5 lg:top-1 sm:right-[22px] md:right-6 lg:right-[26px] xl:right-7">2</span>
+                            <span className={`${quantity === 0 && 'hidden'} absolute inline-flex items-center justify-center text-red-800 font-semibold bg-red-200 rounded-full w-1 h-1 sm:p-1.5 md:p-2 lg:p-2.5 xl:p-3 sm:text-[9px] md:text-[10px] lg:text-sm xl:text-lg sm:top-2 md:top-2.5 lg:top-1 sm:right-[22px] md:right-6 lg:right-[26px] xl:right-7`}>{quantity}</span>
                             <HiMiniShoppingCart className="sm:text-base md:text-lg lg:text-xl xl:text-2xl" />
                         </div>
                     </Link>
