@@ -43,6 +43,7 @@ const HomeScrn = () => {
                 <div className="border-b border-black" />
                 <TopCategory />
                 <div className="border-b border-black" />
+                <div className="text-3xl font-medium my-5">You may like these:</div>
             </div>
 
 

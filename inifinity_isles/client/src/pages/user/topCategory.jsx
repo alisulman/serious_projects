@@ -5,16 +5,14 @@ const TopCategory = () => {
             <div className="my-5">
                 <div className="text-3xl font-medium">Top Categories:</div>
                 <div className="flex gap-3 my-5">
-                    <div>
-                        <div className="flex gap-1 w-full h-1/3 rounded-lg  overflow-hidden">
-                            <img src="https://www.jiomart.com/images/product/original/rvekplj1qs/ritwika-art-and-craft-abstract-wall-art-of-single-butterfly-in-solid-color-background-with-frame-for-home-and-office-decor-9-5-inch-x-13-5-inch-multi-colored-digital-painting-product-images-orvekplj1qs-p604628795-2-202309181512.jpg?im=Resize=(1000,1000)" className="object-cover object-top w-3/4 h-60" />
-                            <div className="">
-                                <img src="https://m.media-amazon.com/images/I/91BdklgGC0L.jpg" className="object-cover object-top w-full h-[120px] mb-1" />
-                                <img src="https://toymagic.com.mt/cdn/shop/products/FPG03586.jpg?v=1651834201" className="object-cover object-top w-full h-[120px] mb-1" />
-                            </div>
+                    <div className="flex gap-1 w-full h-1/3 rounded-lg  overflow-hidden">
+                        <img src="https://www.jiomart.com/images/product/original/rvekplj1qs/ritwika-art-and-craft-abstract-wall-art-of-single-butterfly-in-solid-color-background-with-frame-for-home-and-office-decor-9-5-inch-x-13-5-inch-multi-colored-digital-painting-product-images-orvekplj1qs-p604628795-2-202309181512.jpg?im=Resize=(1000,1000)" className="object-cover object-top w-3/4 h-60" />
+                        <div className="">
+                            <img src="https://m.media-amazon.com/images/I/91BdklgGC0L.jpg" className="object-cover object-top w-full h-[120px] mb-1" />
+                            <img src="https://toymagic.com.mt/cdn/shop/products/FPG03586.jpg?v=1651834201" className="object-cover object-top w-full h-[120px] mb-1" />
                         </div>
+                        {/* <div>Art and Craft</div> */}
                     </div>
-
                     <div className="flex gap-1 w-full h-1/3 rounded-lg  overflow-hidden">
                         <img src="https://www.cnet.com/a/img/resize/ff0360c46e1191cf212879d12b02c3e544b6add8/hub/2022/01/07/fa883212-8dac-4e37-9459-11f0c0b5e59e/baby-clothes-hero-image.jpg?auto=webp&fit=crop&height=1200&width=1200" className="object-cover object-top w-3/4 h-60" />
                         <div className="">
