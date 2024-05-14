@@ -1,4 +1,5 @@
 import Product from "../models/productModel.js";
+import { createCategory } from "./category.js";
 
 export const createProduct = async (req, res) => {
   try {
@@ -19,16 +20,17 @@ export const createProduct = async (req, res) => {
         )}`,
       });
     }
+    const Id = req.user.id
+    const categoryId = await createCategory(category, Id)
     const newProduct = await Product.create({
-      user: req.user.id,
+      user: Id,
       title,
       description,
       stock,
       price,
-      category,
+      category: categoryId,
       images,
     });
-    await newProduct.populated("user");
     return res.status(201).json({
       success: true,
       message: "product created successfully",

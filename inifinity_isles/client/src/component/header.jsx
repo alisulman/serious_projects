@@ -49,7 +49,7 @@ const Header = () => {
                         </Link>
                     )}
                     {role === "buyer" || role === "seller" ? (
-                        <Link to="dashboard" className={`${cName ? 'hidden' : null}`}>
+                        <Link to="/dashboard" className={`${cName ? 'hidden' : null}`}>
                             <div className="hidden sm:block font-mono hover:bg-gray-50 sm:text-xs md:text-sm lg:text-base xl:text-lg sm:mx-1 md:mx-2 lg:mx-0 xl:mx-4 sm:px-1 md:px-1.5 lg:px-2 xl:px-1">Dashboard</div>
                         </Link>
                     ) : (<div></div>)}

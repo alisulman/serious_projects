@@ -9,5 +9,6 @@ prodRoute.get('/fetch-all-product', product.fetchAllProduct);
 prodRoute.get('/fetch-single-product/:id', product.fetchSingleProduct);
 prodRoute.put('/update-product/:id', product.updateProduct);
 prodRoute.delete('/delete-product/:id', product.deleteProduct);
+prodRoute.delete('/delete-product/:id', product.deleteProduct);
 
 export default prodRoute

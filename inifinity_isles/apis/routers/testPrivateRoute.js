@@ -32,5 +32,9 @@ privateRoute.get(
   }
 );
 
+privateRoute.post("/terting", (req, res) => {
+  const { image } = req.body;
+  console.log(image)
+});
 
 export default privateRoute;

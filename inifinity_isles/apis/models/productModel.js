@@ -3,8 +3,13 @@ import mongoose, { Schema } from "mongoose";
 const productSchema = new Schema(
   {
     user: {
-        type: Schema.Types.ObjectId,
-        ref: "user",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
+      required: true,
     },
     title: {
       type: String,
@@ -26,17 +31,13 @@ const productSchema = new Schema(
       type: Number,
       default: 0,
     },
-    category: {
-      type: String,
-      required: true,
-    },
     ratings: {
       type: Number,
       default: 0,
     },
     images: {
       type: String,
-      default: ""
+      default: "",
     },
     reviews: {
       type: [],
