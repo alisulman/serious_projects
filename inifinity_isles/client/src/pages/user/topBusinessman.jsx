@@ -21,7 +21,7 @@ const TopBusinessman = () => {
                     </Link>
                 </div>
                 <div className='flex gap-10 my-5'>
-                    {images.map((item, index) => (
+                    {images&&images.map((item, index) => (
                         <div key={index} className='border-4 border-black w-full h-full rounded-full p-2'><img src={item} className='rounded-full xl:w-36 xl:h-[116px] object-cover object-top' /></div>
                     ))}
                 </div>

@@ -4,11 +4,13 @@
 import { useDispatch, useSelector } from "react-redux"
 import Header from "../../component/header"
 import Navbar from "../../component/navbar"
-import { CardAllLayout } from "../../layout/cardLayout"
 import { useEffect } from "react"
 import { fetchAllProducts } from "../../../apps/action/prodAction"
 import CarasolOne from "../../component/carousel/carasolOne"
 import TopBusinessman from "./topBusinessman"
+import TopProducts from "./topProducts"
+import FavouriteItems from "./favouriteItems"
+import TopCategory from "./topCategory"
 
 
 const HomeScrn = () => {
@@ -34,6 +36,12 @@ const HomeScrn = () => {
             </div>
             <div className="mx-20 my-10">
                 <TopBusinessman />
+                <div className="border-b border-black" />
+                <TopProducts />
+                <div className="border-b border-black" />
+                <FavouriteItems />
+                <div className="border-b border-black" />
+                <TopCategory />
                 <div className="border-b border-black" />
             </div>
 
