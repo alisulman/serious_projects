@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import CardOne from "../../component/cards/xardOne"
+import CardOne from "../../component/cards/cardOne"
 import Header from "../../component/header"
 import Navbar from "../../component/navbar"
 

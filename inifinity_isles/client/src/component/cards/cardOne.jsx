@@ -24,8 +24,8 @@ const CardOne = ({ product }) => {
                 <div className="absolute bottom-0 p-2 transform transition-transform  translate-y-32 ease-linear duration-500 group-hover/item:translate-y-0">
                     <div className="text-xl font-[700]">{title&&truncateText(title, 4)}</div>
                     <div className="text-sm font-medium leading-[15px]">{description&&truncateText(description, 6)}</div>
-                    <div className="border-b-2 border-black w-full mt-2 mb-1"></div>
-                    <div className="flex items-center justify-between w-full">
+                    <div className="border-b-2 border-black mt-2 mb-1 mr-1.5"></div>
+                    <div className="flex items-center justify-between mr-1.5">
                         <div className="text-sm font-bold">{product.price}/- pkr</div>
                         <div className={`${product.stock === 0 ? 'bg-red-600 text-white' : 'bg-white'} text-xs font-bold  rounded py-0.5 px-3`}><Stock stock={product.stock} /></div>
                     </div>

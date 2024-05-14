@@ -6,6 +6,7 @@ import authRouter from './routers/authRouter.js'
 import privateRoute from './routers/testPrivateRoute.js'
 import dbConfig from './config/dbConfig.js'
 import prodRoute from './routers/prodRoute.js'
+import cartRoute from './routers/cartRoute.js'
 
 const app = express()
 dotenv.config()
@@ -17,6 +18,7 @@ app.use(express.json())
 app.use('/api', authRouter)
 app.use('/api', privateRoute)
 app.use('/api', prodRoute)
+app.use('/api', cartRoute)
 
 const port = process.env.PORT || 3000
 

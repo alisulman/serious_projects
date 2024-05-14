@@ -20,6 +20,6 @@ const authSchema = new Schema({
   },
 }, {timestamps: true});
 
-const User = mongoose.model('user', authSchema)
+const User = mongoose.model('users', authSchema)
 
 export default User

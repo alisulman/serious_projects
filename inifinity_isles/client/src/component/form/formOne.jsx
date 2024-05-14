@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
-import { createProduct } from "../../../../apis/controllers/CRUD";
 import AddCloud from "../../sideFunction/addCloud";
+import { createProduct } from "../../../apps/action/prodAction";
 
 const FormOne = () => {
     const [text, setText] = useState("");
@@ -29,16 +29,6 @@ const FormOne = () => {
         setFields(prevFields => ({ ...prevFields, image: newImage }));
     }, [newImage]);
 
-    const autoExpand = (event) => {
-        const textarea = event.target;
-        textarea.style.height = "1px";
-        textarea.style.height = textarea.scrollHeight + "px";
-        setText(textarea.value);
-        setFields({
-            ...fields,
-            description: textarea.value
-        })
-    }
     const fieldChange = (e) => {
         setFields(pre => ({ ...pre, [e.target.name]: e.target.value }))
     }
@@ -98,7 +88,17 @@ const FormOne = () => {
         const imageUrl = await AddCloud(images)
         setNewImage(imageUrl)
     }
-    console.log(newImage)
+    const autoExpand = (event) => {
+        const textarea = event.target;
+        textarea.style.height = "1px";
+        textarea.style.height = textarea.scrollHeight + "px";
+        setText(textarea.value);
+        setFields({
+            ...fields,
+            description: textarea.value
+        })
+    }
+    
     return (
         <>
             <div className="flex justify-between w-11/12 mx-auto">
@@ -177,7 +177,7 @@ const FormOne = () => {
                             Product Description
                         </label>
                     </div>
-                    <div className="relative mx-1 my-2">
+                    <div className="relative mx-1 my-2 hidden">
                         <input
                             type="text"
                             id="floating_outlined_six"
