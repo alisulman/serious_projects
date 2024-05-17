@@ -74,7 +74,7 @@ export const fetchAllUserProduct = async (req, res) => {
 
 export const fetchAllProduct = async (req, res) => {
   try {
-    const existProducts = await Product.find({}).sort({ createdAt: -1 });
+    const existProducts = await Product.find({}).sort({ createdAt: -1 }).populate('category');
     if (!existProducts) {
       return res.status(400).json({
         success: false,
@@ -181,7 +181,7 @@ export const deleteProduct = async (req, res) => {
 export const topUserProduct = async (req, res) => {
   try {
     const userId = req.params.id;
-    const existProducts = await Product.find({ user: userId, ratings: { $gte: 4.8, $lte: 5 } }).sort({ createdAt: -1 });
+    const existProducts = await Product.find({ user: userId, ratings: { $gte: 4.8, $lte: 5 } });
 
 
     if (!existProducts) {

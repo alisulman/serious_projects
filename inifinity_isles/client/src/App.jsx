@@ -12,6 +12,7 @@ import EditProduct from "./pages/vendor/updateProduct"
 import CartBasket from "./pages/user/CartBasket"
 import AllProducts from "./pages/user/allProducts"
 import VendorProfile from "./pages/user/vendorProfile"
+import CategoryPage from "./pages/user/categoryPage"
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/checkout/:cName" element={<CartBasket />} />
         <Route path="/all-products" element={<AllProducts />} />
         <Route path="/vendor/:name/:id" element={<VendorProfile />} />
+        <Route path="/:category" element={<CategoryPage />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>
           <Route path="purchaser" element={<DashboardP />} />

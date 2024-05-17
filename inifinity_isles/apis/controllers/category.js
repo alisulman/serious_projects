@@ -9,13 +9,13 @@ export const createCategory = async (category, id) => {
       user: id,
       category: category,
     });
-    return newCategory._id; 
+    return newCategory._id;
   }
 };
 
 export const fetchAllCategory = async (req, res) => {
   try {
-    const existCategory = await Category.find();
+    const existCategory = await Category.find().sort({ createdAt: -1 });
     if (!existCategory) {
       return res.status(400).json({
         success: false,
@@ -33,4 +33,4 @@ export const fetchAllCategory = async (req, res) => {
       message: error.message,
     });
   }
-}
+};
