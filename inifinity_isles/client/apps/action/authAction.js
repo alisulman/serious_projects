@@ -1,5 +1,11 @@
 /* eslint-disable no-const-assign */
-import { setAuth, setError, setLoading, setReset } from "../slices/authSlice";
+import {
+  setAuth,
+  setError,
+  setLoading,
+  setReset,
+  setUsers,
+} from "../slices/authSlice";
 import axios from "axios";
 
 export const registory =
@@ -22,7 +28,7 @@ export const registory =
     } catch (error) {
       dispatch(
         setError(
-          error.response.data && error.response.data.message
+          error.response && error.response.data.message
             ? error.response.data.message
             : error.message
             ? error.message
@@ -95,3 +101,22 @@ export const roleChecker = (setOk) => async (dispatch) => {
   }
 };
 
+export const fetchBussinessMen = () => async (dispatch) => {
+  dispatch(setLoading());
+  try {
+    const url = `http://localhost:2000/api/auth/get-vendor`;
+    const response = await axios.get(url);
+    dispatch(setUsers(response.data.data));
+    localStorage.setItem('Top Vendors', JSON.stringify(response.data.data))
+  } catch (error) {
+    dispatch(
+      setError(
+        error.response.data && error.response.data.message
+          ? error.response.data.message
+          : error.message
+          ? error.message
+          : "Internal Server Error"
+      )
+    );
+  }
+};

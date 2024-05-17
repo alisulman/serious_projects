@@ -5,10 +5,9 @@ export const addToCart = async (req, res) => {
   try {
     const Id = req.params.cpid;
     const id = req.user.id;
-    const productExist = await Cart.findOne({ products: Id });
+    const productExist = await Cart.findOne({ user: id, products: Id }).populate('products');
     if (productExist) {
-      const sameitem = await Product.findOne({ _id: Id });
-      const stock = sameitem.stock;
+      const stock = productExist.products.stock;
       if (stock === 0) {
         return res.status(400).json({
           success: false,
@@ -20,9 +19,8 @@ export const addToCart = async (req, res) => {
           { $inc: { quantity: 1, stock: -1 } },
           { new: true }
         );
-        const sameItem = await Product.findOne({ _id: Id });
-        const price = sameItem.price;
-        const totalPrice = sameItem.totalPrice;
+        const price = productExist.products.price;
+        const totalPrice = productExist.products.totalPrice;
         const allPrice = totalPrice + price;
         const sameCartProduct = await Product.findOneAndUpdate(
           { _id: Id },
@@ -35,7 +33,7 @@ export const addToCart = async (req, res) => {
         });
       }
     } else {
-      const newCartProduct = await Cart.create({ user: id, products: Id });
+      await Cart.create({ user: id, products: Id });
       const sameProduct = await Product.findOneAndUpdate(
         { _id: Id },
         { $inc: { quantity: 1, stock: -1 } },
@@ -52,7 +50,7 @@ export const addToCart = async (req, res) => {
       return res.status(201).json({
         success: true,
         totalPrice: allPrice,
-        data: newCartProduct,
+        data: sameCartProduct,
       });
     }
   } catch (error) {
@@ -113,7 +111,7 @@ export const getCart = async (req, res) => {
     //for price total
     let totalPrice = 0;
     for (let i = 0; i < existCart.length; i++) {
-      totalPrice += existCart[i].products.price;
+      totalPrice += existCart[i].products.totalPrice;
     }
 
     if (existCart) {

@@ -18,6 +18,10 @@ const authSchema = new Schema({
     enum: ["admin", "user", "buyer", "seller"],
     default: "user"
   },
+  colors: {
+    type: Array,
+    default: []
+  }
 }, {timestamps: true});
 
 const User = mongoose.model('users', authSchema)

@@ -1,30 +1,34 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
-import client_1 from '../../../public/assets/client_1.jpg'
-import client_2 from '../../../public/assets/client_2.jpg'
-import client_3 from '../../../public/assets/client_3.jpg'
-import client_4 from '../../../public/assets/client_4.jpg'
-import client_5 from '../../../public/assets/girl_1.jpg'
-import client_6 from '../../../public/assets/girl_2.jpg'
-import client_7 from '../../../public/assets/girl_3.jpg'
 
 
-const TopBusinessman = () => {
-    const images = [client_1, client_2, client_3, client_4, client_5, client_6, client_7]
-    console.log(images)
+const TopBusinessman = ({ users }) => {
     return (
         <>
-            <div>
+            <div className='w-full'>
                 <div className='flex justify-between items-center'>
                     <div className="text-3xl font-medium">Top Bussinessmen:</div>
                     <Link to='/top-vendors'>
-                        <div className='text-lg text-blue-600 font-medium hover:underline cursor-pointer'>View All</div>
+                        {users.length >= 8 && (
+                            <div className='text-lg text-blue-600 font-medium hover:underline cursor-pointer'>View All</div>
+                        )}
                     </Link>
                 </div>
-                <div className='flex gap-10 my-5'>
-                    {images&&images.map((item, index) => (
-                        <div key={index} className='border-4 border-black w-full h-full rounded-full p-2'><img src={item} className='rounded-full xl:w-36 xl:h-[116px] object-cover object-top' /></div>
-                    ))}
-                </div>
+                {users && users.length !== 0 ? (
+                    <div className='grid grid-cols-8 gap-5 w-full h-4/5 my-5    '>
+                        {users?.map(user =>
+                            <div key={user._id} className=' w-full h-full'>
+                                <div className='flex items-center justify-center border-4 border-black rounded-full p-1'>
+                                    <Link to={`/vendor/${user.username}/${user._id}`}><div className={`flex items-center justify-center text-5xl uppercase rounded-full w-28 h-28`} style={{ color: user.colors[0].textColor, backgroundColor: user.colors[0].hex }}>{user.email.slice(0,1)}</div></Link>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <div className='flex justify-center items-center my-5'>
+                        <div className='text-4xl text-gray-300 font-medium'>No Businessmen here</div>
+                    </div>
+                )}
             </div>
         </>
     )

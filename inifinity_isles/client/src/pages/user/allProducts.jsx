@@ -1,9 +1,16 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import CardOne from "../../component/cards/cardOne"
 import Header from "../../component/header"
 import Navbar from "../../component/navbar"
+import { useEffect } from "react"
+import { fetchAllProducts } from "../../../apps/action/prodAction"
 
 const AllProducts = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchAllProducts())
+  }, [dispatch])
+
   const state = useSelector(state => state.Product)
   const products = state.products
   return (

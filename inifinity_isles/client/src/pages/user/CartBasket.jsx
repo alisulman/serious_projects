@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import Header from "../../component/header"
-import { CardCartLayout } from "../../layout/cardLayout"
+// import { CardCartLayout } from "../../layout/cardLayout"
 
 const CartBasket = () => {
     const state = useSelector(state => state.Product)
@@ -19,7 +19,7 @@ const CartBasket = () => {
             ) : (
                 <>
                     <div>
-                        <div><CardCartLayout product={products} /></div>
+                        {/* <div><CardCartLayout product={products} /></div> */}
                         <div></div>
                     </div>
                 </>

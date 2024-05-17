@@ -6,9 +6,10 @@ const initialState = {
   products: JSON.parse(localStorage.getItem("products")) || [],
   userProducts: [],
   product: [],
-  basket: JSON.parse(localStorage.getItem("cart")) || [],
   quantity: 0,
-  tester: "",
+  category: [],
+  userTopProducts: [],
+  topProducts: JSON.parse(localStorage.getItem('topProducts')) || [],
 };
 
 const authSlice = createSlice({
@@ -42,21 +43,20 @@ const authSlice = createSlice({
       state.isError = false;
       state.products = action.payload;
     },
-    addToCart: (state, action) => {
+    setCategory: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      const newItem = action.payload;
-      const existItemIndex = state.basket.findIndex(
-        (item) => item._id === newItem._id
-      );
-      if (existItemIndex === -1) {
-        // Item does not exist in basket
-        state.basket.push({ ...newItem, quantity: 1 }); // Add new item to cart
-      } else {
-        state.basket[existItemIndex].quantity += 1; // Increase quantity of existing item
-      }
-      state.quantity += 1;
-      // localStorage.setItem("cart", JSON.stringify(state.basket));
+      state.category = action.payload;
+    },
+    setUTP: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.userTopProducts = action.payload;
+    },
+    setTP: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.topProducts = action.payload;
     },
   },
 });
@@ -68,7 +68,9 @@ export const {
   setProduct,
   resetProduct,
   setProducts,
-  addToCart,
+  setCategory,
+  setUTP,
+  setTP,
 } = authSlice.actions;
 
 export default authSlice.reducer;

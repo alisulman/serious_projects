@@ -20,8 +20,8 @@ export const createProduct = async (req, res) => {
         )}`,
       });
     }
-    const Id = req.user.id
-    const categoryId = await createCategory(category, Id)
+    const Id = req.user.id;
+    const categoryId = await createCategory(category, Id);
     const newProduct = await Product.create({
       user: Id,
       title,
@@ -48,7 +48,9 @@ export const createProduct = async (req, res) => {
 export const fetchAllUserProduct = async (req, res) => {
   try {
     const userId = req.user.id;
-    const existProducts = await Product.find({ user: userId }).sort({createdAt: -1});
+    const existProducts = await Product.find({ user: userId })
+      .sort({ createdAt: -1 })
+      .populate("category");
     if (!existProducts) {
       return res.status(400).json({
         success: false,
@@ -72,7 +74,7 @@ export const fetchAllUserProduct = async (req, res) => {
 
 export const fetchAllProduct = async (req, res) => {
   try {
-    const existProducts = await Product.find({}).sort({createdAt: -1});
+    const existProducts = await Product.find({}).sort({ createdAt: -1 });
     if (!existProducts) {
       return res.status(400).json({
         success: false,
@@ -139,7 +141,11 @@ export const updateProduct = async (req, res) => {
     }
     console.log(title, description, stock, price, category, images);
     const productId = req.params.id;
-    const newProduct = await Product.findByIdAndUpdate({_id: productId}, {$set:req.body}, {new: true} )
+    const newProduct = await Product.findByIdAndUpdate(
+      { _id: productId },
+      { $set: req.body },
+      { new: true }
+    );
     return res.status(201).json({
       success: true,
       message: "product created successfully",
@@ -155,19 +161,72 @@ export const updateProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-    try {
-        const productId = req.params.id
-        const deltedProduct = await Product.findByIdAndDelete({_id: productId})
-        return res.status(201).json({
-            success: true,
-            message: "product deleted successfully",
-            data: deltedProduct,
-        });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-          success: false,
-          message: error.message,
-        }); 
-    }
-}
+  try {
+    const productId = req.params.id;
+    const deltedProduct = await Product.findByIdAndDelete({ _id: productId });
+    return res.status(201).json({
+      success: true,
+      message: "product deleted successfully",
+      data: deltedProduct,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const topUserProduct = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const existProducts = await Product.find({ user: userId, ratings: { $gte: 4.8, $lte: 5 } }).sort({ createdAt: -1 });
+
+
+    if (!existProducts) {
+      return res.status(400).json({
+        success: false,
+        message: "products is not top rated added yet",
+      });
+    } 
+    return res.status(200).json({
+      success: true,
+      length: existProducts.length,
+      data: existProducts,
+    })
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const topProduct = async (req, res) => {
+  try {
+    const existProducts = await Product.find({ ratings: { $gte: 4.8, $lte: 5 } }).sort({ createdAt: -1 });
+
+
+    if (!existProducts) {
+      return res.status(400).json({
+        success: false,
+        message: "products is not top rated added yet",
+      });
+    } 
+    return res.status(200).json({
+      success: true,
+      length: existProducts.length,
+      data: existProducts,
+    })
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

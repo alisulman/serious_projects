@@ -14,7 +14,7 @@ const Navbar = () => {
 
     // function
     const handleClickOpen = () => {
-        document.getElementById('menuBar').classList.toggle('hidden')
+        document.getElementById('menuBarUser').classList.toggle('hidden')
     }
     const handleLogout = () => {
         localStorage.removeItem('auth')
@@ -27,6 +27,7 @@ const Navbar = () => {
 
     const state = useSelector(state => state.User)
     const user = state.isAuth
+    const username = user?.data?.username
 
 
     return (
@@ -49,11 +50,11 @@ const Navbar = () => {
                         {user.length !== 0 && (
                             <div className='ml-5'>
                                 <FaCircleUser className='w-8 h-8' onClick={handleClickOpen} />
-                                <div id='menuBar' className='hidden transition ease-linear duration-500'>
-                                    <ul className="absolute right-1 top-[107px] flex flex-col justify-end items-center text-lg text-gray-800 font-medium uppercase bg-white border border-gray-400 rounded-lg py-2 pr-5 pl-2">
+                                <div id='menuBarUser' className='transition ease-linear duration-500'>
+                                    <ul className="absolute right-1 top-24 flex flex-col justify-end items-center text-lg text-gray-800 font-medium uppercase bg-white border border-gray-400 rounded-lg py-2 pr-5 pl-2 z-50">
                                         <div className='flex items-center border-b-2 pb-2 mb-1 '>
                                             <FaCircleUser />
-                                            <div className='text-base font-bold mx-1'>Hi { }</div>
+                                            <div className='text-base font-bold mx-1'>Hi {username}</div>
                                         </div>
                                         <Link
                                             to='/profile/authorized'

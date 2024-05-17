@@ -4,9 +4,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   reset: [],
-  products: [],
-  userProducts: [],
-  product: [],
+  users: JSON.parse(localStorage.getItem('Top Vendors')) || [],
   isAuth: JSON.parse(localStorage.getItem("auth")) ?? [],
 };
 
@@ -29,14 +27,15 @@ const authSlice = createSlice({
     setReset: (state) => {
       state.reset = initialState;
     },
-    setUserProducts: (state, action) => {
-        state.isLoading = false;
-        state.isError = false;
-        state.userProducts = action.payload;
-    }
+    setUsers: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.users = action.payload;
+    },
   },
 });
 
-export const { setLoading, setError, setAuth, setReset } = authSlice.actions;
+export const { setLoading, setError, setAuth, setReset, setUsers } =
+  authSlice.actions;
 
 export default authSlice.reducer;

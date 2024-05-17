@@ -11,7 +11,7 @@ import { useSelector } from "react-redux"
 import EditProduct from "./pages/vendor/updateProduct"
 import CartBasket from "./pages/user/CartBasket"
 import AllProducts from "./pages/user/allProducts"
-import Private from "./private"
+import VendorProfile from "./pages/user/vendorProfile"
 
 function App() {
 
@@ -26,7 +26,7 @@ function App() {
         <Route path="/*" element={<Page404 />} />
         <Route path="/checkout/:cName" element={<CartBasket />} />
         <Route path="/all-products" element={<AllProducts />} />
-        <Route path="/private" element={<Private />} />
+        <Route path="/vendor/:name/:id" element={<VendorProfile />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>
           <Route path="purchaser" element={<DashboardP />} />

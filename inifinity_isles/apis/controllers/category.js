@@ -12,3 +12,25 @@ export const createCategory = async (category, id) => {
     return newCategory._id; 
   }
 };
+
+export const fetchAllCategory = async (req, res) => {
+  try {
+    const existCategory = await Category.find();
+    if (!existCategory) {
+      return res.status(400).json({
+        success: false,
+        message: "category is not added yet",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      length: existCategory.length,
+      data: existCategory,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}

@@ -3,6 +3,7 @@ import dcrryptPassword from "../helpers/dcryptPassword.js";
 import decodeToken from "../helpers/decodeToken.js";
 import getToken from "../helpers/generateToken.js";
 import User from "../models/authModle.js";
+import genertarColorScheme from "../utils/colorSchemeGenerater.js";
 
 export const signup = async (req, res) => {
   try {
@@ -26,7 +27,8 @@ export const signup = async (req, res) => {
       });
     }
     const securePassword = await ecryptPassword(password)
-    const newUser = await User.create({ username, email, password: securePassword });
+    const colors = genertarColorScheme()
+    const newUser = await User.create({ username, email, password: securePassword, colors });
     const token = await getToken(newUser)
     return res.status(201).json({
       success: true,
@@ -93,6 +95,28 @@ export const updateRole = async(req, res) => {
       message: "User role updated successfully",
       data: newUser,
       token: token
+    })
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
+
+export const fetchVendor = async(req, res) => {
+  try {
+    const userExist = await User.find({role: "seller"})
+    if(!userExist){
+      return res.status(200).json({
+        success: false,
+        message: 'No User here'
+      })
+    }
+    const vendor = await User.find({role: "seller"})
+    return res.status(200).json({
+      success: true,
+      data: vendor
     })
   } catch (error) {
     return res.status(500).json({

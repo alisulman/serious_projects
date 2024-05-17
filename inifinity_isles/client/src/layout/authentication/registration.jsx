@@ -20,7 +20,7 @@ const RegistrationScreens = () => {
 
     return (
         <>
-            <Link to="/" className="flex items-center text-sm font-semibold uppercase m-3  sm:text-base md:text-lg lg:text-2xl xl:text-3xl"><Logo color='black' /><div className='mx-4'>Infinity Isles</div></Link>
+            <Link to="/" className="flex items-center text-sm font-semibold uppercase m-3  sm:text-base md:text-lg lg:text-2xl xl:text-3xl"><Logo color='black' width='w-20' height='h-12' /><div className='mx-4'>Infinity Isles</div></Link>
 
             <div id='wrapper'>
 

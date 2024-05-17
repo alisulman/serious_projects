@@ -3,6 +3,9 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import Stock from "../../sideFunction/stock";
+import { useDispatch } from "react-redux";
+import { AddToCart, GetCartProducts } from "../../../apps/action/cartAction";
+import { useEffect } from "react";
 
 const CardOne = ({ product }) => {
     const truncateText = (text, maxWords) => {
@@ -15,11 +18,19 @@ const CardOne = ({ product }) => {
     }
     const title = product.title
     const description = product.description
-    console.log(product)
+    const dispatch = useDispatch()
+
+    const handleAddToCart = () => {
+        dispatch(AddToCart(product._id))
+    }
+
+    useEffect(() => {
+        dispatch(GetCartProducts())
+    }, [dispatch])
     return (
         <>
-            <div className="relative group/item overflow-hidden">
-                <img src={product.images} className="object-cover object-top w-60 h-80" />
+            <div className="relative group/item overflow-hidden w-60 h-80">
+                <img src={product.images} className="object-cover object-top w-full h-full" />
                 <div className="absolute top-0 bg-white bg-opacity-50 transform transition-transform translate-y-80 duration-500 w-60 h-80 group-hover/item:translate-y-0"></div>
                 <div className="absolute bottom-0 p-2 transform transition-transform  translate-y-32 ease-linear duration-500 group-hover/item:translate-y-0">
                     <div className="text-xl font-[700]">{title&&truncateText(title, 4)}</div>
@@ -35,7 +46,7 @@ const CardOne = ({ product }) => {
                 </div>
                 <div className="absolute top-1/3 right-0 left-0 flex justify-center">
                     <div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 p-1 mx-3 scale-0"><IoSearch className="text-xl" /></div>
-                    <div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 delay-100 p-1 mx-3 scale-0"><FaPlus className="text-xl" /></div>
+                    <div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 delay-100 p-1 mx-3 scale-0" onClick={handleAddToCart}><FaPlus className="text-xl" /></div>
                 </div>
             </div>
         </>

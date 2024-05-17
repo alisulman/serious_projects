@@ -86,7 +86,7 @@ const ManageAccount = () => {
     return (
         <>
             <Link to="/" className='flex items-center justify-center my-2'>
-                <Logo />
+                <Logo style='w-20 h-10 mt-1' />
                 <span className='text-2xl font-medium px-1'>Infinity Isles</span>
             </Link>
             <div className='flex items-center justify-center gap-10 mt-20'>

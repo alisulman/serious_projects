@@ -4,7 +4,6 @@ import { UpdateProduct } from '../../component/form';
 import { useEffect } from 'react';
 import { fetchSingleProduct } from '../../../apps/action/prodAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { CardOne } from '../../component/card';
 const EditProduct = () => {
     const { productId } = useParams()
     const dispatch = useDispatch()
