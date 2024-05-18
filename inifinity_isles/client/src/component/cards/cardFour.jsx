@@ -5,7 +5,7 @@ const CardFour = ({ category, products }) => {
     const newProductsOne = products.filter(prod => prod.category.category === category.category);
     return (
         <>
-            <Link to={`/${category.categoryx}/${category._id}`}>
+            <Link to={`/all-categories/${category.category}/${category._id}`}>
                 <div className="flex flex-col items-center cursor-pointer">
                     <div className="flex justify-between w-96 h-72 rounded-xl overflow-hidden">
                         <div className="w-56 h-full mr-2">

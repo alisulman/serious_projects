@@ -20,7 +20,7 @@ const DashboardV = () => {
   return (
     <>
       <div>
-        <Link to='/' className="inline-flex flex-col justify-center items-center text-sm font-semibold uppercase sm:text-base md:text-lg lg:text-2xl xl:text-3xl my-3 mx-[550px]"><Logo color='black' width='w-20' /><div className='mx-4 -my-2'>Infinity Isles</div></Link>
+        <Link to='/' className="inline-flex flex-col justify-center items-center text-sm font-semibold uppercase sm:text-base md:text-lg lg:text-2xl xl:text-3xl my-3 mx-[550px]"><Logo color='black' width='w-20' /><div className='-my-2'>Infinity Isles</div></Link>
       </div>
       <div className='border border-gray-400 mx-20 my-4'></div>
       <div className='flex flex-col items-center bg-blue-200 rounded-xl border-4 border-dashed border-blue-700 p-20 mx-20'>

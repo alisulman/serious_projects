@@ -136,6 +136,7 @@ export const fetchAllCategories = () => async (dispatch) => {
     const url = "http://localhost:2000/api/all-categories";
     const response = await axios.get(url);
     dispatch(setCategory(response.data.data));
+    localStorage.setItem("categories", JSON.stringify(response.data.data));
   } catch (error) {
     dispatch(
       setError(

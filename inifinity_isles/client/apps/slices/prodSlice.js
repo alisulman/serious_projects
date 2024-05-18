@@ -7,7 +7,7 @@ const initialState = {
   userProducts: [],
   product: [],
   quantity: 0,
-  category: [],
+  category: JSON.parse(localStorage.getItem('categories')) || [],
   userTopProducts: [],
   topProducts: JSON.parse(localStorage.getItem('topProducts')) || [],
   singleCateProd: []

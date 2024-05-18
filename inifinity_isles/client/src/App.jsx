@@ -13,6 +13,8 @@ import CartBasket from "./pages/user/CartBasket"
 import AllProducts from "./pages/user/allProducts"
 import VendorProfile from "./pages/user/vendorProfile"
 import CategoryPage from "./pages/user/categoryPage"
+import Category from "./pages/user/category"
+import IconChecker from "./sideFunction/iconChecker"
 
 function App() {
 
@@ -28,7 +30,9 @@ function App() {
         <Route path="/checkout/:cName" element={<CartBasket />} />
         <Route path="/all-products" element={<AllProducts />} />
         <Route path="/vendor/:name/:id" element={<VendorProfile />} />
-        <Route path="/:category/:cpid" element={<CategoryPage />} />
+        <Route path="/all-categories/:category/:cpid" element={<CategoryPage />} />
+        <Route path="/all-categories" element={<Category />} />
+        <Route path="/tester" element={<IconChecker />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>
           <Route path="purchaser" element={<DashboardP />} />

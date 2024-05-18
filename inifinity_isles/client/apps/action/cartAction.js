@@ -6,8 +6,11 @@ export const AddToCart = (id) => async (dispatch) => {
   try {
     const user = JSON.parse(localStorage.getItem("auth"));
     const token = user?.token;
-    const url = `http://localhost:2000/api/add-to-cart/${id}/${token}`;
-    await axios.post(url);
+    const urlOne = `http://localhost:2000/api/add-to-cart/${id}/${token}`;
+    const urlTwo = `http://localhost:2000/api/get-all-cart/${token}`;
+    const response = await axios.get(urlTwo);
+    await axios.post(urlOne);
+    console.log(response)
   } catch (error) {
     dispatch(
       setError(

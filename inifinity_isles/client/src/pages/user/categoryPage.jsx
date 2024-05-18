@@ -24,7 +24,7 @@ const CategoryPage = () => {
       <Navbar />
       <div className="flex justify-center items-center mt-5  -mb-10">
         <div className="border-b-2 border-gray-300 w-full"></div>
-        <div className="flex justify-center text-3xl font-medium w-1/2  px-5">{category}</div>
+        <div className="capitalize flex justify-center text-3xl font-medium w-1/2  px-5">{category}</div>
         <div className="border-b-2 border-gray-300 w-full"></div>
       </div>
       <div className="grid grid-cols-4 gap-5 m-20">

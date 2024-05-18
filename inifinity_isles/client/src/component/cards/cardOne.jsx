@@ -22,6 +22,7 @@ const CardOne = ({ product }) => {
 
     const handleAddToCart = () => {
         dispatch(AddToCart(product._id))
+        console.log('ok')
     }
 
     useEffect(() => {
