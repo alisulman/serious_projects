@@ -50,7 +50,7 @@ const Navbar = () => {
                         {user.length !== 0 && (
                             <div className='ml-5'>
                                 <FaCircleUser className='w-8 h-8' onClick={handleClickOpen} />
-                                <div id='menuBarUser' className='transition ease-linear duration-500'>
+                                <div id='menuBarUser' className='transition ease-linear duration-500 hidden'>
                                     <ul className="absolute right-1 top-24 flex flex-col justify-end items-center text-lg text-gray-800 font-medium uppercase bg-white border border-gray-400 rounded-lg py-2 pr-5 pl-2 z-50">
                                         <div className='flex items-center border-b-2 pb-2 mb-1 '>
                                             <FaCircleUser />

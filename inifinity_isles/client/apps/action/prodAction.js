@@ -6,11 +6,11 @@ import {
   setLoading,
   setProduct,
   setProducts,
+  setSCP,
   setTP,
   setUTP,
   setUserProducts,
 } from "../slices/prodSlice";
-import { combineSlices } from "@reduxjs/toolkit";
 
 export const createProduct =
   (title, description, stock, price, category, images) => async (dispatch) => {
@@ -173,8 +173,27 @@ export const fetchTopProducts = () => async (dispatch) => {
   try {
     const url = "http://localhost:2000/api/topRated-products";
     const response = await axios.get(url);
-    dispatch(setTP(response.data.data))
+    dispatch(setTP(response.data.data));
     localStorage.setItem("topProducts", JSON.stringify(response.data.data));
+  } catch (error) {
+    dispatch(
+      setError(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+          ? error.message
+          : "Internal Server Error"
+      )
+    );
+  }
+};
+
+export const fetchSingleCateProd = (id) => async (dispatch) => {
+  dispatch(setLoading())
+  try {
+    const url = `http://localhost:2000/api/category/${id}`
+    const response = await axios.get(url)
+    dispatch(setSCP(response.data.data))
   } catch (error) {
     dispatch(
       setError(

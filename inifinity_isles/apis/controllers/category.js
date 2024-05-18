@@ -1,4 +1,5 @@
 import Category from "../models/category.js";
+import Product from "../models/productModel.js";
 
 export const createCategory = async (category, id) => {
   const existCategory = await Category.findOne({ category });
@@ -34,3 +35,26 @@ export const fetchAllCategory = async (req, res) => {
     });
   }
 };
+
+export const fetchSingleCategory = async (req, res) => {
+  try {
+    const id = req.params.ctid 
+    const existProducts = await Product.find({ category : id })
+    if(!existProducts){
+      return res.status(400).json({
+        success: false,
+        message: "product is not avaliable yet",
+      });
+    } 
+    return res.status(200).json({
+      success: true,
+      length: existProducts.length,
+      data: existProducts,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}

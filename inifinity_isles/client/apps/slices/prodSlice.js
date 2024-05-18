@@ -10,6 +10,7 @@ const initialState = {
   category: [],
   userTopProducts: [],
   topProducts: JSON.parse(localStorage.getItem('topProducts')) || [],
+  singleCateProd: []
 };
 
 const authSlice = createSlice({
@@ -58,6 +59,12 @@ const authSlice = createSlice({
       state.isError = false;
       state.topProducts = action.payload;
     },
+    setSCP: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.singleCateProd = action.payload;
+    
+    },
   },
 });
 
@@ -71,6 +78,7 @@ export const {
   setCategory,
   setUTP,
   setTP,
+  setSCP
 } = authSlice.actions;
 
 export default authSlice.reducer;

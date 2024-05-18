@@ -29,6 +29,8 @@ const VendorProfile = () => {
         dispatch(fetchTopUserProducts(id))
     }, [dispatch, id])
 
+    const data = <IsNew dater={user.createdAt} />
+    console.log(data)
     return (
         <>
             <Header />
@@ -54,7 +56,7 @@ const VendorProfile = () => {
                     </div>
                     <div className='flex flex-col items-end p-10 mt-5'>
                         <div>
-                            <div className='inline-block relative text-3xl uppercase font-medium tracking-wider'><div>{name}</div><div className='absolute -top-1 -right-6 flex items-center  text-[10px] font-bold rounded-full h-4 px-2' style={{ color: user.colors[0].textColor, backgroundColor: user.colors[0].hex }}><IsNew dater={user.createdAt} /></div></div>
+                            <div className='inline-block relative text-3xl uppercase font-medium tracking-wider'><div>{name}</div><div className={`absolute -top-1 -right-6 flex items-center  text-[10px] font-bold rounded-full h-4 px-2 ${!data.key === null&&'hidden'}`} style={{ color: user.colors[0].textColor, backgroundColor: user.colors[0].hex }}><IsNew dater={user.createdAt} /></div></div>
                             <div className='text-sm text-justify'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit mollitia rerum harum odio eveniet id et, cumque delectus alias. Quod quia nisi tenetur rem obcaecati animi autem fugiat quae blanditiis deserunt! Ut, unde? Odio dicta pariatur magni sint ad exercitationem officia explicabo, voluptate quasi, tempore, blanditiis cupiditate nihil numquam similique id eaque eveniet aperiam amet illo doloremque facilis deleniti debitis! Molestias eos cum repudiandae eveniet placeat veritatis facilis dolor doloremque quis eaque tenetur provident voluptatibus earum consequuntur libero quas at recusandae temporibus, sequi reiciendis porro sint ratione! Totam molestias magni quas at hic alias ut, non ipsam quasi. Eum, fugit.</div>
                         </div>
                         <div className='text-sm font-medium leading-4 mt-14'>

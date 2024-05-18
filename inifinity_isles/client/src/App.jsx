@@ -28,7 +28,7 @@ function App() {
         <Route path="/checkout/:cName" element={<CartBasket />} />
         <Route path="/all-products" element={<AllProducts />} />
         <Route path="/vendor/:name/:id" element={<VendorProfile />} />
-        <Route path="/:category" element={<CategoryPage />} />
+        <Route path="/:category/:cpid" element={<CategoryPage />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>
           <Route path="purchaser" element={<DashboardP />} />

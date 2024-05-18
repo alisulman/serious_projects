@@ -144,7 +144,7 @@ const FormOne = () => {
                                 {state?.category?.map(cate => (
                                     <button 
                                     key={cate._id} 
-                                    className="text-center text-sm bg-transparent font-medium tracking-wide hover:bg-gray-100 px-2 py-1 rounded-md cursor-pointer"  
+                                    className="text-left text-sm font-medium tracking-wide hover:bg-gray-100 px-2 py-1 rounded-md cursor-pointer"  
                                     onClick={handleCate}
                                 >
                                     {cate.category}
