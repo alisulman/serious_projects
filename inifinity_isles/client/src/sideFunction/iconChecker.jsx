@@ -1,29 +1,33 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-const IconChecker = (CheckedIcon, UnCheckedIcon, set) => {
-    const [checked, setChecked] = useState(set == null ? set : 'hidden')
+const IconChecker = ({ CheckedIcon, UnCheckedIcon, product }) => {
+    const existProducts = JSON.parse(localStorage.getItem('favourites'))
+    const setter = existProducts?.filter(prod => prod._id === product._id);
+    console.log(setter)
+
+    const [checked, setChecked] = useState('hidden')
     const [unChecked, setUnChecked] = useState('')
 
     const handleClickChecked = () => {
-        console.log('unchecked')
         setChecked('hidden')
         setUnChecked('')
-        return unChecked
     }
     const handleClickUnChecked = () => {
         console.log('checked')
         setChecked('')
         setUnChecked('hidden')
-        return checked
+        localStorage.setItem('favourites', JSON.stringify(product, 'checked'))
     }
-  return (
-    <>
-      <div className="relative text-7xl">
-        <div className={`absolute top-0 ${unChecked}`} onClick={handleClickUnChecked}>{UnCheckedIcon}</div>
-        <div className={`absolute top-0 ${checked}`} onClick={handleClickChecked}>{CheckedIcon}</div>
-      </div>
-    </>
-  )
+
+    return (
+        <>
+            <div className={`relative`}>
+                <div className={`absolute top-0 ${unChecked}`} onClick={handleClickUnChecked}>{UnCheckedIcon}</div>
+                <div className={`absolute top-0 ${checked}`} onClick={handleClickChecked}>{CheckedIcon}</div>
+            </div>
+        </>
+    )
 }
 
 export default IconChecker

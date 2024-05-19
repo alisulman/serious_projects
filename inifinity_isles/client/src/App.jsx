@@ -32,7 +32,6 @@ function App() {
         <Route path="/vendor/:name/:id" element={<VendorProfile />} />
         <Route path="/all-categories/:category/:cpid" element={<CategoryPage />} />
         <Route path="/all-categories" element={<Category />} />
-        <Route path="/tester" element={<IconChecker />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>
           <Route path="purchaser" element={<DashboardP />} />
