@@ -6,6 +6,7 @@ const initialState = {
   cartProduct: [],
   totalQuantity: 0,
   totalPrice: 0,
+  isFavourite: JSON.parse(localStorage.getItem('favourites')) || []
 };
 
 const cartSlice = createSlice({
@@ -34,10 +35,31 @@ const cartSlice = createSlice({
       state.isError = false;
       state.totalPrice = action.payload;
     },
+    setIsFav: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      const product = action.payload;
+      const newProduct = { ...product, isFavorite: 'yes' };
+      const existProd = state.isFavourite.find(item => item._id === product._id);
+      if(!existProd){
+        state.isFavourite.push(newProduct);
+      }
+      localStorage.setItem('favourites', JSON.stringify(state.isFavourite))
+    },
+    removeFav: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      const product = action.payload;
+      const existProd = state.isFavourite.find(item => item._id === product._id);
+      if(existProd){
+        state.isFavourite = state.isFavourite.filter(item => item._id!== product._id);
+      }
+      localStorage.setItem('favourites', JSON.stringify(state.isFavourite));
+    }
   },
 });
 
-export const { setLoading, setError, setBasket, setQuantity, setPrice } =
+export const { setLoading, setError, setBasket, setQuantity, setPrice, setIsFav } =
   cartSlice.actions;
 
 export default cartSlice.reducer;

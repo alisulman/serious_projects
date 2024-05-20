@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from "react";
 
-const IsNew = ({ dater }) => {
+const IsNew = ({ dater, style, styler }) => {
     const [ok, setOk] = useState(false);
     const [count, setCount] = useState(172800);
 
@@ -45,7 +45,7 @@ const IsNew = ({ dater }) => {
         }
     }, [count, ok])
 
-    return <div>{ok ? "New" : null}</div>
+    return <div className={`${styler}`} style={style}>{ok ? "New" : null}</div>
 
 }
 

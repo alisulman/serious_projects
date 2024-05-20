@@ -1,3 +1,4 @@
+import User from "../models/authModle.js";
 import Cart from "../models/cartModel.js";
 import Product from "../models/productModel.js";
 

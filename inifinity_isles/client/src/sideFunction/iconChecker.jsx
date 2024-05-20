@@ -1,13 +1,20 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { setGetFavorite } from "../../apps/action/cartAction"
 
 const IconChecker = ({ CheckedIcon, UnCheckedIcon, product }) => {
-    const existProducts = JSON.parse(localStorage.getItem('favourites'))
-    const setter = existProducts?.filter(prod => prod._id === product._id);
-    console.log(setter)
+    const [check, setCheck] = useState(false)
+    const state = useSelector(state => state.Cart)
+    useEffect(() => {
+        const fav = state.isFavourite.find(item => item?._id === product?._id)
+        setCheck(fav?._id === product?._id)
+    }, [product?._id, product.id, state.isFavourite])
+    const [checked, setChecked] = useState(check ? '' : 'hidden')
+    const [unChecked, setUnChecked] = useState(check ? 'hidden' : '')
 
-    const [checked, setChecked] = useState('hidden')
-    const [unChecked, setUnChecked] = useState('')
+    const dispatch = useDispatch()
 
     const handleClickChecked = () => {
         setChecked('hidden')
@@ -17,7 +24,7 @@ const IconChecker = ({ CheckedIcon, UnCheckedIcon, product }) => {
         console.log('checked')
         setChecked('')
         setUnChecked('hidden')
-        localStorage.setItem('favourites', JSON.stringify(product, 'checked'))
+        dispatch(setGetFavorite(product))
     }
 
     return (

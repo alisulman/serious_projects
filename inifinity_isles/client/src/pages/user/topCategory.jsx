@@ -22,7 +22,9 @@ const TopCategory = () => {
             <div className="my-5">
                 <div className="flex justify-between">
                     <div className="text-3xl font-medium">Top Categories:</div>
-                    <Link to='/all-categories'><div className="flex items-end text-sm text-blue-600 capitalize hover:underline">see more</div></Link>
+                    {categories.length > 3 ? (
+                        <Link to='/all-categories'><div className="flex items-end text-sm text-blue-600 capitalize hover:underline">see more</div></Link>
+                    ) : null}
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 my-5 h-[335px] overflow-hidden">

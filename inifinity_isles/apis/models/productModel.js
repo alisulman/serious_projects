@@ -10,6 +10,10 @@ const productSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "categories",
     },
+    favourite: {
+      type: Schema.Types.ObjectId,
+      ref: 'favourites'
+    },
     title: {
       type: String,
       required: true,
