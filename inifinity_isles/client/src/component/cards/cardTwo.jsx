@@ -25,9 +25,9 @@ const CardTwo = ({ product }) => {
             <Link to=''>
                 <div className="relative flex bg-white border border-gray-500 rounded-lg hover:shadow-xl cursor-pointer transition-all hover:scale-110 w-full dark:bg-gray-800 dark:border-gray-700" >
                     <div className="relative w-2/5">
-                        <img className=" rounded-l-md w-full h-full object-cover object-center" src={product.images} />
+                        <img className=" rounded-l-md w-full h-full object-cover object-center" src={product?.images} />
                     </div>
-                    <div className="px-2 py-0.5 h-[152px]">
+                    <div className="px-2 py-0.5 w-[60%] h-[152px]">
                         <h5 className="text-sm font-bold tracking-tight text-gray-900 dark:text-white">{title && truncateText(title, 3)}</h5>
                         <p className="text-xs mb-1 font-medium text-gray-700 dark:text-gray-400 h-9 ">{description && truncateText(description, 8)}</p>
                         <div className="flex items-center mt-2.5 my-1">

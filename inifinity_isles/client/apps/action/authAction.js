@@ -48,7 +48,7 @@ export const changeRole = (id, role) => async (dispatch) => {
   } catch (error) {
     dispatch(
       setError(
-        error.response.data && error.response.data.message
+        error.response && error.response.data.message
           ? error.response.data.message
           : error.message
           ? error.message

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { createProduct, fetchAllCategories } from "../../../apps/action/prodAction";
-import { FaEdit } from "react-icons/fa";
+// import { FaEdit } from "react-icons/fa";
 import CropEditor from "../Editor/cropper";
 
 const FormOne = () => {
@@ -102,9 +102,9 @@ const FormOne = () => {
             description: textarea.value
         })
     }
-    const handleEdit = () => {
-        setShowEditor(true)
-    }
+    // const handleEdit = () => {
+    //     setShowEditor(true)
+    // }
     const handleCate = () => {
         console.log('ok')
     }
@@ -126,7 +126,7 @@ const FormOne = () => {
                                 placeholder="" />
                             <label
                                 htmlFor="floating_outlined"
-                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:font-medium peer-focus:tracking-wide peer-focus:top-2 peer-focus:scale-90 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product Title</label>
+                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#EEEEEE] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:font-medium peer-focus:tracking-wide peer-focus:top-2 peer-focus:scale-90 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product Title</label>
                         </div>
                         <div className="relative mx-1">
                             <input
@@ -139,18 +139,20 @@ const FormOne = () => {
                                 placeholder="" />
                             <label
                                 htmlFor="floating_outlined_two"
-                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Add Category</label>
-                            <div className="hidden absolute -top-0.5 -right-[85%] grid-cols-2 gap-4 bg-white border border-gray-200 bg-opacity-75 rounded-lg p-4 z-50 peer-focus:grid">
-                                {state?.category?.map(cate => (
-                                    <button 
-                                    key={cate._id} 
-                                    className="text-left text-sm font-medium tracking-wide hover:bg-gray-100 px-2 py-1 rounded-md cursor-pointer"  
-                                    onClick={handleCate}
-                                >
-                                    {cate.category}
-                                </button>
-                                ))}
-                            </div>
+                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#EEEEEE] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Add Category</label>
+                            {state.category.length !== 0 ? (
+                                <div className={`hidden absolute -top-0.5 -right-[85%] grid-cols-2 gap-4 bg-white border border-gray-200 bg-opacity-75 rounded-lg p-4 z-50 peer-focus:grid`}>
+                                    {state?.category?.map(cate => (
+                                        <button
+                                            key={cate._id}
+                                            className="text-left text-sm font-medium tracking-wide hover:bg-gray-100 px-2 py-1 rounded-md cursor-pointer"
+                                            onClick={handleCate}
+                                        >
+                                            {cate?.category}
+                                        </button>
+                                    ))}
+                                </div>
+                            ) : null}
                         </div>
                     </div>
                     <div className="flex justify-center my-2">
@@ -165,7 +167,7 @@ const FormOne = () => {
                                 placeholder="" />
                             <label
                                 htmlFor="floating_outlined_three"
-                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:tracking-wide peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">How many products you have in stock</label>
+                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#EEEEEE] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:tracking-wide peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">How many products you have in stock</label>
                         </div>
                         <div className="relative mx-1">
                             <input
@@ -178,7 +180,7 @@ const FormOne = () => {
                                 placeholder="" />
                             <label
                                 htmlFor="floating_outlined_four"
-                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:tracking-wide peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product Price</label>
+                                className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#EEEEEE] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:tracking-wide peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Product Price</label>
                         </div>
                     </div>
                     <div className="relative mx-1 my-2">
@@ -194,7 +196,7 @@ const FormOne = () => {
                         ></textarea>
                         <label
                             htmlFor="floating_outlined_five"
-                            className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                            className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#EEEEEE] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                         >
                             Product Description
                         </label>
@@ -211,7 +213,7 @@ const FormOne = () => {
                         />
                         <label
                             htmlFor="floating_outlined_six"
-                            className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                            className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-200 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                         >
                             Product Image
                         </label>
@@ -244,10 +246,10 @@ const FormOne = () => {
                             <div className="relative object-cover overflow-hidden border-2 border-black w-40 h-60 my-5">
                                 <img src={url} className="w-40 h-60" />
                             </div>
-                            <div className="absolute top-10 -right-5 bg-gray-200 border-2 border-gray-500 p-2 rounded-full" onClick={handleEdit}><FaEdit className="text-xl text-gray-500" /></div>
+                            {/* <div className="absolute top-10 -right-5 bg-gray-200 border-2 border-gray-500 p-2 rounded-full" onClick={handleEdit}><FaEdit className="text-xl text-gray-500" /></div> */}
                             <div className="flex justify-between w-full">
                                 {/* <div className="bg-gray-600 hover:bg-gray-800 text-white rounded px-3 py-0.5" onClick={handleSaveImage}>Upload</div> */}
-                                <div className="bg-gray-600 hover:bg-gray-800 text-white rounded w-full px-3 py-0.5" onClick={handleCancel}>Cancel</div>
+                                <div className="text-center  bg-gray-600 hover:bg-gray-800 text-white rounded w-full px-3 py-0.5" onClick={handleCancel}>Cancel</div>
                             </div>
                         </div>
                     )}

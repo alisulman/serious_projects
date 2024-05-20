@@ -3,7 +3,6 @@
 import CardTwo from '../component/cards/cardTwo'
 
 const CardLayout = ({ products }) => {
-    console.log(products)
 
     return (
         <>

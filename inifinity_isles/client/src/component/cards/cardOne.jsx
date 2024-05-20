@@ -39,7 +39,7 @@ const CardOne = ({ product }) => {
             <div className="relative group/item overflow-hidden w-60 h-80">
                 <img src={product.images} className="object-cover object-top w-full h-full" />
                 <div className="absolute top-0 bg-white bg-opacity-50 transform transition-transform translate-y-80 duration-500 w-60 h-80 group-hover/item:translate-y-0"></div>
-                <div className="absolute bottom-0 p-2 transform transition-transform  translate-y-32 ease-linear duration-500 group-hover/item:translate-y-0">
+                <div className="absolute bottom-0 p-2 transform transition-transform  translate-y-32 ease-linear duration-500 group-hover/item:translate-y-0 w-full">
                     <div className="text-xl font-[700]">{title && truncateText(title, 4)}</div>
                     <div className="text-sm font-medium leading-[15px]">{description && truncateText(description, 6)}</div>
                     <div className="border-b-2 border-black mt-2 mb-1 mr-1.5"></div>

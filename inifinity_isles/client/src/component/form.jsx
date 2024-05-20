@@ -202,7 +202,7 @@ const Form = ({ page }) => {
                     <button
                         type="submit"
                         id="submitBtn"
-                        className={`text-sm text-blue-800 font-medium bg-white  border border-blue-800 rounded-full w-full px-9 py-1.5 mt-3 focus:ring-1 focus:ring-blue-300 focus:outline-none hover:bg-blue-800 hover:text-white sm:text-[10px] md:text-xs lg:text-sm sm:px-5 md:px-7 lg:px-9 sm:py-0.5 md:py-1 lg:py-1.5 sm:my-1 md:my-2 lg:my-3 ${cred.email !== '' && cred.password !== '' ? '' : 'cursor-not-allowed opacity-50'}`}
+                        className={`text-sm text-blue-800 font-medium bg-[#eee]  border border-blue-800 rounded-full w-full px-9 py-1.5 mt-3 focus:ring-1 focus:ring-blue-300 focus:outline-none hover:bg-blue-800 hover:text-white sm:text-[10px] md:text-xs lg:text-sm sm:px-5 md:px-7 lg:px-9 sm:py-0.5 md:py-1 lg:py-1.5 sm:my-1 md:my-2 lg:my-3 ${cred.email !== '' && cred.password !== '' ? '' : 'cursor-not-allowed opacity-50'}`}
                         onClick={handleSubmit}
                     >
                         {page}

@@ -8,6 +8,7 @@ import IsNew from '../../sideFunction/forNew'
 import CardOne from '../../component/cards/cardOne'
 import { useEffect } from 'react'
 import { fetchTopUserProducts } from '../../../apps/action/prodAction'
+import Footer from '../../component/footer'
 
 const VendorProfile = () => {
     const { name } = useParams()
@@ -16,10 +17,11 @@ const VendorProfile = () => {
     const stateT = useSelector(state => state.Product)
     const existUser = state?.users
     const products = stateT.userTopProducts
-    const user = existUser?.find(user => user.username === name);
+    const user = existUser?.find(user => user?.user?.username === name);
+    console.log(user?.user)
     const dispatch = useDispatch()
 
-    const dateObj = new Date(user.createdAt);
+    const dateObj = new Date(user?.user?.createdAt);
     const year = dateObj.getFullYear();
     const month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
     const day = ('0' + dateObj.getDate()).slice(-2);
@@ -29,7 +31,7 @@ const VendorProfile = () => {
         dispatch(fetchTopUserProducts(id))
     }, [dispatch, id])
 
-    const data = <IsNew dater={user.createdAt} />
+    const data = <IsNew dater={user?.user?.createdAt} />
     console.log(data)
     return (
         <>
@@ -38,10 +40,10 @@ const VendorProfile = () => {
             <div className='m-10'>
                 <div className='flex '>
                     <div className='flex flex-col items-center'>
-                        <div className={`flex items-center justify-center text-8xl uppercase rounded-full w-40 h-40 my-5`} style={{ color: user.colors[0].textColor, backgroundColor: user.colors[0].hex }}>{user.email.slice(0, 1)}</div>
+                        <div className={`flex items-center justify-center text-8xl uppercase rounded-full w-40 h-40 my-5`} style={{ color: user?.user?.colors[0].textColor, backgroundColor: user?.user?.colors[0].hex }}>{user?.user?.email.slice(0, 1)}</div>
                         <div className='flex justify-center items-center gap-1 text-sm bg-gray-200 hover:bg-gray-300 border-2 border-gray-400 rounded-[4px] w-full'>
                             <div>Like</div>
-                            <div><AiFillLike style={{ color: user.colors[0].hex }} /></div>
+                            <div><AiFillLike style={{ color: user?.user?.colors[0].hex }} /></div>
                         </div>
                         <div className='group/item flex flex-col items-center my-2 text-sm bg-gray-200 hover:bg-gray-300 border-2 border-gray-400 rounded-[4px] px-4 py-1'>
                             <div className='py-1'>Gave him/her rating</div>
@@ -57,9 +59,9 @@ const VendorProfile = () => {
                     <div className='flex flex-col items-end p-10 mt-5'>
                         <div>
                             <div className='inline-block relative text-3xl uppercase font-medium tracking-wider'><div>{name}</div><div className={`absolute -top-1 -right-6 text-[10px] font-bold `}><IsNew
-                                dater={user.createdAt}
+                                dater={user?.user?.createdAt}
                                 style={{
-                                    color: user.colors[0].textColor, backgroundColor: user.colors[0].hex,
+                                    color: user?.user?.colors[0].textColor, backgroundColor: user?.user?.colors[0].hex,
                                 }}
                                 styler='flex items-center rounded-full h-4 px-1.5 '
                             /></div></div>
@@ -89,6 +91,7 @@ const VendorProfile = () => {
                 }
                 <div className='border-b-2 border-gray-200'></div>
             </div >
+            <Footer />
         </>
     )
 }

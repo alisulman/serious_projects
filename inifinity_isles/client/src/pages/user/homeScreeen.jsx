@@ -18,11 +18,10 @@ const HomeScrn = () => {
     const state = useSelector(state => state.User)
     const stateOne = useSelector(state => state.Product)
     const stateTwo = useSelector(state => state.Cart)
-    const bussinessMen = state.users
+    const bussinessMen = state?.users
     const topProducts = stateOne.topProducts
     const category = stateOne.category
     const isFavourite = stateTwo.isFavourite
-
     const dispatch = useDispatch()
 
     useEffect(() => {

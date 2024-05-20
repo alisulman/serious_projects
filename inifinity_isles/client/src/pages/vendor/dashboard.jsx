@@ -5,12 +5,12 @@ import CardLayout from '../../layout/cardLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchUserProducts } from '../../../apps/action/prodAction';
+import Footer from '../../component/footer';
 
 
 const DashboardV = () => {
   const state = useSelector(state => state.Product)
   const products = state.userProducts
-  console.log(products)
 
   const dispatch = useDispatch()
 
@@ -39,6 +39,8 @@ const DashboardV = () => {
           </>
         )}
       </div>
+      <div className='my-5'></div>
+      <Footer />
     </>
   )
 }

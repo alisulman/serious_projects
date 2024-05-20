@@ -34,7 +34,7 @@ const RegistrationScreens = () => {
 
                     <div className="flex flex-row items-center justify-center sm:flex-col">
                         <div className="h-0.5 w-40 bg-gray-200 sm:w-0.5 sm:min-h-40"></div>
-                        <span className="bg-white px-2 pb-0.5 my-8 sm:bg-none sm:px-0 sm:pb-0 sm:my-2">or</span>
+                        <span className="bg-[#eee] px-2 pb-0.5 my-8 sm:bg-none sm:px-0 sm:pb-0 sm:my-2">or</span>
                         <div className="h-0.5 w-40 bg-gray-200 sm:w-0.5 sm:min-h-40"></div>
                     </div>
 

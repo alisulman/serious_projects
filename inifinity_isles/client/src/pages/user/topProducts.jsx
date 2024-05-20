@@ -9,6 +9,14 @@ import { fetchTopProducts } from '../../../apps/action/prodAction';
 
 
 const TopProducts = () => {
+    const truncateText = (text, maxWords) => {
+        let word = text.split(' ')
+        if (word.length > maxWords) {
+            return word.slice(0, maxWords).join(' ') + "..."
+        } else {
+            return text
+        }
+    }
 
     const dispatch = useDispatch()
 
@@ -42,11 +50,16 @@ const TopProducts = () => {
                         clickable: true
                     }}
                     modules={[Autoplay, EffectCoverflow, Pagination]}
+                    initialSlide={Math.floor(products.length === 1 ? 1 : products.length / 2)}
                     className="mySwiper"
                 >
                     {products?.map(product => (
                         <SwiperSlide key={product._id}>
                             <img src={product.images} />
+                            <div className='absolute bottom-0 text-center bg-white bg-opacity-50 w-full'>
+                                <div className='capitalize text-2xl font-[600]'>{truncateText(product?.title, 3)}</div>
+                                <div className='text-xl leading-3 mb-2'>{truncateText(product?.description, 5)}</div>
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

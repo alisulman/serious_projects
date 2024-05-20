@@ -13,6 +13,7 @@ const TopCategory = () => {
         dispatch(fetchAllProducts())
     }, [dispatch])
 
+
     const state = useSelector(state => state.Product)
     const categories = state.category
     const products = state.products

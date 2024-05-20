@@ -14,12 +14,12 @@ const TopBusinessman = ({ users }) => {
                         )}
                     </Link>
                 </div>
-                {users && users.length !== 0 ? (
+                {users && users?.length !== 0 ? (
                     <div className='grid grid-cols-8 gap-5 w-full h-4/5 my-5    '>
                         {users?.map(user =>
-                            <div key={user._id} className=' w-full h-full'>
+                            <div key={user?.user?._id} className=' w-full h-full'>
                                 <div className='flex items-center justify-center border-4 border-black rounded-full p-1'>
-                                    <Link to={`/vendor/${user.username}/${user._id}`}><div className={`flex items-center justify-center text-5xl uppercase rounded-full w-28 h-28`} style={{ color: user.colors[0].textColor, backgroundColor: user.colors[0].hex }}>{user.email.slice(0,1)}</div></Link>
+                                    <Link to={`/vendor/${user?.user?.username}/${user?.user?._id}`}><div className={`flex items-center justify-center text-5xl uppercase rounded-full w-28 h-28`} style={{ color: user?.user?.colors[0].textColor, backgroundColor: user?.user?.colors[0].hex }}>{user?.user.email.slice(0, 1)}</div></Link>
                                 </div>
                             </div>
                         )}
