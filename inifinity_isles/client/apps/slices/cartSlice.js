@@ -4,7 +4,7 @@ const initialState = {
   isLoading: false,
   isError: false,
   cartProduct: [],
-  totalQuantity: 0,
+  totalQuantity: JSON.parse(localStorage.getItem('totalquantity')) || 0,
   totalPrice: 0,
   isFavourite: JSON.parse(localStorage.getItem('favourites')) || []
 };

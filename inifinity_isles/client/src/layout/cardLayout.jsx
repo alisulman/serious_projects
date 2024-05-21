@@ -21,32 +21,4 @@ const CardLayout = ({ products }) => {
 }
 export default CardLayout
 
-// export const CardAllLayout = ({ products }) => {
 
-//     return (
-//         <>
-//             <div className='flex justify-center my-10'>
-//                 <div className='grid grid-cols-4 gap-10'>
-//                     {products && products.map(product => (
-//                         <CardTwo key={product._id} product={product} />
-//                     ))}
-//                 </div>
-//             </div>
-//         </>
-//     )
-// }
-
-// export const CardCartLayout = ({ product }) => {
-//     console.log(product)
-//     return (
-//         <>
-//             <div className='flex justify-center my-10'>
-//                 <div className='grid grid-cols-4 gap-10'>
-//                     {product && product.map(product => (
-//                         <CardThree key={product._id} product={product} />
-//                     ))}
-//                 </div>
-//             </div>
-//         </>
-//     )
-// }

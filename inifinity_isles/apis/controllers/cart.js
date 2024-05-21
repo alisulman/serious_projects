@@ -6,7 +6,19 @@ export const addToCart = async (req, res) => {
   try {
     const Id = req.params.cpid;
     const id = req.user.id;
-    const productExist = await Cart.findOne({ user: id, products: Id }).populate('products');
+    const quantity = await Product.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalQuantity: { $sum: "$quantity" },
+        },
+      },
+    ]);
+    const totalQuantity = quantity.length > 0 ? quantity[0].totalQuantity : 0;
+    const productExist = await Cart.findOne({
+      user: id,
+      products: Id,
+    }).populate("products");
     if (productExist) {
       const stock = productExist.products.stock;
       if (stock === 0) {
@@ -51,6 +63,7 @@ export const addToCart = async (req, res) => {
       return res.status(201).json({
         success: true,
         totalPrice: allPrice,
+        totalQuantity: totalQuantity,
         data: sameCartProduct,
       });
     }
@@ -74,10 +87,15 @@ export const removeFromCart = async (req, res) => {
     const newStock = stock + quantity;
     const newQuantity = 0;
     const newPrice = price / quantity;
-    const newTotalPrice = 0
+    const newTotalPrice = 0;
     await Product.findOneAndUpdate(
       { _id: Id },
-      { stock: newStock, quantity: newQuantity, price: newPrice, totalPrice: newTotalPrice },
+      {
+        stock: newStock,
+        quantity: newQuantity,
+        price: newPrice,
+        totalPrice: newTotalPrice,
+      },
       { new: true }
     );
     const deletedCartItem = await Cart.findOneAndDelete({ products: Id });
@@ -97,7 +115,12 @@ export const removeFromCart = async (req, res) => {
 export const getCart = async (req, res) => {
   try {
     const id = req.user.id;
-    const existCart = await Cart.find({ user: id }).populate("products");
+    const existCart = await Cart.find({ user: id }).populate({
+      path: "products",
+      populate: {
+        path: "category",
+      },
+    });
     // for quantity
     const quantity = await Product.aggregate([
       {
@@ -141,11 +164,36 @@ export const getCart = async (req, res) => {
 export const incrementCart = async (req, res) => {
   try {
     const Id = req.params.cpid;
+    const id = req.user.id;
+    const existCart = await Cart.find({ user: id }).populate({
+      path: "products",
+      populate: {
+        path: "category",
+      },
+    });
+    // for quantity
+    const quantity = await Product.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalQuantity: { $sum: "$quantity" },
+        },
+      },
+    ]);
+    const totalQuantity = quantity.length > 0 ? quantity[0].totalQuantity : 0;
+
+    //for price total
+    let totalPricer = 0;
+    for (let i = 0; i < existCart.length; i++) {
+      totalPricer += existCart[i].products.totalPrice;
+    }
     const sameitem = await Product.findOne({ _id: Id });
     const stock = sameitem.stock;
     if (stock === 0) {
       return res.status(400).json({
         success: false,
+        totalQuantity: totalQuantity,
+        totalPrices: totalPricer,
         message: "Product is out of stock",
       });
     }
@@ -165,6 +213,8 @@ export const incrementCart = async (req, res) => {
     );
     return res.status(200).json({
       success: true,
+      totalQuantity: totalQuantity,
+      totalPrices: totalPricer,
       data: sameCartProduct,
     });
   } catch (error) {
@@ -198,7 +248,6 @@ export const decrementCart = async (req, res) => {
       data: sameCartProduct,
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       success: false,
       message: error.message,

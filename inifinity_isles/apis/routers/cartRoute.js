@@ -6,7 +6,7 @@ const cartRoute = express.Router()
 cartRoute.post('/add-to-cart/:cpid/:token', authMiddleware, Cart.addToCart)
 cartRoute.delete('/remove-from-cart/:cpid', Cart.removeFromCart)
 cartRoute.get('/get-all-cart/:token', authMiddleware, Cart.getCart)
-cartRoute.post('/increment-cart/:cpid', Cart.incrementCart)
+cartRoute.get('/increment-cart/:cpid/:token', authMiddleware, Cart.incrementCart)
 cartRoute.post('/decrement-cart/:cpid', Cart.decrementCart)
 
 export default cartRoute
