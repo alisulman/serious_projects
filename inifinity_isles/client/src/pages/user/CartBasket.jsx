@@ -3,6 +3,7 @@ import Header from "../../component/header"
 import { useEffect } from "react"
 import { GetCartProducts } from "../../../apps/action/cartAction"
 import CardSeven from "../../component/cards/cardSeven"
+import axios from "axios"
 // import { CardCartLayout } from "../../layout/cardLayout"
 
 const CartBasket = () => {
@@ -21,6 +22,14 @@ const CartBasket = () => {
             return word.slice(0, maxWords).join(' ') + "..."
         } else {
             return text
+        }
+    }
+    const handlePayment = async () => {
+        try {
+            const response = await axios.post('http://localhost:2000/api/checkout-payment', { products })
+            console.log(response)
+        } catch (error) {
+            console.log(error.message)
         }
     }
     return (
@@ -61,7 +70,7 @@ const CartBasket = () => {
                                     </div>
                                     <div className="border-b border-gray-400 my-1"></div>
                                 </div>
-                                <div className="flex items-center justify-center text-sm bg-orange-500 hover:rounded-full cursor-pointer text-white font-bold tracking-widest py-1 my-5">Buy {products.length === 1 ? "this item" : "these items"}</div>
+                                <div className="flex items-center justify-center text-sm bg-orange-500 hover:rounded-full cursor-pointer text-white font-bold tracking-widest py-1 my-5" onClick={handlePayment}>Buy {products.length === 1 ? "this item" : "these items"}</div>
                             </div>
                         </div>
                     ) : (

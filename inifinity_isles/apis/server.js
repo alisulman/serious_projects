@@ -9,6 +9,7 @@ import prodRoute from './routers/prodRoute.js'
 import cartRoute from './routers/cartRoute.js'
 import catRoute from './routers/catRouter.js'
 import favRouter from './routers/favRouter.js'
+import payRoute from './routers/paymentRouter.js'
 
 const app = express()
 dotenv.config()
@@ -23,6 +24,7 @@ app.use('/api', prodRoute)
 app.use('/api', cartRoute)
 app.use('/api', catRoute)
 app.use('/api', favRouter)
+app.use('/api', payRoute)
 
 const port = process.env.PORT || 3000
 
