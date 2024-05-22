@@ -15,6 +15,7 @@ import VendorProfile from "./pages/user/vendorProfile"
 import CategoryPage from "./pages/user/categoryPage"
 import Category from "./pages/user/category"
 import IconChecker from "./sideFunction/iconChecker"
+import SingleProduct from "./pages/user/singleProduct"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/vendor/:name/:id" element={<VendorProfile />} />
         <Route path="/all-categories/:category/:cpid" element={<CategoryPage />} />
         <Route path="/all-categories" element={<Category />} />
+        <Route path="//all-categories/smartphones/:categoryId/:productId" element={<SingleProduct />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>
           <Route path="purchaser" element={<DashboardP />} />
@@ -46,7 +48,7 @@ function App() {
         {role === 'seller' && (
           <>
             <Route path="/dashboard/vendor/add-new-product" element={<NewProducts />} />
-            <Route path="/dashboard/vendor/update-product/:productId" element={<EditProduct />} />
+            <Route path="/dashboard/vendor/update-product/:category/:productId" element={<EditProduct />} />
           </>
         )}
       </Routes>

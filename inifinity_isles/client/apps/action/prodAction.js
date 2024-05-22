@@ -82,6 +82,7 @@ export const fetchSingleProduct = (id) => async (dispatch) => {
 export const updateProduct =
   (id, title, description, stock, price, category, images) =>
   async (dispatch) => {
+    dispatch(setLoading());
     try {
       const url = `http://localhost:2000/api/update-product/${id}`;
       const response = await axios.put(url, {
@@ -105,6 +106,25 @@ export const updateProduct =
       );
     }
   };
+
+  export const removeProduct = (id) => async(dispatch) =>  {
+    dispatch(setLoading());
+    try {
+      const url = `http://localhost:2000/api/delete-product/${id}`;
+      const response = await axios.delete(url);
+      console.log(response);
+    } catch (error) {
+      dispatch(
+        setError(
+          error.response && error.response.data.message
+           ? error.response.data.message
+            : error.message
+           ? error.message
+            : "Internal Server Error"
+        )
+      );
+    }
+  }
 
 export const cancelProduct = () => (dispatch) => {
   dispatch(resetProduct());
@@ -190,11 +210,11 @@ export const fetchTopProducts = () => async (dispatch) => {
 };
 
 export const fetchSingleCateProd = (id) => async (dispatch) => {
-  dispatch(setLoading())
+  dispatch(setLoading());
   try {
-    const url = `http://localhost:2000/api/category/${id}`
-    const response = await axios.get(url)
-    dispatch(setSCP(response.data.data))
+    const url = `http://localhost:2000/api/category/${id}`;
+    const response = await axios.get(url);
+    dispatch(setSCP(response.data.data));
   } catch (error) {
     dispatch(
       setError(

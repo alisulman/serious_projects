@@ -45,7 +45,7 @@ const IsNew = ({ dater, style, styler }) => {
         }
     }, [count, ok])
 
-    return <div className={`${styler}`} style={style}>{ok ? "New" : null}</div>
+    return <div className={`${styler} ${!ok && 'hidden'}`} style={style}>{ok ? "New" : null}</div>
 
 }
 

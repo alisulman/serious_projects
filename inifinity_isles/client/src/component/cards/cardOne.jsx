@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { AddToCart, GetCartProducts } from "../../../apps/action/cartAction";
 import { useEffect } from "react";
 import IconChecker from "../../sideFunction/iconChecker";
+import { Link } from "react-router-dom";
 
 const CardOne = ({ product }) => {
     const truncateText = (text, maxWords) => {
@@ -33,12 +34,13 @@ const CardOne = ({ product }) => {
     useEffect(() => {
         dispatch(GetCartProducts())
     }, [dispatch])
+    console.log(product)
     
     return (
         <>
             <div className="relative group/item overflow-hidden w-60 h-80">
                 <img src={product.images} className="object-cover object-top w-full h-full" />
-                <div className="absolute top-0 bg-white bg-opacity-50 transform transition-transform translate-y-80 duration-500 w-60 h-80 group-hover/item:translate-y-0"></div>
+                <div className="absolute top-0 bg-white bg-opacity-70 transform transition-transform translate-y-80 duration-500 w-60 h-80 group-hover/item:translate-y-0"></div>
                 <div className="absolute bottom-0 p-2 transform transition-transform  translate-y-32 ease-linear duration-500 group-hover/item:translate-y-0 w-full">
                     <div className="text-xl font-[700]">{title && truncateText(title, 4)}</div>
                     <div className="text-sm font-medium leading-[15px]">{description && truncateText(description, 6)}</div>
@@ -52,7 +54,7 @@ const CardOne = ({ product }) => {
                     <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-700" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} product={product} />
                 </div>
                 <div className="absolute top-1/3 right-0 left-0 flex justify-center">
-                    <div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 p-1 mx-3 scale-0"><IoSearch className="text-xl" /></div>
+                    <Link to={`/all-categories/smartphones/${product.category}/${product._id}`}><div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 p-1 mx-3 scale-0"><IoSearch className="text-xl" /></div></Link>
                     <div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 delay-100 p-1 mx-3 scale-0" onClick={handleAddToCart}><FaPlus className="text-xl" /></div>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 import { Link, useParams } from 'react-router-dom'
 import Logo from '../../../public/assets/logo';
-import { UpdateProduct } from '../../component/form';
 import { useEffect } from 'react';
 import { fetchSingleProduct } from '../../../apps/action/prodAction';
 import { useDispatch, useSelector } from 'react-redux';
+import FormTwo from '../../component/form/formTwo';
 const EditProduct = () => {
     const { productId } = useParams()
     const dispatch = useDispatch()
@@ -15,6 +15,7 @@ const EditProduct = () => {
     useEffect(() => {
         dispatch((fetchSingleProduct(productId)))
     }, [dispatch, productId])
+    console.log()
 
     return (
         <>
@@ -23,13 +24,12 @@ const EditProduct = () => {
             ) : (
                 <>
                     <div>
-                        <Link to='/' className="flex flex-col items-center text-sm font-semibold uppercase sm:text-base md:text-lg lg:text-2xl xl:text-3xl my-3"><Logo color='black' /><div className='mx-4 -my-2'>Infinity Isles</div></Link >
+                        <Link to='/' className="flex flex-col items-center text-sm font-semibold uppercase sm:text-base md:text-lg lg:text-2xl xl:text-3xl my-3"><Logo color='black' style='w-16' /><div className='mx-4 -my-2'>Infinity Isles</div></Link >
                     </div >
                     <div className='border border-gray-400 mx-20 my-4'></div>
-                    <div className='text-2xl font-medium mx-20 my-4'>Add a Product:</div>
-                    <div className='flex justify-between mx-20'>
-                        <UpdateProduct id={productId} item={product} />
-                        <CardOne product={product} />
+                    <div className='text-2xl font-medium mx-20 my-4'>Update Product:</div>
+                    <div className='flex justify-between'>
+                        <FormTwo id={productId} item={product}  />
                     </div>
                 </>
             )}

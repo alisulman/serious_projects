@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchAllCategories, fetchAllProducts } from "../../../apps/action/prodAction"
@@ -12,7 +13,6 @@ const TopCategory = () => {
         dispatch(fetchAllCategories())
         dispatch(fetchAllProducts())
     }, [dispatch])
-
 
     const state = useSelector(state => state.Product)
     const categories = state.category
