@@ -207,7 +207,7 @@ export const topUserProduct = async (req, res) => {
 
 export const topProduct = async (req, res) => {
   try {
-    const existProducts = await Product.find({ ratings: { $gte: 4.8, $lte: 5 } }).sort({ createdAt: -1 });
+    const existProducts = await Product.find({ ratings: { $gte: 4.8, $lte: 5 } }).populate('category').sort({ createdAt: -1 });
 
 
     if (!existProducts) {

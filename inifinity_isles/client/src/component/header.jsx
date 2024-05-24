@@ -60,10 +60,9 @@ const Header = () => {
                     ) : (<div></div>)}
                     <div className="hidden sm:block font-mono border-x border-gray-800 hover:bg-gray-50 sm:text-xs md:text-sm lg:text-base xl:text-lg sm:mx-1 md:mx-2 lg:mx-3 xl:mx-4 sm:px-1 md:px-1.5 lg:px-2 xl:px-3">Free Shipping</div>
                     <Link to='/checkout/cart'>
-                        <div className="hidden sm:block sm:mx-0 md:mx-1 lg:mx-2 xl:mx-3">
-                            <span className={`${totalQuantity === 0 && 'hidden'} absolute inline-flex items-center justify-center text-red-800 font-semibold bg-red-200 rounded-full w-1 h-1 sm:p-1.5 md:p-2 lg:p-2.5 xl:p-3 sm:text-[9px] md:text-[10px] lg:text-sm xl:text-sm sm:top-2 md:top-2.5 lg:top-0 sm:right-[22px] md:right-6 lg:right-[26px] xl:right-6`}>{totalQuantity}</span>
-                            <HiMiniShoppingCart className="sm:text-base md:text-lg lg:text-xl xl:text-2xl" />
-                        </div>
+                        <div className="relative hidden sm:block sm:mx-0 md:mx-1 lg:mx-2 xl:mx-3">
+                            
+                            <img src='https://res.cloudinary.com/du9pbx3ro/image/upload/v1716537919/jsvtoemolntoi9hhtjdk.png' className='w-10 h-10' ></img><span className={`${totalQuantity === 0 && 'hidden'} absolute bottom-1 left-0 right-0 inline-flex items-center justify-center text-red-800 font-semibold bg-white rounded-full w-1 h-1 sm:p-1.5 md:p-2 lg:p-2.5 xl:p-2 sm:text-[9px] md:text-[10px] lg:text-sm mx-auto ${totalQuantity > 50 ? 'xl:text-[9px]' : 'xl:text-[10px]'}`}>{totalQuantity > 50 ? '50+' : totalQuantity}</span></div>
                     </Link>
                 </div>
             </div>

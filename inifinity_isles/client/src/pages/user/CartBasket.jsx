@@ -8,6 +8,7 @@ const CartBasket = () => {
     const loading = state.isLoading
     const products = state.cartProduct
     const totalPrice = state.totalPrice
+    const totalQuantity = state.totalQuantity
     console.log(state)
 
     const truncateText = (text, maxWords) => {
@@ -48,7 +49,7 @@ const CartBasket = () => {
                                 </div>
                             </div>
                             <div className=" bg-white w-[38%] rounded-lg h-full p-5">
-                                <div className="capitalize text-xl font-bold">total items({products.length}) : {products.length}</div>
+                                <div className="capitalize text-xl font-bold">total items({products.length}) : {totalQuantity}</div>
                                 <div className="border-b border-gray-400 my-1"></div>
                                 {products?.map(item => (
                                     <div key={item.id} className="flex justify-between capitalize text-base my-3">

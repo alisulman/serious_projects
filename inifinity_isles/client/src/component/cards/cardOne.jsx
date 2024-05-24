@@ -59,7 +59,7 @@ const CardOne = ({ product }) => {
                     <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-700" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} product={product} />
                 </div>
                 <div className="absolute top-1/3 right-0 left-0 flex justify-center">
-                    <Link to={`/all-categories/smartphones/${product.category._id}/${product._id}`}><div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 p-1 mx-3 scale-0"><IoSearch className="text-xl" /></div></Link>
+                    <Link to={`/all-categories/${product.category.category}/${product.category._id}/${product._id}`}><div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 p-1 mx-3 scale-0"><IoSearch className="text-xl" /></div></Link>
                     <div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 delay-100 p-1 mx-3 scale-0" onClick={handleAddToCart}><FaPlus className="text-xl" /></div>
                 </div>
             </div>
