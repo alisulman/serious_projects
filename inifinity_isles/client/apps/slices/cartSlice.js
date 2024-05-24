@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoading: false,
   isError: false,
-  cartProduct: [],
+  cartProduct: JSON.parse(localStorage.getItem('cart')) || [],
   totalQuantity: 0,
   totalPrice: 0,
   isFavourite: JSON.parse(localStorage.getItem("favourites")) || [],
@@ -42,6 +42,7 @@ const cartSlice = createSlice({
           const totaling = state.cartProduct[index].price;
           state.totalPrice = state.totalPrice + totaling;
           state.totalQuantity = state.totalQuantity + 1
+          localStorage.setItem('cart', JSON.stringify(state.cartProduct))
         }
       } else {
         const total = action.payload.price;
@@ -51,6 +52,7 @@ const cartSlice = createSlice({
         ];
         state.totalPrice = state.totalPrice + total;
         state.totalQuantity = state.totalQuantity + 1;
+        localStorage.setItem('cart', JSON.stringify(state.cartProduct))
       }
     },
     removeItemFromBasket: (state, action) => {

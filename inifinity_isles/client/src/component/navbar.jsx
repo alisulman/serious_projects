@@ -57,7 +57,7 @@ const Navbar = () => {
                                             <div className='text-base font-bold mx-1'>Hi {username}</div>
                                         </div>
                                         <Link
-                                            to='/profile/authorized'
+                                            to='/profile'
                                             className="md:mx-1.5 lg:mx-5 hover:bg-gray-300 hover:w-32 hover:flex hover:justify-center rounded-lg py-1 px-6 "
                                         >
                                             Profile

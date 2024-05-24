@@ -4,9 +4,9 @@ import { FaHeart } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import Stock from "../../sideFunction/stock";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import IconChecker from "../../sideFunction/iconChecker";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addItemToBasket } from "../../../apps/slices/cartSlice";
 
 const CardOne = ({ product }) => {
@@ -18,16 +18,27 @@ const CardOne = ({ product }) => {
             return text
         }
     }
+
     const title = product.title
     const description = product.description
+
     const dispatch = useDispatch()
-    // const state = useSelector(state => state.Cart)
-    // const isFavorite = state.isFavorite
-    // console.log(product)
+    const navigate = useNavigate()
+
+    const state = useSelector(state => state.User)
+    const auth = state.isAuth.data
 
     const handleAddToCart = () => {
-        dispatch(addItemToBasket({id: product._id, title: title, description: description, price: product.price, image: product.images, stock: product.stock,category: product.category.category}))
-        console.log('ok')
+        if(auth?.role === 'buyer'){
+            dispatch(addItemToBasket({id: product._id, title: title, description: description, price: product.price, image: product.images, stock: product.stock,category: product.category.category}))
+        } else {
+            if(auth?.role === "seller" || auth?.role === "user"){
+                navigate('/profile')
+            } else {
+                navigate('/authenctication/registeration')
+            }
+        }
+
     }
     
     return (
