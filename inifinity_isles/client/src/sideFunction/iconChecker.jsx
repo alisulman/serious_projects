@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setGetFavorite } from "../../apps/action/cartAction"
 
 const IconChecker = ({ CheckedIcon, UnCheckedIcon, product }) => {
     const [check, setCheck] = useState(false)
@@ -24,7 +23,6 @@ const IconChecker = ({ CheckedIcon, UnCheckedIcon, product }) => {
         console.log('checked')
         setChecked('')
         setUnChecked('hidden')
-        dispatch(setGetFavorite(product))
     }
 
     return (

@@ -16,7 +16,7 @@ export const createCategory = async (category, id) => {
 
 export const fetchAllCategory = async (req, res) => {
   try {
-    const existCategory = await Category.find().sort({ createdAt: -1 });
+    const existCategory = await Category.find().populate('category').sort({ createdAt: -1 });
     if (!existCategory) {
       return res.status(400).json({
         success: false,
@@ -39,7 +39,7 @@ export const fetchAllCategory = async (req, res) => {
 export const fetchSingleCategory = async (req, res) => {
   try {
     const id = req.params.ctid 
-    const existProducts = await Product.find({ category : id })
+    const existProducts = await Product.find({ category : id }).populate('category')
     if(!existProducts){
       return res.status(400).json({
         success: false,

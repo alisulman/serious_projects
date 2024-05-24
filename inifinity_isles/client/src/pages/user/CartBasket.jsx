@@ -1,21 +1,15 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import Header from "../../component/header"
-import { useEffect } from "react"
-import { GetCartProducts } from "../../../apps/action/cartAction"
 import CardSeven from "../../component/cards/cardSeven"
 import axios from "axios"
-// import { CardCartLayout } from "../../layout/cardLayout"
 
 const CartBasket = () => {
     const state = useSelector(state => state.Cart)
-    const totalQuantity = state.totalQuantity
     const loading = state.isLoading
-    const totalPrice = state.totalPrice
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(GetCartProducts())
-    }, [dispatch])
     const products = state.cartProduct
+    const totalPrice = state.totalPrice
+    console.log(state)
+
     const truncateText = (text, maxWords) => {
         let word = text.split(' ')
         if (word.length > maxWords) {
@@ -31,11 +25,11 @@ const CartBasket = () => {
         } catch (error) {
             console.log(error.message)
         }
-    }
+    }  
     return (
         <>
             <Header />
-            {!totalQuantity ? (
+            {products.length === 0 ? (
                 <>
                     <div className="flex justify-center items-center h-[80vh]">
                         <div className="bg-white text-3xl text-gray-400 border border-gray-400 rounded-xl p-20">Please make the first shopping</div>
@@ -45,21 +39,21 @@ const CartBasket = () => {
                 <>
                     {!loading ? (
                         <div className="flex justify-between gap-5 p-7">
-                            <div className="bg-white flex flex-col w-[80%] p-5 z-30">
+                            <div className="bg-white flex flex-col w-[60%] p-5 z-30">
                                 <div className="text-3xl font-medium mb-5">Your Cart Products :</div>
                                 <div className="flex flex-col gap-5">
                                     {products?.map(item => (
-                                        <div key={item._id}><CardSeven product={item} /></div>
+                                        <div key={item.id}><CardSeven product={item} /></div>
                                     ))}
                                 </div>
                             </div>
-                            <div className=" bg-white w-[30%] rounded-lg h-full p-5">
-                                <div className="capitalize text-xl font-bold">total items({products.length}) : {totalQuantity}</div>
+                            <div className=" bg-white w-[38%] rounded-lg h-full p-5">
+                                <div className="capitalize text-xl font-bold">total items({products.length}) : {products.length}</div>
                                 <div className="border-b border-gray-400 my-1"></div>
                                 {products?.map(item => (
-                                    <div key={item._id} className="flex justify-between capitalize text-base my-3">
-                                        <div>{truncateText(item?.products?.title, 3)}({item?.products?.quantity}) :</div>
-                                        <div>{item?.products?.totalPrice}</div>
+                                    <div key={item.id} className="flex justify-between capitalize text-base my-3">
+                                        <div>{truncateText(item?.title, 3)}({item?.qty}) :</div>
+                                        <div>{item.total}</div>
                                     </div>
                                 ))}
                                 <div className="border-b border-gray-400 my-1"></div>

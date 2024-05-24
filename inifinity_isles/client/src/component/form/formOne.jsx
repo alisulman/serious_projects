@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createProduct, fetchAllCategories } from "../../../apps/action/prodAction";
 // import { FaEdit } from "react-icons/fa";
 import CropEditor from "../Editor/cropper";
+import AddCloud from "../../sideFunction/addCloud";
 
 const FormOne = () => {
     const [text, setText] = useState("");
@@ -58,8 +59,9 @@ const FormOne = () => {
     const handleChange = (e) => {
         const reader = new FileReader()
         reader.readAsDataURL(e.target.files[0])
-        reader.onload = () => {
-            setUrl(reader.result)
+        reader.onload = async () => {
+            const imageUrl = await AddCloud(reader.result)
+            setUrl(imageUrl)
         }
     }
     const handleOnDragOver = (e) => {
@@ -78,8 +80,9 @@ const FormOne = () => {
         const file = e.dataTransfer.files[0]
         const reader = new FileReader()
         reader.readAsDataURL(file)
-        reader.onload = () => {
-            setUrl(reader.result)
+        reader.onload = async() => {
+            const imageUrl = await AddCloud(reader.result)
+            setUrl(imageUrl)
         }
         setShow(true)
     }
@@ -87,11 +90,6 @@ const FormOne = () => {
         setUrl(false)
         setShow(true)
     }
-    // const handleSaveImage = async () => {
-    //     setShow(false)
-    //     const imageUrl = await AddCloud(url)
-    //     setNewImage(imageUrl)
-    // }
     const autoExpand = (event) => {
         const textarea = event.target;
         textarea.style.height = "1px";
@@ -102,9 +100,6 @@ const FormOne = () => {
             description: textarea.value
         })
     }
-    // const handleEdit = () => {
-    //     setShowEditor(true)
-    // }
     const handleCate = () => {
         console.log('ok')
     }
@@ -232,7 +227,7 @@ const FormOne = () => {
                     </div>
 
                     <div className="flex justify-between w-full px-1">
-                        <button type="submit" className={` text-white bg-blue-600 ${!emptyField() ? "cursor-pointer" : "cursor-not-allowed opacity-25"} rounded-md py-1 px-5`} >Add Product</button>
+                        <button type="submit" className={` text-white bg-blue-600 ${!emptyField() ? "cursor-pointer" : "cursor-not-allowed opacity-25"} rounded-md py-1 px-5`} disabled={emptyField()} >Add Product</button>
                         {/* <div className={`${url && 'hidden'} text-sm text-red-600 font-medium`}>Before add product first check and then upload image.Be careful during uploading.</div> */}
                         <button className="block text-blue-600 font-medium border-2 border-blue-600 rounded-md px-5" onClick={handleClick}>Cancel</button>
                     </div>

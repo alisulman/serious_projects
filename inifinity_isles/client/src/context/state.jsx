@@ -1,18 +1,24 @@
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
-/* eslint-disable react-hooks/rules-of-hooks */
 
 import { createContext, useContext, useState } from "react";
 
-const newContext = createContext()
+// Create the context
+const NewContext = createContext();
 
-export const Newprovider = ({ children }) => {
-  const [id, setId] = useState('')
-    return (
-        <newContext.Provider value={[id, setId]}>
-            {children}
-        </newContext.Provider>
-    )
-}
+// Create the provider component
+export const NewProvider = ({ children }) => {
+  const [cart, setCart] = useState({
+    totalPrice: '',
+    totalQuantity: '',
+  });
+  
+  return (
+    <NewContext.Provider value={[cart, setCart]}>
+      {children}
+    </NewContext.Provider>
+  );
+};
 
-export const useNew = () => useContext(newContext)
+// Custom hook to use the NewContext
+export const useNew = () => useContext(NewContext);
