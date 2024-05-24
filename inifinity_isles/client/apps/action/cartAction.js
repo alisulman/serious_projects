@@ -1,9 +1,5 @@
-import { addItemToBasket, decrementCartItem, incrementCartItem, removeItemFromBasket, setLoading, setQuantity, setTotalPrice } from "../slices/cartSlice";
+import { decrementCartItem, incrementCartItem, removeItemFromBasket, setLoading, setQuantity, setTotalPrice } from "../slices/cartSlice";
 
-export const addToCart = () => async (dispatch) => {
-    dispatch(setLoading())
-    dispatch(addItemToBasket())
-}
 
 export const removeFromCart = () => async (dispatch) => {
     dispatch(setLoading())

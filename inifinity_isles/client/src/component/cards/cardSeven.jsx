@@ -9,6 +9,14 @@ const CardSeven = ({ product }) => {
     const handleRemove = () => {
         dispatch(removeItemFromBasket(product?.id))
     }
+    const truncateText = (text, maxWords) => {
+        let word = text.split(' ')
+        if (word.length > maxWords) {
+            return word.slice(0, maxWords).join(' ') + "..."
+        } else {
+            return text
+        }
+    }
     return (
         <>
             <div className="border-2 border-black rounded-lg h-[200px]">
@@ -17,9 +25,9 @@ const CardSeven = ({ product }) => {
                     <img src={product?.image} className="w-48 h-full object-cover object-top -z-10" />
                     <div className="w-full h-full p-3">
                         <div className="flex justify-between">
-                            <div className="text-2xl">{product?.title}</div>
+                            <div className="text-2xl">{truncateText(product?.title, 5)}</div>
                         </div>
-                        <div className="w-full h-14">{product?.description}</div>
+                        <div className="w-full h-14">{truncateText(product?.description, 15)}</div>
                         <div className="flex justify-between">
                             <div>
                                 <div className="inline uppercase text-sm font-bold bg-blue-300 px-4 py-0.5">{product?.category}</div>

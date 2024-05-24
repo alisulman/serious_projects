@@ -21,6 +21,7 @@ const cartSlice = createSlice({
       state.isError = action.payload;
     },
     addItemToBasket: (state, action) => {
+      console.log(action)
       state.isLoading = false;
       state.isError = false;
       const check = state.cartProduct.some(
@@ -58,8 +59,11 @@ const cartSlice = createSlice({
       const index = state.cartProduct.findIndex(
         (item) => item.id === action.payload
       );
+      console.log(index)
       const total = state.cartProduct[index].total;
       state.totalPrice = state.totalPrice - total;
+      const qty = state.cartProduct[index].qty
+      state.totalQuantity = state.totalQuantity - qty
       state.cartProduct.splice(index, 1);
     },
     incrementCartItem: (state, action) => {
