@@ -119,6 +119,11 @@ const cartSlice = createSlice({
       state.totalQuantity = totalQty;
       localStorage.setItem('totalQty', JSON.stringify(state.totalQuantity))
     },
+    setFavourite: (state, action) => {
+      state.isLoading = false,
+      state.isError = false,
+      state.isFavourite = action.payload
+    }
   },
 });
 
@@ -130,7 +135,8 @@ export const {
   incrementCartItem,
   decrementCartItem,
   setTotalPrice,
-  setQuantity
+  setQuantity,
+  setFavourite,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

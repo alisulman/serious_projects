@@ -7,9 +7,13 @@ import Stock from "../../sideFunction/stock";
 import { useDispatch, useSelector } from "react-redux";
 import IconChecker from "../../sideFunction/iconChecker";
 import { Link, useNavigate } from "react-router-dom";
-import { addItemToBasket } from "../../../apps/slices/cartSlice";
+import { addItemToBasket } from " ../../../apps/slices/cartSlice";
+import { DoFav } from "../../../apps/action/cartAction";
+import { useState } from 'react'
 
 const CardOne = ({ product }) => {
+    const [chknchk, setChknchk] = useState(false)
+    const [uchknchk, setUchknchk] = useState(true)
     const truncateText = (text, maxWords) => {
         let word = text.split(' ')
         if (word.length > maxWords) {
@@ -29,10 +33,10 @@ const CardOne = ({ product }) => {
     const auth = state.isAuth.data
 
     const handleAddToCart = () => {
-        if(auth?.role === 'buyer'){
-            dispatch(addItemToBasket({id: product._id, title: title, description: description, price: product.price, image: product.images, stock: product.stock,category: product.category.category}))
+        if (auth?.role === 'buyer') {
+            dispatch(addItemToBasket({ id: product._id, title: title, description: description, price: product.price, image: product.images, stock: product.stock, category: product.category.category }))
         } else {
-            if(auth?.role === "seller" || auth?.role === "user"){
+            if (auth?.role === "seller" || auth?.role === "user") {
                 navigate('/profile')
             } else {
                 navigate('/authenctication/registeration')
@@ -40,7 +44,17 @@ const CardOne = ({ product }) => {
         }
 
     }
-    
+
+    const handleChk = () => {
+        if (chknchk) {
+            dispatch(DoFav(product._id))
+            setUchknchk(true)
+            setChknchk(false)
+        } else if (uchknchk) {
+            setChknchk(true)
+            setUchknchk(false)
+        }
+    }
     return (
         <>
             <div className="relative group/item overflow-hidden w-60 h-80">
@@ -55,8 +69,8 @@ const CardOne = ({ product }) => {
                         <div className={`${product.stock === 0 ? 'bg-red-600 text-white' : 'bg-white'} text-xs font-bold  rounded py-0.5 px-3`}><Stock stock={product.stock} /></div>
                     </div>
                 </div>
-                <div className="absolute top-0 left-0 m-1.5">
-                    <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-700" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} product={product} />
+                <div className="absolute top-0 left-0 m-1.5" onClick={handleChk}>
+                    <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-700" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} chknchk={chknchk} uchknchk={uchknchk}/>
                 </div>
                 <div className="absolute top-1/3 right-0 left-0 flex justify-center">
                     <Link to={`/all-categories/${product.category.category}/${product.category._id}/${product._id}`}><div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 p-1 mx-3 scale-0"><IoSearch className="text-xl" /></div></Link>
