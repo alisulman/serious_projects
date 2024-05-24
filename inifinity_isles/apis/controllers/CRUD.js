@@ -99,7 +99,7 @@ export const fetchAllProduct = async (req, res) => {
 export const fetchSingleProduct = async (req, res) => {
   try {
     const productId = req.params.id;
-    const existProduct = await Product.findById({ _id: productId });
+    const existProduct = await Product.findById({ _id: productId }).populate('category');
     if (!existProduct) {
       return res.status(400).json({
         success: false,
