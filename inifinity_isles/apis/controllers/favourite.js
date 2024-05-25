@@ -53,7 +53,11 @@ export const removeFavouriteItem = async (req, res) => {
 export const fetchFavouriteItem = async(req, res) => {
     try {
         const userId = req.user.id;
-        const existingFavourite = await Favourite.find({ user: userId });
+        const existingFavourite = await Favourite.find({ user: userId }).populate({
+            path: "product",
+            populate: {
+              path: "category",
+            }})
         if(!existingFavourite){
             return res.status(404).json({
                 success: false,

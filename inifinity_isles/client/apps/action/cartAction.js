@@ -23,9 +23,17 @@ export const setDecrement = (id) => async (dispatch) => {
 
 export const DoFav = (id) => async (dispatch) => {
     dispatch(setLoading())
-    const auth = JSON.parse(localStorage.getitem('auth'))
-    const token = auth?.token
+    const user = JSON.parse(localStorage.getItem("auth"));
+    const token = user?.token;
     const url = `http://localhost:2000/api/add-to-favourite-list/${id}/${token}`
+    await axios.get(url)
+}
+
+export const FetchFav = () => async (dispatch) => {
+    dispatch(setLoading())
+    const user = JSON.parse(localStorage.getItem("auth"));
+    const token = user?.token;
+    const url = `http://localhost:2000/api/all-favourite-list/${token}`
     const response = await axios.get(url)
-    console.log(response.data.data)
+    localStorage.setItem('favourites', JSON.stringify(response.data.data))
 }

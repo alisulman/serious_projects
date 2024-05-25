@@ -91,9 +91,9 @@ const HomeScrn = () => {
                     <TopProducts />
                 )}
                 <div className="border-b border-black" />
-                {isFavourite.length !== 0 ? (
+                {/* {isFavourite.length !== 0 ? ( */}
                     <FavouritePage />
-                ) : null}
+                {/* ) : null} */}
                 <div className="border-b border-black" />
                 {showCat && (
                     <TopCategory setHideCate={setShowCat} />

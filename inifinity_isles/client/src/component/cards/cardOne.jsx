@@ -7,7 +7,7 @@ import Stock from "../../sideFunction/stock";
 import { useDispatch, useSelector } from "react-redux";
 import IconChecker from "../../sideFunction/iconChecker";
 import { Link, useNavigate } from "react-router-dom";
-import { addItemToBasket } from " ../../../apps/slices/cartSlice";
+import { addItemToBasket } from "../../../apps/slices/cartSlice";
 import { DoFav } from "../../../apps/action/cartAction";
 import { useState } from 'react'
 
@@ -47,10 +47,10 @@ const CardOne = ({ product }) => {
 
     const handleChk = () => {
         if (chknchk) {
-            dispatch(DoFav(product._id))
             setUchknchk(true)
             setChknchk(false)
         } else if (uchknchk) {
+            dispatch(DoFav(product._id))
             setChknchk(true)
             setUchknchk(false)
         }

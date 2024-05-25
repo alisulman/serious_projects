@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import Header from "../../component/header"
 import CardSeven from "../../component/cards/cardSeven"
 import axios from "axios"
+import {loadStripe} from '@stripe/stripe-js';
 
 const CartBasket = () => {
     const state = useSelector(state => state.Cart)
@@ -20,13 +21,17 @@ const CartBasket = () => {
         }
     }
     const handlePayment = async () => {
+        const stripe = await loadStripe('pk_test_51PIowqHN5Yok0Vr2VVnbOFI2S9e4Yu20x6Qc6TuPkUkQdPGCtZkPUh70o0jHVo82QV8WBm8wAFrp2wgeODZumTPN00E03roLuZ')
         try {
-            const response = await axios.post('http://localhost:2000/api/checkout-payment', { products })
+            const response = await axios.post('http://localhost:2000/api/checkout-payment',  products)
             console.log(response)
+            stripe.redirectToCheckout({sessionId: response.data.id})
+            // console.log()
         } catch (error) {
             console.log(error.message)
         }
     }  
+    console.log(products)
     return (
         <>
             <Header />
