@@ -1,4 +1,6 @@
 /* eslint-disable no-const-assign */
+
+import toast from "react-hot-toast";
 import {
   setAuth,
   setError,
@@ -18,24 +20,24 @@ export const registory =
       }`;
       const response = await axios.post(url, data);
       const user = response.data;
-      console.log(user.token);
-      dispatch(setLoading());
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-      dispatch(setAuth(user));
-      localStorage.setItem("auth", JSON.stringify(user));
+      if(200 <= response.status <= 205){
+        toast.success(response.data.message)
+        dispatch(setLoading());
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+        dispatch(setAuth(user));
+        localStorage.setItem("auth", JSON.stringify(user));
+      }
     } catch (error) {
-      dispatch(
-        setError(
+   toast.error(
           error.response && error.response.data.message
             ? error.response.data.message
             : error.message
             ? error.message
             : "Internal Server Error"
         )
-      );
-    }
+      }
   };
 
 export const changeRole = (id, role) => async (dispatch) => {

@@ -24,7 +24,7 @@ export const signup = async (req, res) => {
     if (userExist) {
       return res.status(409).json({
         success: false,
-        message: "User already exist",
+        message: "Email or password is incorrect",
       });
     }
     const securePassword = await ecryptPassword(password);
@@ -38,7 +38,7 @@ export const signup = async (req, res) => {
     const token = getToken(newUser);
     return res.status(201).json({
       success: true,
-      message: "User created successfully",
+      message: "User registered successfully",
       data: newUser,
       token: token,
     });
@@ -68,7 +68,7 @@ export const signin = async (req, res) => {
     if (!userExist) {
       return res.status(404).json({
         success: false,
-        message: "User does not exist",
+        message: "Email or password is incorrect",
       });
     }
     const securePassword = await dcrryptPassword(password, userExist.password);
@@ -76,7 +76,7 @@ export const signin = async (req, res) => {
     if (email === userExist.email && securePassword) {
       return res.status(200).json({
         success: true,
-        message: "User signed in successfully",
+        message: "Successfully Loged in",
         data: userExist,
         token: token,
       });

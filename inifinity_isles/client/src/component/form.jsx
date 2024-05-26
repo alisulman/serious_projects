@@ -10,8 +10,9 @@ import { RiCheckboxBlankCircleLine } from "react-icons/ri";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux'
 import { registory } from '../../apps/action/authAction'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { cancelProduct, createProduct, updateProduct } from '../../apps/action/prodAction';
+import toast, { Toaster } from 'react-hot-toast';
 
 const credInitial = {
     username: '',
@@ -78,11 +79,10 @@ const Form = ({ page }) => {
     }, [page])
 
     // console.log(state)
-
     return (
         <>
+            <Toaster />
             <form className="w-80 sm:w-[290px] md:min-w-[300px] lg:min-w-[400px]" noValidate>
-
                 {page === 'Signup' && (
                     <div className="relative h-11  mb-8">
                         <input
@@ -204,6 +204,7 @@ const Form = ({ page }) => {
                         id="submitBtn"
                         className={`text-sm text-blue-800 font-medium bg-[#eee]  border border-blue-800 rounded-full w-full px-9 py-1.5 mt-3 focus:ring-1 focus:ring-blue-300 focus:outline-none hover:bg-blue-800 hover:text-white sm:text-[10px] md:text-xs lg:text-sm sm:px-5 md:px-7 lg:px-9 sm:py-0.5 md:py-1 lg:py-1.5 sm:my-1 md:my-2 lg:my-3 ${cred.email !== '' && cred.password !== '' ? '' : 'cursor-not-allowed opacity-50'}`}
                         onClick={handleSubmit}
+                        disabled={cred.email!== '' && cred.password!== '' ? false : true}
                     >
                         {page}
                     </button>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Logo from '../../../public/assets/logo'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,15 +8,19 @@ import { useEffect, useState } from 'react'
 import checkSVG from '../../../public/assets/7efs.gif'
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import SEO_Comp from '../../component/SEO'
+import toast, { Toaster } from 'react-hot-toast'
 
 const ManageAccount = () => {
     const [isLoading, setisLoading] = useState(false)
+    const [handleTitle, setHandleTitle] = useState('Manage Account')
     const [isLoadingTwo, setisLoadingTwo] = useState(false)
     const [count, setCount] = useState("")
     const [countTwo, setCountTwo] = useState("")
     const [text, setText] = useState("")
     const [textTwo, setTextTwo] = useState("")
     const [showImage, setShowImage] = useState(false);
+    const [roler, setRole] = useState('user')
 
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -34,6 +39,8 @@ const ManageAccount = () => {
             navigate('/')
             window.location.reload()
         }, 6000);
+        setHandleTitle('Buyer Updater')
+        setRole('buyer')
     }
     const handleSellerAccount = () => {
         setisLoadingTwo(true)
@@ -46,8 +53,9 @@ const ManageAccount = () => {
             navigate('/')
             window.location.reload()
         }, 6000);
+        setHandleTitle('Seller Updater')
+        setRole('seller')
     }
-
     useEffect(() => {
         const interval = setInterval(() => {
             setCount(decre => --decre)
@@ -56,12 +64,13 @@ const ManageAccount = () => {
             setText("It takes a minute")
         } else if (count === 2) {
             setText("Almost Done")
+            toast(`You activate your ${roler} account`)
         } else if (count === 0) {
             setText("Done")
             clearInterval(interval)
         }
         return () => clearInterval(interval)
-    }, [count])
+    }, [count, roler])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -71,12 +80,13 @@ const ManageAccount = () => {
             setTextTwo("It takes a minute")
         } else if (countTwo === 2) {
             setTextTwo("Almost Done")
+            toast(`You activate your ${roler} account`)
         } else if (countTwo === 0) {
             setTextTwo("Done")
             clearInterval(interval)
         }
         return () => clearInterval(interval)
-    }, [countTwo])
+    }, [countTwo, roler])
     if (count === 0) {
         setTimeout(() => {
             setShowImage(false)
@@ -85,6 +95,8 @@ const ManageAccount = () => {
 
     return (
         <>
+            <SEO_Comp title={handleTitle} description='Handle Account change' keywords='buyer, seller, online Store' author='Ali Sulman' />
+            <Toaster />
             <Link to="/" className='flex items-center justify-center my-2'>
                 <Logo style='w-20 h-10 mt-1' />
                 <span className='text-2xl font-medium px-1'>Infinity Isles</span>

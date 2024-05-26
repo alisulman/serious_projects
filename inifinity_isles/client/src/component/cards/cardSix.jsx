@@ -1,13 +1,19 @@
 /* eslint-disable react/prop-types */
-import { FaHeart } from "react-icons/fa6";
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import { addItemToBasket } from "../../../apps/slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { DoFav, RemoveFav } from "../../../apps/action/cartAction";
+import toast from "react-hot-toast";
+import IconChecker from "../../sideFunction/iconChecker";
 
 
 const CardSix = ({ item }) => {
+    const [chknchk, setChknchk] = useState(false)
+    const [uchknchk, setUchknchk] = useState(true)
     const truncateText = (text, maxWords) => {
         let word = text?.split(' ')
         if (word?.length > maxWords) {
@@ -21,7 +27,9 @@ const CardSix = ({ item }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const state = useSelector(state => state.User)
+    const stateOne = useSelector(state => state.Cart)
     const auth = state.isAuth.data
+    const favProd = stateOne.isFavourite
     console.log(item.product.category)
 
     const handleAddToCart = () => {
@@ -35,6 +43,25 @@ const CardSix = ({ item }) => {
             }
         }
     }
+    const handleChk = () => {
+        if (chknchk) {
+            setChknchk(false)
+            setUchknchk(true)
+            // if (favProdFind) {
+            //     dispatch(RemoveFav(product._id))
+            //     toast(`You unfavourite ${truncateText(product.title, 3)}`)
+            // } else if(!favProdFind) {
+            //     dispatch(DoFav(product._id))
+            // }
+        } else if (uchknchk) {
+            // dispatch(DoFav(product._id))
+            setChknchk(true)
+            setUchknchk(false)
+            // toast(`You favourite ${truncateText(product.title, 3)}`)
+        }
+    }
+
+    console.log(favProd)
     return (
         <>
             <div className='flex justify-between my-5 cursor-pointer'>
@@ -47,7 +74,9 @@ const CardSix = ({ item }) => {
                         <div className='border-b my-1'></div>
                         <div className='text-sm'>{item?.price}/- pkr</div>
                     </div>
-                    <FaHeart className='group-hover/item:scale-100 group-hover/item:opacity-100 absolute top-0 right-0 text-lg text-red-600 m-2 scale-0 transition-transform ease-linear duration-[0.2s] delay-700 opacity-0' />
+                    <div className="absolute top-0 left-0 m-1.5" onClick={handleChk}>
+                        <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-700" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} chknchk={chknchk} uchknchk={uchknchk} />
+                    </div>
                     <div className='absolute top-[40%] left-0 right-0 flex justify-center items-center text-white text-2xl'>
                         <span className='group-hover/item:scale-100 border-2 border-white rounded-full mx-3 p-1 transition-transform ease-in-out duration-[0.2s] delay-300 scale-0 hover:border-black hover:text-black'><IoSearch className='text-lg font-medium' /></span>
                         <span className='group-hover/item:scale-100 border-2 border-white rounded-full mx-3 p-1 transition-transform ease-in-out duration-[0.2s] delay-[0.4s] hover:border-black hover:text-black scale-0' onClick={handleAddToCart}><FaPlus className='text-lg font-medium' /></span>

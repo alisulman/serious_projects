@@ -1,4 +1,4 @@
-import { decrementCartItem, incrementCartItem, removeItemFromBasket, setLoading, setQuantity, setTotalPrice } from "../slices/cartSlice";
+import { decrementCartItem, incrementCartItem, removeItemFromBasket, setFavourite, setLoading, setQuantity, setTotalPrice } from "../slices/cartSlice";
 import axios from 'axios'
 
 
@@ -27,13 +27,20 @@ export const DoFav = (id) => async (dispatch) => {
     const token = user?.token;
     const url = `http://localhost:2000/api/add-to-favourite-list/${id}/${token}`
     await axios.get(url)
+    dispatch(setLoading())
+    const response = await axios.get(`http://localhost:2000/api/all-favourite-list/${token}`)
+    dispatch(setFavourite(response.data.data))
+    localStorage.setItem('favourites', JSON.stringify(response.data.data))
 }
 
-export const FetchFav = () => async (dispatch) => {
+export const RemoveFav = (id) => async (dispatch) => {
     dispatch(setLoading())
     const user = JSON.parse(localStorage.getItem("auth"));
     const token = user?.token;
-    const url = `http://localhost:2000/api/all-favourite-list/${token}`
-    const response = await axios.get(url)
+    const url = `http://localhost:2000/api/remove-from-favourite-list/${id}/${token}`
+    await axios.delete(url)
+    dispatch(setLoading())
+    const response = await axios.get(`http://localhost:2000/api/all-favourite-list/${token}`)
+    dispatch(setFavourite(response.data.data))
     localStorage.setItem('favourites', JSON.stringify(response.data.data))
 }

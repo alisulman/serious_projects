@@ -35,7 +35,10 @@ export const removeFavouriteItem = async (req, res) => {
     try {
         const productId = req.params.pid;
         const userId = req.user.id;
+        console.log(productId)
+        console.log(userId)
         const existingFavourite = await Favourite.findOneAndDelete({ user: userId, product: productId });
+        console.log(existingFavourite)
         return res.status(200).json({
             success: true,
             message: "Product removed from favourite list",

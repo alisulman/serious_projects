@@ -17,6 +17,7 @@ import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import SEO_Comp from "../../component/SEO"
 
 
 
@@ -54,6 +55,7 @@ const HomeScrn = () => {
 
     return (
         <>
+            <SEO_Comp title='Home-Inifinity Isles' description='A free Packages to buy your choice Product' keywords='Shopping, Ecommerce Store' author='Ali Sulman' />
             <Header />
             <Navbar />
             <div className="relative h-full">
@@ -91,9 +93,9 @@ const HomeScrn = () => {
                     <TopProducts />
                 )}
                 <div className="border-b border-black" />
-                {/* {isFavourite.length !== 0 ? ( */}
+                {isFavourite.length !== 0 ? (
                     <FavouritePage />
-                {/* ) : null} */}
+                ) : null}
                 <div className="border-b border-black" />
                 {showCat && (
                     <TopCategory setHideCate={setShowCat} />
@@ -102,8 +104,6 @@ const HomeScrn = () => {
                 <div className="text-3xl font-medium my-5">You may like these:</div>
             </div>
             <Footer />
-
-
         </>
     )
 }

@@ -26,7 +26,6 @@ const CartBasket = () => {
             const response = await axios.post('http://localhost:2000/api/checkout-payment',  products)
             console.log(response)
             stripe.redirectToCheckout({sessionId: response.data.id})
-            // console.log()
         } catch (error) {
             console.log(error.message)
         }

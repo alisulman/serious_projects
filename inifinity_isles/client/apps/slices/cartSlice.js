@@ -71,9 +71,9 @@ const cartSlice = createSlice({
       const totalQty = state.totalQuantity - qty
       state.totalQuantity = totalQty;
       state.cartProduct.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(state.cartProduct))
-      localStorage.setItem('totalQty', JSON.stringify(totalQty))
-      localStorage.setItem('totalPrice', JSON.stringify(state.totalPrice))
+      localStorage.removeItem('cart')
+      localStorage.removeItem('totalQty')
+      localStorage.removeItem('totalPrice')
     },
     incrementCartItem: (state, action) => {
       state.isLoading = false;

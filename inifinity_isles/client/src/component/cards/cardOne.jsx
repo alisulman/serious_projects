@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import IconChecker from "../../sideFunction/iconChecker";
 import { Link, useNavigate } from "react-router-dom";
 import { addItemToBasket } from "../../../apps/slices/cartSlice";
-import { DoFav } from "../../../apps/action/cartAction";
-import { useState } from 'react'
+import { DoFav, RemoveFav } from "../../../apps/action/cartAction";
+import { useEffect, useState } from 'react'
+import toast, { Toaster } from "react-hot-toast";
 
 const CardOne = ({ product }) => {
     const [chknchk, setChknchk] = useState(false)
@@ -30,7 +31,9 @@ const CardOne = ({ product }) => {
     const navigate = useNavigate()
 
     const state = useSelector(state => state.User)
+    const stateOne = useSelector(state => state.Cart)
     const auth = state.isAuth.data
+    const favProd = stateOne.isFavourite
 
     const handleAddToCart = () => {
         if (auth?.role === 'buyer') {
@@ -45,18 +48,38 @@ const CardOne = ({ product }) => {
 
     }
 
+    const favProdFind = favProd.some(item => item.product._id === product._id)
     const handleChk = () => {
         if (chknchk) {
-            setUchknchk(true)
             setChknchk(false)
+            setUchknchk(true)
+            if (favProdFind) {
+                dispatch(RemoveFav(product._id))
+                toast(`You unfavourite ${truncateText(product.title, 3)}`)
+            } else if(!favProdFind) {
+                dispatch(DoFav(product._id))
+            }
         } else if (uchknchk) {
             dispatch(DoFav(product._id))
             setChknchk(true)
             setUchknchk(false)
+            toast(`You favourite ${truncateText(product.title, 3)}`)
         }
     }
+
+
+    useEffect(() => {
+        if (favProdFind) {
+            setUchknchk(false)
+            setChknchk(true)
+        } else {
+            setUchknchk(true)
+            setChknchk(false)
+        }
+    }, [favProdFind])
     return (
         <>
+            <Toaster />
             <div className="relative group/item overflow-hidden w-60 h-80">
                 <img src={product.images} className="object-cover object-top w-full h-full" />
                 <div className="absolute top-0 bg-white bg-opacity-70 transform transition-transform translate-y-80 duration-500 w-60 h-80 group-hover/item:translate-y-0"></div>
@@ -70,7 +93,7 @@ const CardOne = ({ product }) => {
                     </div>
                 </div>
                 <div className="absolute top-0 left-0 m-1.5" onClick={handleChk}>
-                    <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-700" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} chknchk={chknchk} uchknchk={uchknchk}/>
+                    <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-700" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} chknchk={chknchk} uchknchk={uchknchk} />
                 </div>
                 <div className="absolute top-1/3 right-0 left-0 flex justify-center">
                     <Link to={`/all-categories/${product.category.category}/${product.category._id}/${product._id}`}><div className="group-hover/item:scale-100 border-2 border-black hover:border-white hover:text-white rounded-full transform transition-transform duration-500 p-1 mx-3 scale-0"><IoSearch className="text-xl" /></div></Link>
