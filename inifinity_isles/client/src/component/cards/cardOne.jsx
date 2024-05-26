@@ -38,6 +38,7 @@ const CardOne = ({ product }) => {
     const handleAddToCart = () => {
         if (auth?.role === 'buyer') {
             dispatch(addItemToBasket({ id: product._id, title: title, description: description, price: product.price, image: product.images, stock: product.stock, category: product.category.category }))
+            toast('One item add in cart')
         } else {
             if (auth?.role === "seller" || auth?.role === "user") {
                 navigate('/profile')

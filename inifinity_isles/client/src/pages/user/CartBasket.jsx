@@ -2,7 +2,9 @@ import { useSelector } from "react-redux"
 import Header from "../../component/header"
 import CardSeven from "../../component/cards/cardSeven"
 import axios from "axios"
-import {loadStripe} from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import SEO_Comp from "../../component/SEO";
+import toast, { Toaster } from "react-hot-toast"
 
 const CartBasket = () => {
     const state = useSelector(state => state.Cart)
@@ -10,7 +12,6 @@ const CartBasket = () => {
     const products = state.cartProduct
     const totalPrice = state.totalPrice
     const totalQuantity = state.totalQuantity
-    console.log(state)
 
     const truncateText = (text, maxWords) => {
         let word = text.split(' ')
@@ -23,16 +24,19 @@ const CartBasket = () => {
     const handlePayment = async () => {
         const stripe = await loadStripe('pk_test_51PIowqHN5Yok0Vr2VVnbOFI2S9e4Yu20x6Qc6TuPkUkQdPGCtZkPUh70o0jHVo82QV8WBm8wAFrp2wgeODZumTPN00E03roLuZ')
         try {
-            const response = await axios.post('http://localhost:2000/api/checkout-payment',  products)
-            console.log(response)
-            stripe.redirectToCheckout({sessionId: response.data.id})
+            const response = await axios.post('http://localhost:2000/api/checkout-payment', products)
+            stripe.redirectToCheckout({ sessionId: response.data.id })
+            toast.loading('Redirect you to payment gatway...')
+            localStorage.setItem('recipt', JSON.stringify(products))
         } catch (error) {
             console.log(error.message)
         }
-    }  
+    }
     console.log(products)
     return (
         <>
+            <SEO_Comp title="Cart" />
+            <Toaster />
             <Header />
             {products.length === 0 ? (
                 <>

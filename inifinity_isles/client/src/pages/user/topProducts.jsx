@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchTopProducts } from '../../../apps/action/prodAction';
 import { Link } from 'react-router-dom';
+import ScrollToTop from '../../utils/scrollToTop';
 
 
 const TopProducts = () => {
@@ -57,13 +58,15 @@ const TopProducts = () => {
                 >
                     {products?.map(product => (
                         <SwiperSlide key={product._id} className=' border-2 border-gray-400 rounded-xl overflow-hidden bg-cover w-[300px] h-[300px]'>
-                            <Link to={`all-categories/${product.category.category}/${product.category._id}/${product._id}`}>
-                            <img src={product.images} className='block w-full h-full object-cover' />
-                            <div className='absolute bottom-0 text-center bg-white bg-opacity-80 w-full px-2'>
-                                <div className='capitalize text-xl font-[600]'>{truncateText(product?.title, 3)}</div>
-                                <div className='text-sm leading-5 mb-2'>{truncateText(product?.description, 5)}</div>
+                            <div onClick={() => ScrollToTop()}>
+                                <Link to={`all-categories/${product.category.category}/${product.category._id}/${product._id}`} >
+                                    <img src={product.images} className='block w-full h-full object-cover' />
+                                    <div className='absolute bottom-0 text-center bg-white bg-opacity-80 w-full px-2'>
+                                        <div className='capitalize text-xl font-[600]'>{truncateText(product?.title, 3)}</div>
+                                        <div className='text-sm leading-5 mb-2'>{truncateText(product?.description, 5)}</div>
+                                    </div>
+                                </Link>
                             </div>
-                            </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>

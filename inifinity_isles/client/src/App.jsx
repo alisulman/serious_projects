@@ -21,7 +21,7 @@ function App() {
   const state = useSelector(state => state.User);
   const user = state.isAuth;
   const role = user?.data?.role;
-  if(!user?.token){
+  if (!user?.token) {
     localStorage.removeItem('cart')
     localStorage.removeItem('totalQty ')
   }

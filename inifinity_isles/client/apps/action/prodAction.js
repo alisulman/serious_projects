@@ -7,6 +7,7 @@ import {
   setProduct,
   setProducts,
   setSCP,
+  setSingleCateProdByName,
   setTP,
   setUTP,
   setUserProducts,
@@ -227,3 +228,22 @@ export const fetchSingleCateProd = (id) => async (dispatch) => {
     );
   }
 };
+
+export const fetchSingleCateProdByName = (Catname) => async (dispatch) => {
+  dispatch(setLoading());
+  try {
+    const url = `http://localhost:2000/api/category-name/${Catname}`;
+    const response = await axios.get(url);
+    dispatch(setSingleCateProdByName(response.data.data));
+  } catch (error) {
+    dispatch(
+      setError(
+        error.response && error.response.data.message
+         ? error.response.data.message
+          : error.message
+         ? error.message
+          : "Internal Server Error"
+      )
+    );
+  }
+}
