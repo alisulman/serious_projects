@@ -30,7 +30,7 @@ const CategoryPage = () => {
       </div>
       <div className="grid grid-cols-4 gap-5 m-20">
         {products?.map(product => (
-          <CardOne key={product._id} product={product} />
+          <CardOne key={product._id} product={product} whStyle='w-60 h-80' />
         ))}
       </div>
     </>

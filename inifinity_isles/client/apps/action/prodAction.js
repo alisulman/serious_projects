@@ -7,12 +7,12 @@ import {
   setProduct,
   setProducts,
   setSCP,
+  setShuffleProds,
   setSingleCateProdByName,
   setTP,
   setUTP,
   setUserProducts,
 } from "../slices/prodSlice";
-import toast from "react-hot-toast";
 
 export const createProduct =
   (title, description, stock, price, category, images) => async (dispatch) => {
@@ -28,7 +28,6 @@ export const createProduct =
         category,
         images,
       });
-      toast(`${title} is added successfully`)
     } catch (error) {
       dispatch(
         setError(
@@ -256,3 +255,10 @@ export const getpdfImageUrl = (url) => async (dispatch) => {
   });
   console.log(response);
 };
+
+export const fetchShuffleProds = (page, limit)  => async (dispatch) => {
+  dispatch(setLoading())
+  const url = `http://localhost:2000/api/ShuffleProds/page-${page}/limit-${limit}`
+  const response = await axios.get(url)
+  dispatch(setShuffleProds(response.data))
+}

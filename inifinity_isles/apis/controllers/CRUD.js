@@ -1,4 +1,5 @@
 import Product from "../models/productModel.js";
+import shuffleArray from "../utils/shuffling.js";
 import { createCategory } from "./category.js";
 
 export const createProduct = async (req, res) => {
@@ -230,3 +231,35 @@ export const topProduct = async (req, res) => {
     });
   }
 };
+
+export const shuffleProd = async (req, res) => {
+  try {
+    const page = req.params.page
+    const limit = req.params.limit
+    const existProducts = await Product.find({});
+    const shuffleProds = await shuffleArray(existProducts)
+    const startIndex = (page - 1) * limit
+    const endIndex = page * limit
+    const paginatedProd = shuffleProds.slice(startIndex, endIndex)
+    if(!existProducts){
+      return res.status(404).json({
+        success: false,
+        message: 'No product added yet',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      length: paginatedProd.length,
+      page: page,
+      totalPages: Math.ceil(existProducts.length / limit),
+      data: paginatedProd,
+    })
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    })
+  }
+    
+}
+ 

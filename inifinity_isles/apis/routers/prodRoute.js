@@ -12,5 +12,6 @@ prodRoute.delete('/delete-product/:id', product.deleteProduct);
 prodRoute.delete('/delete-product/:id', product.deleteProduct);
 prodRoute.get('/topRated-user-products/:id', product.topUserProduct);
 prodRoute.get('/topRated-products', product.topProduct);
+prodRoute.get('/ShuffleProds/page-:page/limit-:limit', product.shuffleProd);
 
 export default prodRoute

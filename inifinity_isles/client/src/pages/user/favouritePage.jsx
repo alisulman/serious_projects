@@ -1,5 +1,6 @@
-import {useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import CardSix from "../../component/cards/cardSix"
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const FavouritePage = () => {
     const state = useSelector(state => state.Cart)
@@ -8,13 +9,28 @@ const FavouritePage = () => {
 
     return (
         <>
-            <div className="my-5">
+            <div className="relative my-5">
                 <div className="text-3xl font-medium" id="favouriteProducts">All Your Favourites:</div>
-                <div className="grid grid-cols-6 gap-5">
-                    {favourite?.map(item => (
-                        <CardSix key={item?._id} item={item} />
-                    ))}
+                <div className="w-[84%] h-[300px] overflow-hidden">
+                    <div className="grid grid-cols-6 gap-5 w-[1190px]">
+                        {favourite?.map(item => (
+                            <CardSix key={item?._id} item={item} />
+                        ))}
+                    </div>
                 </div>
+                {favourite.length > 5 && (
+                    <div className="absolute top-[57px] right-0 border-2 border-gray-400 w-44 h-64 rounded-xl">
+                        <div className="flex justify-center items-center h-full"><ArrowForwardIosIcon
+                            sx={{
+                                fontSize: 30,
+                                backgroundColor: "#E0E0E0",
+                                padding: '10px',
+                                borderRadius: '50%',
+                            }}
+                        /></div>
+                    </div>
+                )
+                }
             </div>
         </>
     )

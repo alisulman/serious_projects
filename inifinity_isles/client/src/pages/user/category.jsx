@@ -2,13 +2,16 @@ import { useSelector } from "react-redux"
 import CardFive from "../../component/cards/cardFive"
 import Header from "../../component/header"
 import Navbar from "../../component/navbar"
+import ScrollToTop from "../../utils/scrollToTop"
+import SEO_Comp from "../../component/SEO"
 
 const Category = () => {
     const state = useSelector(state => state.Product)
     const category = state.category
+    ScrollToTop()
     return (
         <>
-            <Header />
+        <SEO_Comp title="Categories" />
             <Navbar />
             <div>
                 <div className="text-center text-3xl font-medium mt-5 -mb-10">All Categories</div>

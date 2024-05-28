@@ -5,6 +5,7 @@ import { createProduct, fetchAllCategories } from "../../../apps/action/prodActi
 // import { FaEdit } from "react-icons/fa";
 import CropEditor from "../Editor/cropper";
 import AddCloud from "../../sideFunction/addCloud";
+import toast, { Toaster } from "react-hot-toast";
 
 const FormOne = () => {
     const [text, setText] = useState("");
@@ -41,8 +42,9 @@ const FormOne = () => {
         navigate(-1)
     }
     const handleSubmit = async (e) => {
+        await toast(`${fields.title} is added successfully`)
         e.preventDefault();
-        dispatch(createProduct(fields.title, fields.description, fields.stock, fields.price, fields.category, url))
+        await dispatch(createProduct(fields.title, fields.description, fields.stock, fields.price, fields.category, url))
         navigate('/dashboard/vendor')
     };
     const emptyField = () => {
@@ -104,6 +106,7 @@ const FormOne = () => {
 
     return (
         <>
+        <Toaster />
             <div className="flex justify-between  w-11/12 mx-auto">
                 <form action="" className="inline-flex flex-col justify-center items-center ml-14 sm:ml-12 sm:-my-4 md:-my-3 lg:-my-1 xl:my-3 md:ml-10 lg:ml-8 xl:ml-5" onSubmit={handleSubmit}>
                     <div className="flex justify-center my-1.5">
@@ -133,7 +136,7 @@ const FormOne = () => {
                                 htmlFor="floating_outlined_two"
                                 className="absolute text-sm text-blue-600 font-medium duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#F5F5F5] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-90 peer-focus:font-medium peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Add Category</label>
                             {state.category.length !== 0 ? (
-                                <div className={`hidden absolute -top-0.5 -right-[85%] grid-cols-2 gap-4 bg-white border border-gray-200 bg-opacity-75 rounded-lg p-4 z-50 peer-focus:grid`}>
+                                <div className={`hidden absolute -top-0.5 -right-[75%] grid-cols-2 gap-4 bg-white border border-gray-200 bg-opacity-75 rounded-lg p-4 z-50 peer-focus:grid`}>
                                     {state?.category?.map(cate => (
                                         <button
                                             key={cate._id}

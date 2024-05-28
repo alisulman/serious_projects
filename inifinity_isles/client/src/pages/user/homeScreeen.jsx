@@ -18,6 +18,7 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SEO_Comp from "../../component/SEO"
+import MayLikeProd from "./mayLikeProd"
 
 
 
@@ -102,6 +103,7 @@ const HomeScrn = () => {
                 )}
                 <div className="border-b border-black" />
                 <div className="text-3xl font-medium my-5">You may like these:</div>
+                <MayLikeProd />
             </div>
             <Footer />
         </>

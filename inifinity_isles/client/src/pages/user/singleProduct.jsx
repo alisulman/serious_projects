@@ -14,6 +14,7 @@ import IconChecker from "../../sideFunction/iconChecker"
 import { FaRegHeart } from "react-icons/fa6"
 import ProdPageOne from "../prodPageOne"
 import Footer from "../../component/footer"
+import MayLikeProd from "./mayLikeProd"
 
 
 const SingleProduct = () => {
@@ -85,10 +86,10 @@ const SingleProduct = () => {
       <Navbar />
       <div className="relative bg-white mx-20 my-5 p-5 overflow-hidden">
         <div className="flex">
-          <div className="w-96 h-60">
+          <div className="w-[25%]">
             <img src={product.images} className="border-2 border-gray-400 w-full h-full object-cover object-top rounded-tr-2xl rounded-br-2xl" />
           </div>
-          <div className="px-3">
+          <div className="px-3 w-[75%]">
             <div className="text-3xl font-semibold">{product?.title}</div>
             <div className="flex justify-center items-center text-white text-sm uppercase bg-blue-600 w-40 my-2">{product?.category?.category}</div>
             <div className="flex items-center text-base my-3"><Ratings rating={product?.ratings} /><div className="flex justify-center items-center text-xs bg-indigo-400 rounded w-5 h-4 mx-2">{product?.ratings}</div></div>
@@ -107,7 +108,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
-      {products.length !== 0 && (
+      {products.length > 1 && (
         <div className="mx-20">
           <div className="text-4xl text-gray-500 font-semibold">Related Products:</div>
           <div className="grid grid-cols-5 gap-10 my-5">
@@ -115,6 +116,12 @@ const SingleProduct = () => {
           </div>
         </div>
       )}
+      <div className="mx-20 my-5">
+        <div className="text-4xl text-gray-500 font-semibold">You may like these</div>
+        <div className="my-5">
+          <MayLikeProd />
+        </div>
+      </div>
       <Footer />
     </>
   )
