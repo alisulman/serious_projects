@@ -108,24 +108,24 @@ export const updateProduct =
     }
   };
 
-  export const removeProduct = (id) => async(dispatch) =>  {
-    dispatch(setLoading());
-    try {
-      const url = `http://localhost:2000/api/delete-product/${id}`;
-      const response = await axios.delete(url);
-      console.log(response);
-    } catch (error) {
-      dispatch(
-        setError(
-          error.response && error.response.data.message
-           ? error.response.data.message
-            : error.message
-           ? error.message
-            : "Internal Server Error"
-        )
-      );
-    }
+export const removeProduct = (id) => async (dispatch) => {
+  dispatch(setLoading());
+  try {
+    const url = `http://localhost:2000/api/delete-product/${id}`;
+    const response = await axios.delete(url);
+    console.log(response);
+  } catch (error) {
+    dispatch(
+      setError(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+          ? error.message
+          : "Internal Server Error"
+      )
+    );
   }
+};
 
 export const cancelProduct = () => (dispatch) => {
   dispatch(resetProduct());
@@ -239,11 +239,19 @@ export const fetchSingleCateProdByName = (Catname) => async (dispatch) => {
     dispatch(
       setError(
         error.response && error.response.data.message
-         ? error.response.data.message
+          ? error.response.data.message
           : error.message
-         ? error.message
+          ? error.message
           : "Internal Server Error"
       )
     );
   }
-}
+};
+
+export const getpdfImageUrl = (url) => async (dispatch) => {
+  dispatch(setLoading());
+  const response = await axios.post(`http://localhost:2000/api/getImage`, {
+    url,
+  });
+  console.log(response);
+};

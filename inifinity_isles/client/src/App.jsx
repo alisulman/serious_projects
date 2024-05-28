@@ -15,6 +15,7 @@ import VendorProfile from "./pages/user/vendorProfile"
 import CategoryPage from "./pages/user/categoryPage"
 import Category from "./pages/user/category"
 import SingleProduct from "./pages/user/singleProduct"
+import SuccessPayment from "./layout/payment/successPayment"
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/all-categories/:category/:cpid" element={<CategoryPage />} />
         <Route path="/all-categories" element={<Category />} />
         <Route path="/all-categories/:category/:categoryId/:productId" element={<SingleProduct />} />
+        <Route path="/success_payment" element={<SuccessPayment />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>
           <Route path="purchaser" element={<DashboardP />} />

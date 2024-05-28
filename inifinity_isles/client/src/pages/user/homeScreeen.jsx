@@ -22,7 +22,6 @@ import SEO_Comp from "../../component/SEO"
 
 
 const HomeScrn = () => {
-    const [showCat, setShowCat] = useState(false)
     const [showSlide, setSlide] = useState(false)
     const state = useSelector(state => state.User)
     const stateOne = useSelector(state => state.Product)
@@ -32,14 +31,6 @@ const HomeScrn = () => {
     const topProducts = stateOne.topProducts
     const isFavourite = stateTwo.isFavourite
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        if (categories) {
-            setShowCat(true)
-        } else {
-            setShowCat(false)
-        }
-    }, [categories])
 
     useEffect(() => {
         if (topProducts.length !== 0) {
@@ -56,7 +47,6 @@ const HomeScrn = () => {
     return (
         <>
             <SEO_Comp title='Home-Inifinity Isles' description='A free Packages to buy your choice Product' keywords='Shopping, Ecommerce Store' author='Ali Sulman' />
-            <Header />
             <Navbar />
             <div className="relative h-full">
                 <Swiper
@@ -87,7 +77,9 @@ const HomeScrn = () => {
                 </Swiper>
             </div>
             <div className=" mx-20 my-10">
-                <TopBusinessman users={bussinessMen} />
+                {bussinessMen.length !== 0 && (
+                    <TopBusinessman users={bussinessMen} />
+                )}
                 <div className="border-b border-black" />
                 {showSlide && (
                     <TopProducts />
@@ -97,8 +89,8 @@ const HomeScrn = () => {
                     <FavouritePage />
                 ) : null}
                 <div className="border-b border-black" />
-                {showCat && (
-                    <TopCategory setHideCate={setShowCat} />
+                {categories.length !== 0 && (
+                    <TopCategory />
                 )}
                 <div className="border-b border-black" />
                 <div className="text-3xl font-medium my-5">You may like these:</div>

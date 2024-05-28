@@ -44,3 +44,13 @@ export const RemoveFav = (id) => async (dispatch) => {
     dispatch(setFavourite(response.data.data))
     localStorage.setItem('favourites', JSON.stringify(response.data.data))
 }
+
+export const savenUpdateReceipt = (product) => async (dispatch) => {
+    dispatch(setLoading());
+    const url = `http://localhost:2000/api/receiptSavenUPload`;
+    await axios.post(url, product);
+    localStorage.removeItem("cart");
+    localStorage.removeItem("totalQty");
+    localStorage.removeItem("totalPrice");
+    dispatch(setLoading());
+  };

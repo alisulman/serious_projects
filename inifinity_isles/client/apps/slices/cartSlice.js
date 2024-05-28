@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 const initialState = {
   isLoading: false,
@@ -32,7 +33,7 @@ const cartSlice = createSlice({
         );
         let qty = state.cartProduct[index].qty;
         if (qty === state.cartProduct[index].stock) {
-          console.log("Out of stock");
+          toast("Out of stock");
         } else {
           const newQty = qty + 1;
           state.cartProduct[index].qty = newQty;
@@ -41,6 +42,7 @@ const cartSlice = createSlice({
           const totaling = state.cartProduct[index].price;
           state.totalPrice = state.totalPrice + totaling;
           state.totalQuantity = state.totalQuantity + 1
+          toast('One item add in cart')
           localStorage.setItem('cart', JSON.stringify(state.cartProduct))
           localStorage.setItem('totalQty', JSON.stringify(state.totalQuantity))
           localStorage.setItem('totalPrice', JSON.stringify(state.totalPrice))

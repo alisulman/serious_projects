@@ -3,6 +3,7 @@ import dcrryptPassword from "../helpers/dcryptPassword.js";
 import decodeToken from "../helpers/decodeToken.js";
 import getToken from "../helpers/generateToken.js";
 import User from "../models/authModle.js";
+import Product from "../models/productModel.js";
 import Vendor from "../models/vendorModel.js";
 import genertarColorScheme from "../utils/colorSchemeGenerater.js";
 
@@ -156,3 +157,33 @@ export const fetchVendor = async (req, res) => {
     });
   }
 };
+
+export const findUser = async (req, res) => {
+  try {
+    const pid = req.params.pid;
+    const existProduct = await Product.findOne({_id: pid})
+    if(!existProduct){
+      return res.status(404).json({
+        success: false,
+        id: pid,
+        message: "Product not found",
+      });
+    }
+    const existUser = await User.findById({_id: existProduct.user});
+    if (!existUser) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: existUser,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+}
