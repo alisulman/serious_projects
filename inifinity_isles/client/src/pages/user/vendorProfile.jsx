@@ -9,6 +9,7 @@ import CardOne from '../../component/cards/cardOne'
 import { useEffect } from 'react'
 import { fetchTopUserProducts } from '../../../apps/action/prodAction'
 import Footer from '../../component/footer'
+import ScrollToTop from '../../utils/scrollToTop'
 
 const VendorProfile = () => {
     const { name } = useParams()
@@ -31,11 +32,12 @@ const VendorProfile = () => {
         dispatch(fetchTopUserProducts(id))
     }, [dispatch, id])
 
+    ScrollToTop()
+
     const data = <IsNew dater={user?.user?.createdAt} />
     console.log(data)
     return (
         <>
-            <Header />
             <Navbar />
             <div className='m-10'>
                 <div className='flex '>

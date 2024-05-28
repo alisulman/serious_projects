@@ -3,9 +3,9 @@
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 
-const Ratings = ({ rating }) => {
+const Ratings = ({ rating, style }) => {
     return (
-        <div className='flex'>
+        <div className={`flex ${style}`}>
             {rating > 4.8 ? (
                 <>
                     <FaStar className='text-yellow-300' />

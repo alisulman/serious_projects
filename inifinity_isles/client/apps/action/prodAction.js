@@ -12,6 +12,7 @@ import {
   setUTP,
   setUserProducts,
 } from "../slices/prodSlice";
+import toast from "react-hot-toast";
 
 export const createProduct =
   (title, description, stock, price, category, images) => async (dispatch) => {
@@ -19,7 +20,7 @@ export const createProduct =
       const user = JSON.parse(localStorage.getItem("auth"));
       const token = user?.token;
       const url = `http://localhost:2000/api/create-product/${token}`;
-      const response = await axios.post(url, {
+      await axios.post(url, {
         title,
         description,
         stock,
@@ -27,7 +28,7 @@ export const createProduct =
         category,
         images,
       });
-      console.log(response);
+      toast(`${title} is added successfully`)
     } catch (error) {
       dispatch(
         setError(

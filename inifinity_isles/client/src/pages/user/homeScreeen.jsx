@@ -22,6 +22,7 @@ import SEO_Comp from "../../component/SEO"
 
 
 const HomeScrn = () => {
+    const [seoText, setSeoText] = useState('Home')
     const [showSlide, setSlide] = useState(false)
     const state = useSelector(state => state.User)
     const stateOne = useSelector(state => state.Product)
@@ -44,10 +45,17 @@ const HomeScrn = () => {
         dispatch(fetchBussinessMen())
     }, [dispatch])
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSeoText('Home');
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [])
+
     return (
         <>
-            <SEO_Comp title='Home-Inifinity Isles' description='A free Packages to buy your choice Product' keywords='Shopping, Ecommerce Store' author='Ali Sulman' />
-            <Navbar />
+            <SEO_Comp title={seoText} description='A free Packages to buy your choice Product' keywords='Shopping, Ecommerce Store' author='Ali Sulman' />
+            <Navbar setSeoText={setSeoText} />
             <div className="relative h-full">
                 <Swiper
                     spaceBetween={30}
