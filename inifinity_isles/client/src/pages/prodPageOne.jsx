@@ -7,7 +7,6 @@ const ProdPageOne = ({productId}) => {
     const products = state.singleCateProdByName
 
     const filteredProducts = products.filter(item => item._id !== productId);
-    console.log(productId)
     return (
         <>
             {filteredProducts?.map(item => (

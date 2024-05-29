@@ -236,7 +236,7 @@ export const shuffleProd = async (req, res) => {
   try {
     const page = req.params.page
     const limit = req.params.limit
-    const existProducts = await Product.find({});
+    const existProducts = await Product.find({}).populate('category');
     const shuffleProds = await shuffleArray(existProducts)
     const startIndex = (page - 1) * limit
     const endIndex = page * limit

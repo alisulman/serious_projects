@@ -16,6 +16,7 @@ import CategoryPage from "./pages/user/categoryPage"
 import Category from "./pages/user/category"
 import SingleProduct from "./pages/user/singleProduct"
 import SuccessPayment from "./layout/payment/successPayment"
+import Lookbook from "./pages/user/lookbook"
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/all-categories/:category/:cpid" element={<CategoryPage />} />
         <Route path="/all-categories" element={<Category />} />
         <Route path="/all-categories/:category/:categoryId/:productId" element={<SingleProduct />} />
+        <Route path="/lookbook/men/women" element={<Lookbook />} />
         <Route path="/success_payment" element={<SuccessPayment />} />
 
         <Route path="/dashboard/" element={<CheckRole />}>

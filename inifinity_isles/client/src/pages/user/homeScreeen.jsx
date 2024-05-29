@@ -19,6 +19,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import SEO_Comp from "../../component/SEO"
 import MayLikeProd from "./mayLikeProd"
+import { fetchFav } from "../../../apps/action/cartAction"
 
 
 
@@ -52,6 +53,9 @@ const HomeScrn = () => {
         }, 5000);
         return () => clearInterval(interval);
     }, [])
+    useEffect(() => {
+        dispatch(fetchFav())
+    }, [dispatch])
 
     return (
         <>

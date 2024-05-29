@@ -125,6 +125,10 @@ const cartSlice = createSlice({
       state.isLoading = false,
       state.isError = false,
       state.isFavourite = action.payload
+    },
+    resetStates: () => {
+      localStorage.removeItem('favourites')
+      return initialState
     }
   },
 });
@@ -139,6 +143,7 @@ export const {
   setTotalPrice,
   setQuantity,
   setFavourite,
+  resetStates
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

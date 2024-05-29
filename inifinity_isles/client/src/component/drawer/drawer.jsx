@@ -6,7 +6,7 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import { Link, useNavigate } from 'react-router-dom';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
@@ -20,6 +20,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { red } from '@mui/material/colors';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import toast, { Toaster } from 'react-hot-toast';
+import { resetStates } from '../../../apps/slices/cartSlice';
 
 export default function TemporaryDrawer({ referance }) {
     const [open, setOpen] = React.useState(false);
@@ -32,8 +33,10 @@ export default function TemporaryDrawer({ referance }) {
     const user = state.isAuth
     const role = user?.data?.role
     const navigate = useNavigate()
-    const handleLogout = async() => {
+    const dispatch = useDispatch()
+    const handleLogout = async () => {
         await toast('You Log out, you may come back anytime')
+        dispatch(resetStates())
         localStorage.removeItem('auth')
         navigate('/authenctication/registeration')
         window.location.reload()
@@ -69,10 +72,12 @@ export default function TemporaryDrawer({ referance }) {
                         <div className='text-lg font-[400]'>Profile</div>
                     </ListItemButton>
                 </Link>
-                <ListItemButton className='flex gap-7'>
-                    <div><CheckroomIcon /></div>
-                    <div className='text-lg font-[400]'>LookBook</div>
-                </ListItemButton>
+                <Link to="/lookbook/men/women">
+                    <ListItemButton className='flex gap-7'>
+                        <div><CheckroomIcon /></div>
+                        <div className='text-lg font-[400]'>LookBook</div>
+                    </ListItemButton>
+                </Link>
                 <ListItemButton className='flex gap-7'>
                     <div><CategoryIcon /></div>
                     <div className='text-lg font-[400]'>Categories</div>

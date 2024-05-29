@@ -68,7 +68,7 @@ const CardOne = ({ product, whStyle }) => {
         }
     }
 
-
+console.log(product)
     useEffect(() => {
         if (favProdFind) {
             setUchknchk(false)

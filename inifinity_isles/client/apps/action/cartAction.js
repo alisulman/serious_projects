@@ -33,6 +33,15 @@ export const DoFav = (id) => async (dispatch) => {
     localStorage.setItem('favourites', JSON.stringify(response.data.data))
 }
 
+export const fetchFav = () => async(dispatch) => {
+    dispatch(setLoading())
+    const user = JSON.parse(localStorage.getItem("auth"));
+    const token = user?.token;
+    const response = await axios.get(`http://localhost:2000/api/all-favourite-list/${token}`)
+    dispatch(setFavourite(response.data.data))
+    localStorage.setItem('favourites', JSON.stringify(response.data.data))
+}
+
 export const RemoveFav = (id) => async (dispatch) => {
     dispatch(setLoading())
     const user = JSON.parse(localStorage.getItem("auth"));

@@ -12,7 +12,6 @@ const CardFive = ({ category }) => {
   useEffect(() => {
     const newProductsOne = products.filter(prod => prod.category.category === category.category);
     setNewProd(newProductsOne)
-    console.log(newProductsOne)
   }, [category.category, products])
   return (
     <>

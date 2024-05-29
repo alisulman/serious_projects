@@ -73,7 +73,7 @@ export const fetchCategoryByName = async (req, res) => {
         message: "category is not added yet",
       });
     }
-    const existProds = await Product.find({ category: existCategory._id });
+    const existProds = await Product.find({ category: existCategory._id }).populate('category');
     if (!existProds) {
       return res.status(400).json({
         success: false,

@@ -11,7 +11,6 @@ const CardEight = ({ product }) => {
             return text
         }
     }
-    console.log(product)
     return (
         <>
             <Link to={`/all-categories/${product?.category?.category}/${product?.category?._id}/${product?._id}`}>

@@ -44,7 +44,6 @@ const CardSix = ({ item }) => {
         }
 
     }
-    console.log(item)
     const handleChk = () => {
         if (chknchk) {
             setChknchk(false)
@@ -62,14 +61,14 @@ const CardSix = ({ item }) => {
         <>
             <Toaster />
             <div className='flex justify-between my-5 cursor-pointer '>
-                <div className='relative overflow-hidden group/item border-2 border-gray-400 rounded-xl hover:border-white'>
-                    <img src={item?.product?.images} className='w-44 h-64 rounded-lg object-cover' />
+                <div className='relative overflow-hidden group/item border-2 border-gray-400 rounded-xl hover:border-white lg:w-40 lg:h-60 xl:w-44 xl:h-64'>
+                    <img src={item?.product?.images} className='w-full h-full rounded-lg object-cover' />
                     <div className='group-hover/item:translate-y-0 absolute top-0 w-full h-full bg-black rounded-lg bg-opacity-50 transform translate-y-64 ease-in-out transition-transform duration-[1s]'></div>
                     <div className='group-hover/item:translate-y-0 absolute bottom-0 text-white p-2 translate-y-24 transition-transform duration-[1s] ease-in-out'>
                         <div className='text-lg font-medium hover:underline'>{truncateText(title, 2)}</div>
                         <div className='text-xs'>{truncateText(description, 3)}</div>
                         <div className='border-b my-1'></div>
-                        <div className='text-sm'>{item?.product?.price}/- pkr</div>
+                        <div className='text-sm'>$ {item?.product?.price}</div>
                     </div>
                     <div className="absolute top-0 right-5 m-1.5" onClick={handleChk}>
                         <IconChecker CheckedIcon={<FaHeart className="text-xl text-red-600" />} UnCheckedIcon={<FaRegHeart className="text-xl text-white" />} chknchk={chknchk} uchknchk={uchknchk} />

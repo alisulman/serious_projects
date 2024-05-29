@@ -57,8 +57,8 @@ const CardTwo = ({ product }) => {
         <>
 
             <div className="relative flex bg-white border border-gray-500 rounded-lg hover:shadow-xl cursor-pointer transition-all hover:scale-105 w-full">
-                <div className="relative w-2/5">
-                    <img className=" rounded-l-md w-full xl:h-full object-cover object-center" src={product?.images} />
+                <div className="relative w-2/5 h-12 sm:h-16 md:h-20 lg:h-28 xl:h-40 overflow-hidden">
+                    <img className=" rounded-l-md w-full xl:h-full object-cover object-top" src={product?.images} />
                 </div>
                 <div className="px-0.5 py-0.5 w-[60%] h-12 sm:px-2 sm:h-[59px] md:h-[75px] lg:h-[110px] xl:h-[152px]">
                     <h5 className="font-bold tracking-tight text-gray-900 text-[8px] sm:text-[10px] md:text-[11px] lg:text-xs xl:text-sm">{title && truncateText(title, titleLimit)}</h5>

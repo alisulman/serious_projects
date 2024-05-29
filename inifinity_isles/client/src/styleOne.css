@@ -1,0 +1,37 @@
+.grandFather.menClass .sonTwo .grandSonOne {
+    animation: animateOne 1s ease-in 1 forwards;
+    transition: 1s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+@keyframes animateOne {
+    to {
+        position: absolute;
+        width: 100%;
+        transform: translateY(-100%);
+    }
+}
+
+.grandFather.menClass .sonTwo .grandSonTwo {
+    animation: animatethree 1s ease-in 1 forwards;
+    transition: 1s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+@keyframes animatethree {
+    to {
+        position: absolute;
+        transform: translateX(0%);
+    }
+}
+.grandFather.menClass .sonOne {
+    animation: animateTwo 1s ease-in 1 forwards;
+    transition: 1s ease-in-out;
+}
+
+@keyframes animateTwo {
+    to {
+        position: absolute;
+        right: 0;
+        width: 50%;
+        transform: translateY(100%);
+    }
+}
